@@ -26,6 +26,8 @@ for a in areas:
     a["ore"] = ORE.get(a["key"])
 
 js = json.dumps(dict(areas=areas), ensure_ascii=False).replace("</", "<\\/")
-html = open(os.path.join(HERE, "template.html"), encoding="utf-8").read().replace("__DATA__", js)
+import base64
+IMG = "data:image/jpeg;base64," + base64.b64encode(open(os.path.join(HERE, "img", "scheda-scrutinio.jpg"), "rb").read()).decode()
+html = open(os.path.join(HERE, "template.html"), encoding="utf-8").read().replace("__DATA__", js).replace("__SCHEDA__", IMG)
 open(os.path.join(HERE, "..", "index.html"), "w", encoding="utf-8").write(html)
 print("ok", len(html))

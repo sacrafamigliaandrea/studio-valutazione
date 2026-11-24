@@ -9,6 +9,7 @@ import competenze as C
 from atlante_testi import GIA, PASSO
 
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
+IMGPATH = "file://" + os.path.join(HERE, "img", "scheda-scrutinio.jpg")
 OUT = os.path.join(ROOT, "studio-valutazione.pdf")
 TMP = os.path.join(HERE, "_pdf")
 os.makedirs(TMP, exist_ok=True)
@@ -103,7 +104,7 @@ PAG = "".join(f'<div class="prow"><span>{e(n["nome"])}</span>{rail(PL[i])}</div>
 TOC = [("atlante", "L'Atlante dello studente e perché adesso"), ("c1", "§Tappa 1 · Il nostro anno"), ("anno", "    Il nostro anno, oggi e con l'Atlante"), ("c2", "§Tappa 2 · Come si scrive una tappa"), ("tappe", "    Un livello si capisce meglio se è una tappa"), ("foto", "    Nella verifica il voto resta; con l'Atlante si aggiunge la mappa"), ("c3", "§Tappa 3 · Le nostre rubriche"),
        ("tabelle", "    Le nostre tabelle, un passo più in là"), ("leggere", "    Come leggere le schede")] + \
       [("s-" + a["key"], "        " + a["nome"]) for a in AREAS] + \
-      [("prova", "    Una verifica, oggi e con l'Atlante"), ("c4", "§Tappa 4 · Il cammino dello studente"), ("pagellino", "    Il pagellino diventa la prima pagina dell'Atlante"), ("tempo", "    Due misure a quadrimestre, un cammino nell'anno"), ("perche", "    Che cosa ci guadagniamo"),
+      [("prova", "    Una verifica, oggi e con l'Atlante"), ("c4", "§Tappa 4 · Il cammino dello studente"), ("pagellino", "    Il pagellino diventa la prima pagina dell'Atlante"), ("tempo", "    Due misure a quadrimestre, un cammino nell'anno"), ("scheda", "    Dove vive l'Atlante: la scheda dello studente"), ("perche", "    Che cosa ci guadagniamo"),
        ("rif", "Siamo già in buona compagnia"), ("io", "Appendice · Come lavoro? Scheda di autovalutazione")]
 
 CSS = """
@@ -248,6 +249,14 @@ table.nt .inv b{display:block;color:#1d2b45;font-weight:600}
 .prow2 .lt{font-weight:800;text-align:center;background:#eef1f5;border-radius:5pt;color:#4a5568;height:fit-content}
 .docpag.now{background:#f7f9fb;border:1pt dashed #c3cbd8}
 .nonbox{border:1pt dashed #c3cbd8;border-radius:8pt;padding:6pt 10pt;font-size:9.6pt;margin-top:8pt}.nonbox b{color:#123E90}
+.shotwrap{display:grid;grid-template-columns:1fr 62mm;gap:10pt;align-items:start;margin-top:4pt}
+.shotbox{position:relative;border:1pt solid #e1e7f0;border-radius:6pt;overflow:hidden}.shotbox img{display:block;width:100%}
+.pinn{position:absolute;transform:translate(-50%,-50%);width:15pt;height:15pt;border-radius:50%;background:#123E90;color:#fff;font-weight:800;font-size:8.5pt;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2pt #fff}
+ol.leg5{margin:0;padding-left:14pt;font-size:8.8pt;line-height:1.4}ol.leg5 li{margin-bottom:5pt}ol.leg5 li::marker{font-weight:800;color:#123E90}
+.chiprow{display:flex;flex-wrap:wrap;gap:3pt;margin:6pt 0}
+.chip{border-radius:4pt;padding:1.5pt 5pt;font-size:8.2pt;font-weight:700;border:1pt solid #c3cbd8}
+.chip.lt{background:#fff;color:#4a5568}.chip.d{border-color:#b8612a}.chip.c{border-color:#a8721c}.chip.b{border-color:#2e7d4f}.chip.a{border-color:#1f87c9}
+.ptext{font-size:9.6pt;line-height:1.5;margin:0}
 ul.refs{font-size:9.8pt;padding-left:14pt}
 """
 
@@ -319,6 +328,27 @@ def divider(i, items):
     c = CH[i]
     return (f'<section class="divider"><div class="dtag">Tappa {i+1} di 4</div>{route(i)}<h1 id="{c[0]}" style="color:{c[4]}">{e(c[1])}</h1>'
             f'<p class="lede">{e(c[2])}</p><p class="dlh">In questa tappa</p><ul class="dl">' + "".join(f"<li>{e(x)}</li>" for x in items) + '</ul></section>')
+def scheda_section():
+    SH = ["Com", "Part", "Squad", "Citt", "Imp", "Creat", "Emoz"]; LET = ["B", "C", "B", "B", "B", "D", "B"]; toLv = {"A": 3, "B": 2, "C": 1, "D": 0}
+    cn = comp["nuclei"]; lvs = [toLv[l] for l in LET]; low = lvs.index(min(lvs))
+    now_chips = "".join(f'<span class="chip lt">{s_} {l}</span>' for s_, l in zip(SH, LET))
+    now_txt = " ".join(n["orig"][3 - lvs[i]] for i, n in enumerate(cn))
+    new_chips = "".join(f'<span class="chip {CLS[lvs[i]]}">{e(n["nome"].split(" ")[0])} · {RUBL[lvs[i]]}</span>' for i, n in enumerate(cn))
+    new_txt = e(" ".join(n["rubrica"][3 - lvs[i]] for i, n in enumerate(cn))) + f'<br><b>Prossima tappa in {e(cn[low]["nome"].lower())}:</b> {e(cn[low]["rubrica"][2 - lvs[low]])}'
+    pins = "".join(f'<span class="pinn" style="left:{x}%;top:{y}%">{k}</span>' for k, (x, y) in enumerate([(0.9, 48), (34.9, 51), (62.6, 85), (67.4, 40), (34.9, 90.7)], 1))
+    leg = ["<b>Profitto.</b> I voti delle discipline vengono dalle verifiche, come oggi. Con l'Atlante, accanto a ogni voto c'è la rubrica della disciplina: la tappa per nucleo e la prossima.",
+           "<b>Pagellino del primo quadrimestre.</b> È la prima misura dell'Atlante sulle competenze trasversali.",
+           "<b>Le sette competenze.</b> Oggi sono lettere che compongono una frase; con l'Atlante diventano tappe, con la prossima tappa.",
+           "<b>Pagella del primo quadrimestre.</b> «Parti dal pagellino»: la seconda misura nasce dalla prima, e il cammino si vede.",
+           "<b>Secondo quadrimestre.</b> Terza e quarta misura, con lo stesso gesto."]
+    return (f'<section class="wide"><h2 id="scheda">Dove vive l\'Atlante: la scheda dello studente</h2>'
+            f'<p class="lede">Il metodo diventa prassi nella scheda che compiliamo per ogni studente allo scrutinio. Il prototipo ha già i quattro momenti dell\'anno: il profitto, che viene dalle verifiche, e per ogni quadrimestre il pagellino e la pagella.</p>'
+            f'<div class="shotwrap"><div class="shotbox"><img src="{IMGPATH}">{pins}</div><ol class="leg5">' + "".join(f"<li>{x}</li>" for x in leg) + '</ol></div>'
+            '<p class="note">Prototipo della scheda di scrutinio, secondaria di primo grado. Dati di esempio.</p></section>'
+            f'<section class="wide"><h2>Il riquadro del pagellino, oggi e con l\'Atlante</h2><div class="cards">'
+            f'<div class="card now"><span class="pill now">Come valutiamo oggi</span><div class="chiprow">{now_chips}</div><p class="ptext">{e(now_txt)}</p></div>'
+            f'<div class="card new"><span class="pill new">Con l\'Atlante</span><div class="chiprow">{new_chips}</div><p class="ptext">{new_txt}</p></div></div>'
+            '<p class="note">Stesso studente, stesse osservazioni: le lettere A, B, C, D diventano Avanzato, Intermedio, Base, Iniziale, e la frase descrive che cosa lo studente fa e qual è la prossima tappa.</p></section>')
 def page(toc_pages=None):
     tp = toc_pages or {}
     CAMMINO = cammino()
@@ -409,13 +439,14 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 <div><p style="margin:0 0 4pt"><span class="pill new">Con l'Atlante</span> lo stesso voto, {voto}, e la mappa</p>{prova_atl}</div>
 </div></section>
 
-{divider(3, ["Il pagellino diventa la prima pagina dell'Atlante", "Due misure a quadrimestre, un cammino nell'anno", "Che cosa ci guadagniamo"])}
+{divider(3, ["Il pagellino diventa la prima pagina dell'Atlante", "Due misure a quadrimestre, un cammino nell'anno", "Dove vive l'Atlante: la scheda dello studente", "Che cosa ci guadagniamo"])}
 {PAG_HTML}
 <section class="sec"><h2 id="tempo">Due misure a quadrimestre, un cammino nell'anno</h2>
 <p class="lede">Il pagellino e lo scrutinio usano la stessa rubrica. Messe in fila, le quattro misure dell'anno raccontano il cammino dello studente: dove è partito, dove è salito, dove c'è ancora strada da fare.</p>
 {CAMMINO}
 <p class="note" style="margin-top:6pt">Studente di esempio, competenze trasversali. La freccia segna la competenza in cui lo studente è salito di tappa rispetto alla misura precedente.</p>
 </section>
+{scheda_section()}
 <section class="sec"><h2 id="perche" style="break-before:page">Che cosa ci guadagniamo</h2>
 <div class="three" style="gap:14pt">
 <div><b>Lo studente</b>Sa dove si trova e che cosa provare dopo. Può autovalutarsi con le stesse parole che usiamo noi.</div>
