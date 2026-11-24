@@ -5,6 +5,7 @@ Accompagna il passaggio della valutazione verso un'ottica da rubrica, al servizi
 
 ## Contenuto
 
+- `studio-valutazione.pdf` – lo studio completo per una lettura approfondita, scaricabile dalla pagina.
 - `index.html` – la pagina da presentare: un unico file, senza dipendenze oltre ai font Google. Si apre direttamente nel browser o si pubblica con GitHub Pages.
 - `sorgenti/` – dati e script che generano la pagina.
   - `disc_data.py` – trascrizioni dei documenti disciplinari, griglie e rubriche riscritte, diagnosi.
@@ -13,12 +14,14 @@ Accompagna il passaggio della valutazione verso un'ottica da rubrica, al servizi
   - `analisi.py` – indicatori di lavoro sui descrittori (non mostrati nella pagina), scrive `metrics.json`.
   - `template.html` – struttura, stile e interazioni della pagina.
   - `build.py` – unisce dati e template e rigenera `index.html`.
-- `materiali/` – il file Excel con griglia e rubrica delle competenze trasversali e lo studio PDF sulla sola rubrica delle competenze.
+  - `build_pdf.py` – rigenera `studio-valutazione.pdf` dagli stessi dati (serve Chrome o Chromium).
+- `materiali/` – il file Excel con griglia e rubrica delle competenze trasversali.
 
 ## Rigenerare la pagina
 
 ```bash
 python3 sorgenti/build.py
+python3 sorgenti/build_pdf.py
 ```
 
 Per modificare un descrittore si cambia `disc_data.py` o `competenze.py`; per i commenti di ogni documento `atlante_testi.py`.

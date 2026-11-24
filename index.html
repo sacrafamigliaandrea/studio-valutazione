@@ -43,6 +43,9 @@ select{font:inherit;font-size:16px;min-height:44px;border-radius:12px;border:1px
 .map text{font-family:"Red Hat Display",sans-serif;font-weight:700;font-size:21px;fill:var(--ink)}
 .map .lbl{paint-order:stroke;stroke:#fff;stroke-width:5px}
 #pin{transition:transform 1.6s cubic-bezier(.3,.7,.2,1)}
+.dl{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--blu);color:#fff;text-decoration:none;border-radius:12px;padding:12px 18px;font-weight:700;min-height:44px}
+.dl:hover{background:#0d2f6e}
+.dl svg{width:20px;height:20px}
 .idea{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
 .idea div{border-top:3px solid var(--line);padding-top:10px;font-size:15.5px}
 .idea b{display:block;color:var(--blu);font-family:"Red Hat Display",system-ui,sans-serif;font-size:17px}
@@ -150,6 +153,7 @@ body.present{font-size:19px}
 <div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div>
 <div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div>
 </div>
+<a class="dl" href="studio-valutazione.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 15h12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Scarica lo studio completo (PDF)</a>
 </div>
 <div class="map" aria-label="Illustrazione: un sentiero con quattro tappe e lo studente sulla seconda">
 <svg viewBox="0 0 640 380" role="img">
@@ -176,7 +180,7 @@ body.present{font-size:19px}
 <text class="lbl" x="520" y="138" text-anchor="end">Avanzato</text>
 <path d="M276 250 C320 236 345 228 368 212" fill="none" stroke="var(--blu2)" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#arr)"/>
 <defs><marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--blu2)"/></marker></defs>
-<text class="lbl" x="332" y="194" text-anchor="middle" style="fill:var(--blu2);font-size:19px">prossima tappa</text>
+<text class="lbl" x="314" y="194" text-anchor="middle" style="fill:var(--blu2);font-size:19px">prossima tappa</text>
 <g id="pin" transform="translate(250 262)">
 <path d="M0 -6 C-16 -26 -16 -46 0 -50 C16 -46 16 -26 0 -6Z" fill="var(--blu)" transform="translate(0 -12)"/>
 <circle cx="0" cy="-48" r="6" fill="#fff"/>
@@ -276,6 +280,8 @@ body.present{font-size:19px}
 <div class="card"><h3>Nuove Indicazioni nazionali</h3><p class="small" style="color:var(--ink)">In vigore dal 2026/27 a partire dalle classi prime (DM 221/2025), chiedono di rivedere il curricolo. È l'occasione per rivedere insieme anche il modo di descrivere i livelli.</p></div>
 <div class="card"><h3>Il voto resta</h3><p class="small" style="color:var(--ink)">Le discipline continuano a esprimersi in decimi, il comportamento in decimi, la religione con il giudizio. L'Atlante non cambia questi esiti: li rende leggibili.</p></div>
 </div>
+<p style="margin-top:22px">Per una lettura approfondita, con tutte le schede delle discipline, l'esempio della prova e la scheda di autovalutazione per gli studenti:</p>
+<a class="dl" style="margin-top:0" href="studio-valutazione.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 15h12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Scarica lo studio completo (PDF)</a>
 <details style="margin-top:22px"><summary>Tutte le tabelle, nucleo per nucleo</summary><div id="alltabs"></div></details>
 <p class="small" style="margin-top:14px">Ore settimanali secondo il quadro orario nazionale della secondaria di primo grado (30 ore); Italiano comprende l'ora di approfondimento, Matematica le ore di scienze.</p>
 <footer style="margin-top:22px">Scuola secondaria di primo grado Sacra Famiglia, Orzinuovi (BS) · Studio sulla valutazione, novembre 2026 · Andrea Cerioli, Animatore Digitale</footer>
