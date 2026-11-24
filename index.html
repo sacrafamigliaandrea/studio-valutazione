@@ -141,6 +141,19 @@ section[data-ch="1"]{box-shadow:inset 8px 0 0 var(--D)}section[data-ch="2"]{box-
 .tappa .inv b{display:block;color:var(--ink);font-size:13.5px}
 .prow2{display:grid;grid-template-columns:11em 5.2em minmax(0,1fr);gap:10px;align-items:start;padding:8px 6px;border-bottom:1px solid var(--line);font-size:14.5px}
 .prow2 .lt{font-family:"Red Hat Display",system-ui,sans-serif;font-weight:800;text-align:center;border-radius:8px;background:#eef1f5;padding:2px 0;color:#4a5568}
+
+.why-h{margin-top:clamp(28px,4vw,48px)}
+.why3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.wcard{background:var(--soft);border-radius:18px;padding:18px 20px}
+.wcard svg{width:40px;height:40px;margin-bottom:6px}
+.wcard h3{font-size:18px}
+.wcard p{font-size:15.5px;margin:0}
+.nonbox{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-top:16px;border:1.5px dashed #c3cbd8;border-radius:16px;padding:12px 18px;font-size:15.5px}
+.nonbox b{font-family:"Red Hat Display",system-ui,sans-serif;color:var(--blu)}
+.nonbox span{display:inline-flex;gap:8px;align-items:center}
+.nonbox i{width:20px;height:20px;border-radius:50%;background:#eef1f5;color:#6b7789;display:grid;place-items:center;flex:none}
+.nonbox i svg{width:12px;height:12px}
+@media (max-width:820px){.why3{grid-template-columns:minmax(0,1fr)}.nonbox{flex-direction:column;align-items:flex-start}}
 /* bicicletta */
 .bike{display:grid;gap:14px;margin-top:18px}
 .brow{display:grid;grid-template-columns:13em repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}
@@ -229,7 +242,7 @@ footer{font-size:14.5px;color:var(--mute)}
 body.present section.band{min-height:100svh;display:flex;flex-direction:column;justify-content:center}
 body.present{font-size:19px}
 @media (max-width:960px){.prop{position:static}.hero,.prova,.pag,.scr,.year{grid-template-columns:minmax(0,1fr)}.moments{grid-template-columns:minmax(0,1fr)}.atl{position:static}.why,.refs{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:820px){.path{grid-template-columns:minmax(0,1fr)!important}.tappa{margin:0 0 22px}.tappa::after{right:auto;left:22px;top:auto;bottom:-19px;transform:rotate(135deg)}.brow{grid-template-columns:repeat(2,minmax(0,1fr))}.brow .h{grid-column:1/-1}.brow .lv{display:none}.two,.notes,.idea{grid-template-columns:minmax(0,1fr)}.trow{grid-template-columns:minmax(0,1fr);gap:18px}}
+@media (max-width:820px){.idea{grid-template-columns:minmax(0,1fr)!important}.path{grid-template-columns:minmax(0,1fr)!important}.tappa{margin:0 0 22px}.tappa::after{right:auto;left:22px;top:auto;bottom:-19px;transform:rotate(135deg)}.brow{grid-template-columns:repeat(2,minmax(0,1fr))}.brow .h{grid-column:1/-1}.brow .lv{display:none}.two,.notes,.idea{grid-template-columns:minmax(0,1fr)}.trow{grid-template-columns:minmax(0,1fr);gap:18px}}
 @media (max-width:600px){table{font-size:13px}th,td{padding:6px 4px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px}.stack td{display:block;border:0;padding:3px 0}.stack td::before{content:attr(data-l);display:block;font-weight:700;font-size:13px;color:var(--mute)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
@@ -240,16 +253,11 @@ body.present{font-size:19px}
 <button id="present" type="button" aria-pressed="false">Presenta</button>
 </div></nav>
 
-<section class="band" id="atlante"><div class="wrap hero">
+<section class="band" id="atlante"><div class="wrap">
+<div class="hero">
 <div>
-<h1>L'Atlante dello studente: dalla tabella alla mappa</h1>
-<p class="lede">Le nostre tabelle di valutazione descrivono già quattro livelli. Con un passo in più possono diventare una mappa che dice a ogni studente <b>dove si trova</b> e <b>qual è la prossima tappa</b>.</p>
-<div class="idea">
-<div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div>
-<div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div>
-<div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div>
-<div><b>Il voto resta</b>le verifiche e la pagella mantengono i loro voti, come oggi; la rubrica li spiega</div>
-</div>
+<h1>L'Atlante dello studente: il passo che mette insieme ciò che abbiamo già costruito</h1>
+<p class="lede">Negli anni abbiamo lavorato molto sulla valutazione: abbiamo scritto le tabelle di ogni disciplina e la rubrica delle competenze, e ogni anno compiliamo pagellini e giudizi. Il materiale c'è, ed è nostro. Manca ancora un filo che lo renda leggibile allo studente: oggi i nostri strumenti dicono <b>quanto</b>, non ancora <b>dove andare</b>.</p>
 <a class="dl" href="studio-valutazione.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 15h12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Scarica lo studio completo (PDF)</a>
 </div>
 <div class="map" aria-label="Illustrazione: un sentiero con quattro tappe e lo studente sulla seconda">
@@ -277,7 +285,7 @@ body.present{font-size:19px}
 <text class="lbl" x="520" y="138" text-anchor="end">Avanzato</text>
 <path d="M276 250 C320 236 345 228 368 212" fill="none" stroke="var(--blu2)" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#arr)"/>
 <defs><marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--blu2)"/></marker></defs>
-<text class="lbl" x="314" y="194" text-anchor="middle" style="fill:var(--blu2);font-size:19px">prossima tappa</text>
+<text class="lbl" x="300" y="192" text-anchor="middle" style="fill:var(--blu2);font-size:19px">prossima tappa</text>
 <g id="pin" transform="translate(250 262)">
 <path d="M0 -6 C-16 -26 -16 -46 0 -50 C16 -46 16 -26 0 -6Z" fill="var(--blu)" transform="translate(0 -12)"/>
 <circle cx="0" cy="-48" r="6" fill="#fff"/>
@@ -285,11 +293,33 @@ body.present{font-size:19px}
 </g>
 </svg>
 </div>
+
+</div>
+<h2 class="why-h">Perché adesso</h2>
+<div class="why3">
+<div class="wcard"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="5" width="26" height="30" rx="3" fill="var(--sky)" stroke="var(--blu)" stroke-width="2.5"/><path d="M13 13h14M13 19h14M13 25h9" stroke="var(--blu)" stroke-width="2.5" stroke-linecap="round"/></svg><h3>Le nuove Indicazioni nazionali</h3><p>Dal 2026/27, a partire dalle classi prime, ci chiedono di rivedere il curricolo. La valutazione è la parte del curricolo che lo studente vede: conviene rivederla insieme, adesso.</p></div>
+<div class="wcard"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" fill="var(--C)" stroke="var(--Ck)" stroke-width="2.5"/><path d="M20 12v9l6 4" stroke="var(--Ck)" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg><h3>Le regole intorno a noi sono cambiate</h3><p>La certificazione delle competenze usa quattro livelli, dove Iniziale è un punto di partenza; il comportamento si esprime in decimi. I nostri livelli, oggi legati a fasce di voto, parlano un'altra lingua.</p></div>
+<div class="wcard"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="13" r="6" fill="var(--ok)" stroke="var(--okk)" stroke-width="2.5"/><path d="M8 35c1-8 6-12 12-12s11 4 12 12" fill="var(--ok)" stroke="var(--okk)" stroke-width="2.5" stroke-linecap="round"/><path d="M29 6l4 4-4 4" fill="none" stroke="var(--blu)" stroke-width="2.5" stroke-linecap="round"/></svg><h3>La domanda dello studente</h3><p>Dopo un voto, la domanda è sempre la stessa: «e adesso che cosa devo fare?». I nostri strumenti possono rispondere, se descrivono tappe invece che gradi.</p></div>
+</div>
+<div class="nonbox">
+<b>Che cosa non è</b>
+<span><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></i>Non si ricomincia da capo: si parte dalle tabelle che abbiamo scritto noi.</span>
+<span><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></i>Non si aggiunge un documento: cambia il pagellino che già compiliamo.</span>
+<span><i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></i>Non spariscono i voti: verifiche e pagella restano in decimi.</span>
+</div>
 </div></section>
 
 <section class="band route" id="percorso"><div class="wrap">
 <h2>Il percorso di questa presentazione</h2>
 <p class="lede">Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>
+<h3 style="margin-top:6px">L'Atlante in quattro idee</h3>
+<div class="idea" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:30px">
+<div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div>
+<div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div>
+<div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div>
+<div><b>Il voto resta</b>le verifiche e la pagella mantengono i loro voti, come oggi; la rubrica li spiega</div>
+</div>
+<h3>Le quattro tappe di questa presentazione</h3>
 <ol class="stations"><li><a href="#anno" class="st1"><span class="dot">1</span><b>Il nostro anno</b><span>Due quadrimestri, tre momenti, uno strumento per ciascuno.</span></a></li><li><a href="#tappe" class="st2"><span class="dot">2</span><b>Come si scrive una tappa</b><span>Dall'aggettivo alla situazione in cui lo studente riesce: oggi e con l'Atlante.</span></a></li><li><a href="#visore" class="st3"><span class="dot">3</span><b>Le nostre rubriche</b><span>Ogni tabella e ogni verifica, oggi e con l'Atlante.</span></a></li><li><a href="#pagellino" class="st4"><span class="dot">4</span><b>Il cammino dello studente</b><span>Pagellino e scrutinio: due misure che raccontano il percorso.</span></a></li></ol>
 </div></section>
 <section class="band soft" id="anno" data-ch="1"><div class="wrap">

@@ -100,7 +100,7 @@ PL = [x[0] for x in TL]
 YR = "".join(f'<div class="yq"><b>{q}</b><div class="yt"><span class="tk"></span><span class="tk"></span><span class="st p">pagellino · {mm}</span><span class="tk"></span><span class="tk"></span><span class="st p">{e2}</span></div><div class="yl"><span>verifiche · rubrica disciplinare</span><span>1ª misura</span><span>2ª misura</span></div></div>' for q, e2, mm in [("Primo quadrimestre", "scrutinio", "novembre"), ("Secondo quadrimestre", "scrutinio finale", "aprile")])
 PAG_NOW = '<div class="docpag now"><div class="dh"><b>Pagellino di novembre</b><span class="pill now">Come valutiamo oggi</span></div>' + "".join(f'<div class="prow2"><b>{e(n["nome"])}</b><span class="lt">{["D","C","B","A"][PL[i]]} · {["5-4","7-6","9-8","10"][PL[i]]}</span><span>{e(n["orig"][3 - PL[i]])}</span></div>' for i, n in enumerate(comp["nuclei"])) + '</div>'
 PAG = "".join(f'<div class="prow"><span>{e(n["nome"])}</span>{rail(PL[i])}</div>' for i, n in enumerate(comp["nuclei"])) + f'<p class="next"><b>Gestione delle emozioni · tappa Iniziale.</b> {e(comp["nuclei"][6]["rubrica"][3])}<br><b>Prossima tappa:</b> {e(comp["nuclei"][6]["rubrica"][2])}</p>'
-TOC = [("atlante", "L'Atlante dello studente"), ("c1", "§Tappa 1 · Il nostro anno"), ("anno", "    Il nostro anno, oggi e con l'Atlante"), ("c2", "§Tappa 2 · Come si scrive una tappa"), ("tappe", "    Un livello si capisce meglio se è una tappa"), ("foto", "    Nella verifica il voto resta; con l'Atlante si aggiunge la mappa"), ("c3", "§Tappa 3 · Le nostre rubriche"),
+TOC = [("atlante", "L'Atlante dello studente e perché adesso"), ("c1", "§Tappa 1 · Il nostro anno"), ("anno", "    Il nostro anno, oggi e con l'Atlante"), ("c2", "§Tappa 2 · Come si scrive una tappa"), ("tappe", "    Un livello si capisce meglio se è una tappa"), ("foto", "    Nella verifica il voto resta; con l'Atlante si aggiunge la mappa"), ("c3", "§Tappa 3 · Le nostre rubriche"),
        ("tabelle", "    Le nostre tabelle, un passo più in là"), ("leggere", "    Come leggere le schede")] + \
       [("s-" + a["key"], "        " + a["nome"]) for a in AREAS] + \
       [("prova", "    Una verifica, oggi e con l'Atlante"), ("c4", "§Tappa 4 · Il cammino dello studente"), ("pagellino", "    Il pagellino diventa la prima pagina dell'Atlante"), ("tempo", "    Due misure a quadrimestre, un cammino nell'anno"), ("perche", "    Che cosa ci guadagniamo"),
@@ -247,6 +247,7 @@ table.nt .inv b{display:block;color:#1d2b45;font-weight:600}
 .prow2{display:grid;grid-template-columns:30% 14% 1fr;gap:6pt;font-size:8.6pt;padding:4pt 0;border-bottom:0.6pt solid #e1e7f0}
 .prow2 .lt{font-weight:800;text-align:center;background:#eef1f5;border-radius:5pt;color:#4a5568;height:fit-content}
 .docpag.now{background:#f7f9fb;border:1pt dashed #c3cbd8}
+.nonbox{border:1pt dashed #c3cbd8;border-radius:8pt;padding:6pt 10pt;font-size:9.6pt;margin-top:8pt}.nonbox b{color:#123E90}
 ul.refs{font-size:9.8pt;padding-left:14pt}
 """
 
@@ -344,12 +345,19 @@ def page(toc_pages=None):
 
 </section>
 
-<section class="sec"><h2 id="atlante">L'Atlante dello studente</h2>
-<p class="lede">L'Atlante è la mappa del percorso di ogni studente: dove si trova oggi e dove sta andando. Per costruirlo ci serve un linguaggio di valutazione che descriva tappe, non soltanto gradi.</p>
+<section class="sec"><h2 id="atlante">L'Atlante dello studente: il passo che mette insieme ciò che abbiamo già costruito</h2>
+<p class="lede">Negli anni abbiamo lavorato molto sulla valutazione: abbiamo scritto le tabelle di ogni disciplina e la rubrica delle competenze, e ogni anno compiliamo pagellini e giudizi. Il materiale c'è, ed è nostro. Manca ancora un filo che lo renda leggibile allo studente: oggi i nostri strumenti dicono quanto, non ancora dove andare.</p>
+<h3>Perché adesso</h3>
+<div class="three">
+<div><b>Le nuove Indicazioni nazionali</b>Dal 2026/27, a partire dalle classi prime, ci chiedono di rivedere il curricolo. La valutazione è la parte del curricolo che lo studente vede: conviene rivederla insieme, adesso.</div>
+<div><b>Le regole intorno a noi sono cambiate</b>La certificazione delle competenze usa quattro livelli, dove Iniziale è un punto di partenza; il comportamento si esprime in decimi. I nostri livelli, oggi legati a fasce di voto, parlano un'altra lingua.</div>
+<div><b>La domanda dello studente</b>Dopo un voto, la domanda è sempre la stessa: «e adesso che cosa devo fare?». I nostri strumenti possono rispondere, se descrivono tappe invece che gradi.</div>
+</div>
+<div class="nonbox"><b>Che cosa non è</b><br>Non si ricomincia da capo: si parte dalle tabelle che abbiamo scritto noi. · Non si aggiunge un documento: cambia il pagellino che già compiliamo. · Non spariscono i voti: verifiche e pagella restano in decimi.</div>
+<h3 style="margin-top:12pt">L'Atlante in quattro idee</h3>
 <div class="three" style="grid-template-columns:repeat(2,1fr)"><div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div><div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div><div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div><div><b>Il voto resta</b>le verifiche e la pagella mantengono i loro voti, come oggi; la rubrica li spiega</div></div>
-<p style="margin-top:12pt">Questo studio parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e prosegue con le tabelle delle discipline per la valutazione in itinere, in ordine di ore settimanali. Per ciascun documento mette a confronto come valutiamo oggi e come si valuta con l'Atlante.</p>
-
-<h2 style="margin-top:20pt">Il percorso di questo studio</h2><p>Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>{ROUTE}<div class="legend" style="margin-top:12pt"><h4>Come sono costruite le pagine</h4>
+<p style="margin-top:10pt">Questo studio parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e prosegue con le tabelle delle discipline per la valutazione in itinere, in ordine di ore settimanali. Per ciascun documento mette a confronto come valutiamo oggi e come si valuta con l'Atlante.</p>
+<h2 style="break-before:page">Il percorso di questo studio</h2><p>Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>{ROUTE}<div class="legend" style="margin-top:12pt"><h4>Come sono costruite le pagine</h4>
 <p style="margin:0">Le tappe vanno sempre da sinistra a destra, dalla prima all'ultima:
 <span class="d" style="padding:1pt 5pt;border-radius:4pt">Iniziale</span> <span class="c" style="padding:1pt 5pt;border-radius:4pt">Base</span> <span class="b" style="padding:1pt 5pt;border-radius:4pt">Intermedio</span> <span class="a" style="padding:1pt 5pt;border-radius:4pt">Avanzato</span>.
 Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell'Avanzato è il cielo verso cui si cammina.</p></div></section>
@@ -452,6 +460,7 @@ def find_pages(pdf):
     res, cur = {}, 2
     for k, t in TOC:
         key = re.sub(r"\s+", " ", t.strip().lstrip("§"))
+        if k == "atlante": key = "Perché adesso"
         if t.startswith("§"): key = "Tappa " + key.split("Tappa ")[1].split(" ·")[0] + " di 4"
         sub = t.startswith("        ")
         for i in range(cur, n):
