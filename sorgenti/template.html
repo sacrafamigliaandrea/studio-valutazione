@@ -14,7 +14,7 @@
    TYPE Red Hat Display per i titoli, Red Hat Text per il testo
    LAYOUT titolo e invito a sinistra, sentiero a destra; sotto, sezioni chiare a tutta larghezza; su telefono in colonna */
 :root{color-scheme:light;--bg:#fff;--ink:#1d2b45;--mute:#5d6a80;--line:#e1e7f0;--soft:#f5f8fc;--blu:#123E90;--blu2:#2F62C0;--sky:#e8f0fc;
---A:#d9efd6;--B:#dbe8f8;--C:#fff0c7;--D:#fde3cf;--Ak:#2e7d4f;--Bk:#2F62C0;--Ck:#a8721c;--Dk:#b8612a;--gold:#c9a227}
+--A:#d4ebfb;--B:#dbefd6;--C:#fff0c7;--D:#fde3cf;--Ak:#1f87c9;--Bk:#2e7d4f;--Ck:#a8721c;--Dk:#b8612a;--ok:#dbefd6;--okk:#2e7d4f;--gold:#c9a227}
 *{box-sizing:border-box;min-width:0}
 html{scroll-padding-top:64px;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Red Hat Text",system-ui,sans-serif;overflow-x:clip}
@@ -164,10 +164,10 @@ body.present{font-size:19px}
 <path id="road" d="M60 330 C150 330 170 270 250 262 S360 250 390 200 S470 120 560 96" fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round"/>
 <path d="M60 330 C150 330 170 270 250 262 S360 250 390 200 S470 120 560 96" fill="none" stroke="#c9d6ea" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
 <g>
-<circle cx="80" cy="330" r="17" fill="var(--D)" stroke="#fff" stroke-width="4"/>
-<circle cx="250" cy="262" r="17" fill="var(--C)" stroke="#fff" stroke-width="4"/>
-<circle cx="392" cy="198" r="17" fill="var(--B)" stroke="#fff" stroke-width="4"/>
-<circle cx="560" cy="96" r="17" fill="var(--A)" stroke="#fff" stroke-width="4"/>
+<circle cx="80" cy="330" r="17" fill="var(--D)" stroke="var(--Dk)" stroke-width="3"/>
+<circle cx="250" cy="262" r="17" fill="var(--C)" stroke="var(--Ck)" stroke-width="3"/>
+<circle cx="392" cy="198" r="17" fill="var(--B)" stroke="var(--Bk)" stroke-width="3"/>
+<circle cx="560" cy="96" r="17" fill="var(--A)" stroke="var(--Ak)" stroke-width="3"/>
 </g>
 <path d="M560 79 V30" stroke="#5d6a80" stroke-width="3"/><path d="M561 31 L596 41 L561 53Z" fill="var(--gold)"/>
 <text class="lbl" x="84" y="372" text-anchor="middle">Iniziale</text>
@@ -208,7 +208,7 @@ body.present{font-size:19px}
 <ul><li>serve al docente</li><li>fotografa un momento</li><li>produce il voto</li></ul>
 </div>
 <div class="card">
-<svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 14 22 8 42 14 58 8V50L42 56 22 50 6 56Z" fill="var(--A)" stroke="var(--Ak)" stroke-width="3" stroke-linejoin="round"/><path d="M22 8V50M42 14V56" stroke="var(--Ak)" stroke-width="2.5"/><path d="M14 44C22 36 30 40 36 30S48 20 52 18" fill="none" stroke="var(--blu)" stroke-width="3" stroke-dasharray="4 4"/><circle cx="52" cy="18" r="4" fill="var(--blu)"/></svg>
+<svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 14 22 8 42 14 58 8V50L42 56 22 50 6 56Z" fill="var(--ok)" stroke="var(--okk)" stroke-width="3" stroke-linejoin="round"/><path d="M22 8V50M42 14V56" stroke="var(--okk)" stroke-width="2.5"/><path d="M14 44C22 36 30 40 36 30S48 20 52 18" fill="none" stroke="var(--blu)" stroke-width="3" stroke-dasharray="4 4"/><circle cx="52" cy="18" r="4" fill="var(--blu)"/></svg>
 <h3>Rubrica: la mappa dell'Atlante</h3>
 <p>Descrive le tappe di ogni nucleo con ciò che lo studente sa fare. Colloca ogni foto sul percorso e mostra la prossima tappa.</p>
 <ul><li>serve allo studente e al docente</li><li>racconta un percorso</li><li>indica il passo successivo</li></ul>
@@ -291,7 +291,7 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const LVC = ['var(--D)', 'var(--C)', 'var(--B)', 'var(--A)'];
 const LVK = ['var(--Dk)', 'var(--Ck)', 'var(--Bk)', 'var(--Ak)'];
 const RUBL = ['Iniziale', 'Base', 'Intermedio', 'Avanzato'];
-const OK = '<svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9.5" fill="var(--A)" stroke="var(--Ak)" stroke-width="2"/><path d="m6.5 11.5 3 3 6-6.5" fill="none" stroke="var(--Ak)" stroke-width="2.2" stroke-linecap="round"/></svg>';
+const OK = '<svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9.5" fill="var(--ok)" stroke="var(--okk)" stroke-width="2"/><path d="m6.5 11.5 3 3 6-6.5" fill="none" stroke="var(--okk)" stroke-width="2.2" stroke-linecap="round"/></svg>';
 const GO = '<svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9.5" fill="var(--sky)" stroke="var(--blu2)" stroke-width="2"/><path d="M6.5 11h8m-3.2-3.4 3.4 3.4-3.4 3.4" fill="none" stroke="var(--blu2)" stroke-width="2.2" stroke-linecap="round"/></svg>';
 const PIN = '<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 27C6 18 4 13 4 10a10 10 0 0 1 20 0c0 3-2 8-10 17Z" fill="var(--blu)"/><circle cx="14" cy="10" r="4" fill="#fff"/></svg>';
 
