@@ -167,6 +167,31 @@ section[data-ch="1"]{box-shadow:inset 8px 0 0 var(--D)}section[data-ch="2"]{box-
 .chip.lt{background:#fff;color:#4a5568;border-color:#c3cbd8}
 .ptext{font-size:15px;line-height:1.55;margin:0}
 @media (max-width:960px){.legend5{grid-template-columns:minmax(0,1fr)}.pinn{width:26px;height:26px;font-size:14px}}
+
+.h-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.h-top h1{margin-bottom:10px}
+.h-act{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.h-act .dl{margin-top:0}
+.vs{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);gap:10px;margin-top:22px;align-items:stretch}
+.vcard{border-radius:22px;padding:22px 24px;display:flex;flex-direction:column;gap:12px}
+.vcard .pill{align-self:flex-start}
+.vcard.now{background:#f7f9fb;border:2px dashed #c3cbd8}
+.vcard.new{background:#fff;border:2px solid var(--okk);box-shadow:0 12px 30px rgba(46,125,79,.12)}
+.vrow{display:flex;align-items:center;gap:16px}
+.grade{width:84px;height:84px;border-radius:18px;display:grid;place-items:center;font-family:"Red Hat Display",system-ui,sans-serif;font-weight:800;font-size:48px;flex:none}
+.now .grade{background:#eef1f5;color:#4a5568}
+.new .grade{background:var(--ok);color:var(--okk)}
+.vmeta{font-size:15px;color:var(--mute)}
+.vmeta b{display:block;color:var(--ink);font-size:17px}
+.vq{font-size:18px;line-height:1.5;margin:0}
+.now .vq{color:#4a5568;font-style:italic}
+.vnote{font-size:15px;color:var(--mute);margin:auto 0 0}
+.vnext{font-size:18px;line-height:1.5;margin:0;background:var(--sky);border-radius:14px;padding:12px 14px}
+.vnext b{color:var(--blu)}
+.varrow{display:grid;place-items:center}.varrow svg{width:40px;height:40px}
+#vrail .rail{margin-top:30px}
+.vs.swap .vcard{animation:in .5s both}.vs.swap .vcard.new{animation-delay:.12s}
+@media (max-width:860px){.vs{grid-template-columns:minmax(0,1fr)}.varrow{transform:rotate(90deg);height:40px}}
 /* bicicletta */
 .bike{display:grid;gap:14px;margin-top:18px}
 .brow{display:grid;grid-template-columns:13em repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}
@@ -267,46 +292,28 @@ body.present{font-size:19px}
 </div></nav>
 
 <section class="band" id="atlante"><div class="wrap">
-<div class="hero">
+<div class="h-top">
 <div>
-<h1>L'Atlante dello studente: il passo che mette insieme ciò che abbiamo già costruito</h1>
-<p class="lede">Negli anni abbiamo lavorato molto sulla valutazione: abbiamo scritto le tabelle di ogni disciplina e la rubrica delle competenze, e ogni anno compiliamo pagellini e giudizi. Il materiale c'è, ed è nostro. Manca ancora un filo che lo renda leggibile allo studente: oggi i nostri strumenti dicono <b>quanto</b>, non ancora <b>dove andare</b>.</p>
-<a class="dl" href="studio-valutazione.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 15h12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Scarica lo studio completo (PDF)</a>
+<h1 id="h1">Lo stesso 6, due modi di restituirlo</h1>
+<p class="lede">Il voto non cambia. Cambia ciò che lo studente porta a casa: oggi sa <b>quanto</b>; con l'Atlante sa anche <b>dove si trova</b> e <b>che cosa provare domani</b>.</p>
 </div>
-<div class="map" aria-label="Illustrazione: un sentiero con quattro tappe e lo studente sulla seconda">
-<svg viewBox="0 0 640 380" role="img">
-<defs>
-<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef4fd"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
-<linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3f1e1"/><stop offset="1" stop-color="#d2e9cf"/></linearGradient>
-<linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef6ec"/><stop offset="1" stop-color="#e2f0df"/></linearGradient>
-</defs>
-<rect width="640" height="380" rx="26" fill="url(#sky)"/>
-<path d="M0 250 C120 200 220 230 330 190 S540 130 640 150 V380 H0Z" fill="url(#hill2)"/>
-<path d="M0 300 C140 270 260 300 380 260 S560 220 640 240 V380 H0Z" fill="url(#hill1)"/>
-<path id="road" d="M60 330 C150 330 170 270 250 262 S360 250 390 200 S470 120 560 96" fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round"/>
-<path d="M60 330 C150 330 170 270 250 262 S360 250 390 200 S470 120 560 96" fill="none" stroke="#c9d6ea" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
-<g>
-<circle cx="80" cy="330" r="17" fill="var(--D)" stroke="var(--Dk)" stroke-width="3"/>
-<circle cx="250" cy="262" r="17" fill="var(--C)" stroke="var(--Ck)" stroke-width="3"/>
-<circle cx="392" cy="198" r="17" fill="var(--B)" stroke="var(--Bk)" stroke-width="3"/>
-<circle cx="560" cy="96" r="17" fill="var(--A)" stroke="var(--Ak)" stroke-width="3"/>
-</g>
-<path d="M560 79 V30" stroke="#5d6a80" stroke-width="3"/><path d="M561 31 L596 41 L561 53Z" fill="var(--gold)"/>
-<text class="lbl" x="84" y="372" text-anchor="middle">Iniziale</text>
-<text class="lbl" x="250" y="304" text-anchor="middle">Base</text>
-<text class="lbl" x="392" y="240" text-anchor="middle">Intermedio</text>
-<text class="lbl" x="520" y="138" text-anchor="end">Avanzato</text>
-<path d="M276 250 C320 236 345 228 368 212" fill="none" stroke="var(--blu2)" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#arr)"/>
-<defs><marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--blu2)"/></marker></defs>
-<text class="lbl" x="300" y="192" text-anchor="middle" style="fill:var(--blu2);font-size:19px">prossima tappa</text>
-<g id="pin" transform="translate(250 262)">
-<path d="M0 -6 C-16 -26 -16 -46 0 -50 C16 -46 16 -26 0 -6Z" fill="var(--blu)" transform="translate(0 -12)"/>
-<circle cx="0" cy="-48" r="6" fill="#fff"/>
-<text class="lbl" x="-26" y="-60" text-anchor="end" style="fill:var(--blu);font-size:20px">sei qui</text>
-</g>
-</svg>
+<div class="h-act"><button type="button" id="ex">Un altro esempio</button><a class="dl" href="studio-valutazione.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 15h12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Scarica lo studio completo (PDF)</a></div>
 </div>
-
+<div class="vs" aria-live="polite">
+<div class="vcard now">
+<span class="pill now">Come valutiamo oggi</span>
+<div class="vrow"><div class="grade" id="g0">6</div><div class="vmeta" id="m0"></div></div>
+<p class="vq" id="q0"></p>
+<p class="vnote">Lo studente sa com'è andata. Che cosa fare dopo, lo deve intuire.</p>
+</div>
+<div class="varrow" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M8 20h22m-8-8 8 8-8 8" fill="none" stroke="var(--blu)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="vcard new">
+<span class="pill new">Con l'Atlante</span>
+<div class="vrow"><div class="grade" id="g1">6</div><div class="vmeta" id="m1"></div></div>
+<div id="vrail"></div>
+<p class="vq"><b>Dove sei.</b> <span id="q1"></span></p>
+<p class="vnext"><b>Prossima tappa.</b> <span id="q2"></span></p>
+</div>
 </div>
 <h2 class="why-h">Perché adesso</h2>
 <div class="why3">
@@ -538,7 +545,7 @@ const PIN = '<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 27C6 18 4 
 
 /* sentiero in apertura: il segnaposto arriva dalla prima tappa */
 const pin = $('#pin');
-if (!reduce) { pin.setAttribute('transform', 'translate(80 330)'); setTimeout(() => pin.setAttribute('transform', 'translate(250 262)'), 500); }
+if (pin && !reduce) { pin.setAttribute('transform', 'translate(80 330)'); setTimeout(() => pin.setAttribute('transform', 'translate(250 262)'), 500); }
 
 /* evidenziatore */
 const GRADE = ["complet","approfondit","esaurient","esaustiv","consapevol","sicur","adeguat","appropriat","corrett","essenzial","parzial","superficial","frammentari","generic","incomplet","lacunos","soddisfacent","efficac","precis","chiar","ricc","articolat","global","sommari","imprecis","incert","approssimativ","puntual","attent","buon","pien","scorrevol","accettabil","sufficient","limitat","spiccat","integral","inadeguat","caren","dettagliat","immediat","elaborat","disinvolt","confus"];
@@ -677,6 +684,28 @@ document.querySelectorAll('section[data-ch]').forEach(s => io.observe(s));
   $('#chNew').innerHTML = cn.map((n, i) => { const lv = toLv[LET[i]]; return `<span class="chip" style="background:${LC[lv]};border-color:${LK[lv]};color:#1d2b45">${esc(n.nome.split(' ')[0])} · ${RUBL[lv]}</span>`; }).join('');
   const lvs = LET.map(l => toLv[l]), low = lvs.indexOf(Math.min(...lvs));
   $('#txNew').innerHTML = esc(cn.map((n, i) => n.rubrica[3 - lvs[i]]).join(' ')) + `<br><br><b>Prossima tappa in ${esc(cn[low].nome.toLowerCase())}:</b> ${esc(cn[low].rubrica[2 - lvs[low]])}`;
+}
+
+/* apertura: lo stesso voto, due letture */
+{
+  const EX = [['sto', 0, 1], ['mus', 0, 2], ['itas', 2, 1], ['ing', 3, 2]];
+  let xi = 0;
+  const VOTO = [4, 6, 8, 10];
+  function showEx(anim) {
+    const [k, ni, lv] = EX[xi], a = D.areas.find(x => x.key === k), n = a.nuclei[ni];
+    const v = VOTO[lv];
+    $('#h1').textContent = `Lo stesso ${v}, due modi di restituirlo`;
+    ['#g0', '#g1'].forEach(s => $(s).textContent = v);
+    const meta = `<b>${esc(a.nome)}</b>${esc(n.nome)}`;
+    $('#m0').innerHTML = meta; $('#m1').innerHTML = meta + ` · tappa <b style="display:inline;font-size:15px">${RUBL[lv]}</b>`;
+    $('#q0').textContent = '«' + n.orig[n.orig.length - 1 - lv - (n.orig.length === 5 && lv === 0 ? 0 : 0)] + '»';
+    $('#q1').textContent = n.rubrica[3 - lv];
+    $('#q2').textContent = lv < 3 ? n.rubrica[2 - lv] : 'consolidare e portare ciò che sa in situazioni nuove.';
+    $('#vrail').innerHTML = rail(lv);
+    const box = document.querySelector('.vs'); box.classList.remove('swap'); void box.offsetWidth; if (anim && !reduce) box.classList.add('swap');
+  }
+  $('#ex').addEventListener('click', () => { xi = (xi + 1) % EX.length; showEx(true); });
+  showEx(false);
 }
 
 /* presentazione */

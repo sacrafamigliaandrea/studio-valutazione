@@ -30,9 +30,8 @@ PIN = '<svg viewBox="0 0 28 28" width="22" height="22"><path d="M14 27C6 18 4 13
 OK = '<svg viewBox="0 0 22 22" width="16" height="16"><circle cx="11" cy="11" r="9.5" fill="#dbefd6" stroke="#2e7d4f" stroke-width="2"/><path d="m6.5 11.5 3 3 6-6.5" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linecap="round"/></svg>'
 GO = '<svg viewBox="0 0 22 22" width="16" height="16"><circle cx="11" cy="11" r="9.5" fill="#e8f0fc" stroke="#2F62C0" stroke-width="2"/><path d="M6.5 11h8m-3.2-3.4 3.4 3.4-3.4 3.4" fill="none" stroke="#2F62C0" stroke-width="2.2" stroke-linecap="round"/></svg>'
 
-MAP = open(os.path.join(HERE, "template.html"), encoding="utf-8").read()
-MAP = MAP.split('<div class="map"')[1].split("<svg", 1)[1].split("</svg>")[0]
-MAP = '<svg class="mapsvg"' + MAP.replace(' id="pin"', '') + "</svg>"
+MAP = open(os.path.join(HERE, "sentiero.svg.html"), encoding="utf-8").read()
+MAP = '<svg class="mapsvg"' + MAP.split("<svg", 1)[1].replace(' id="pin"', '')
 MAP = MAP.replace("var(--D)", "#fde3cf").replace("var(--C)", "#fff0c7").replace("var(--B)", "#dbefd6").replace("var(--A)", "#d4ebfb") \
          .replace("var(--Dk)", "#b8612a").replace("var(--Ck)", "#a8721c").replace("var(--Bk)", "#2e7d4f").replace("var(--Ak)", "#1f87c9") \
          .replace("var(--gold)", "#c9a227").replace("var(--blu2)", "#2F62C0").replace("var(--blu)", "#123E90")
@@ -257,6 +256,12 @@ ol.leg5{margin:0;padding-left:14pt;font-size:8.8pt;line-height:1.4}ol.leg5 li{ma
 .chip{border-radius:4pt;padding:1.5pt 5pt;font-size:8.2pt;font-weight:700;border:1pt solid #c3cbd8}
 .chip.lt{background:#fff;color:#4a5568}.chip.d{border-color:#b8612a}.chip.c{border-color:#a8721c}.chip.b{border-color:#2e7d4f}.chip.a{border-color:#1f87c9}
 .ptext{font-size:9.6pt;line-height:1.5;margin:0}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10pt;margin:8pt 0}
+.vcard{border-radius:10pt;padding:10pt 12pt}.vcard.now{background:#f7f9fb;border:1.2pt dashed #c3cbd8}.vcard.new{border:1.2pt solid #2e7d4f}
+.vrow{display:flex;gap:8pt;align-items:center;margin:6pt 0}
+.grade{width:34pt;height:34pt;border-radius:8pt;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20pt}
+.now .grade{background:#eef1f5;color:#4a5568}.new .grade{background:#dbefd6;color:#2e7d4f}
+.vq{font-style:italic;color:#4a5568;font-size:10pt}.vq2{font-size:10pt;margin:6pt 0 4pt}
 ul.refs{font-size:9.8pt;padding-left:14pt}
 """
 
@@ -349,9 +354,16 @@ def scheda_section():
             f'<div class="card now"><span class="pill now">Come valutiamo oggi</span><div class="chiprow">{now_chips}</div><p class="ptext">{e(now_txt)}</p></div>'
             f'<div class="card new"><span class="pill new">Con l\'Atlante</span><div class="chiprow">{new_chips}</div><p class="ptext">{new_txt}</p></div></div>'
             '<p class="note">Stesso studente, stesse osservazioni: le lettere A, B, C, D diventano Avanzato, Intermedio, Base, Iniziale, e la frase descrive che cosa lo studente fa e qual è la prossima tappa.</p></section>')
+def vs_block():
+    a = next(x for x in DISC if x["key"] == "sto"); n = a["nuclei"][0]; lv = 1
+    return (f'<div class="vs"><div class="vcard now"><span class="pill now">Come valutiamo oggi</span><div class="vrow"><div class="grade">6</div><div><b>Storia</b><br><span class="note">{e(n["nome"])}</span></div></div>'
+            f'<p class="vq">«{e(n["orig"][3 - lv])}»</p><p class="note">Lo studente sa com\'è andata. Che cosa fare dopo, lo deve intuire.</p></div>'
+            f'<div class="vcard new"><span class="pill new">Con l\'Atlante</span><div class="vrow"><div class="grade">6</div><div><b>Storia</b><br><span class="note">{e(n["nome"])} · tappa Base</span></div></div>'
+            f'{rail(lv)}<p class="vq2"><b>Dove sei.</b> {e(n["rubrica"][3 - lv])}</p><p class="next"><b>Prossima tappa.</b> {e(n["rubrica"][2 - lv])}</p></div></div>')
 def page(toc_pages=None):
     tp = toc_pages or {}
     CAMMINO = cammino()
+    VS = vs_block()
     PAG_HTML = PAG_T.replace("__PAG__", PAG).replace("__PAGNOW__", PAG_NOW)
     YEAR_HTML = YEAR_T.replace("__YR__", YR).replace("__PAG__", PAG)
     ROUTE = '<div class="routebox">' + route(None, True) + '<div class="rlab">' + "".join(f'<div><b style="color:{c[4]}">{e(c[1])}</b><span>{e(c[2])}</span></div>' for c in CH) + '</div></div>'
@@ -375,7 +387,10 @@ def page(toc_pages=None):
 
 </section>
 
-<section class="sec"><h2 id="atlante">L'Atlante dello studente: il passo che mette insieme ciò che abbiamo già costruito</h2>
+<section class="sec"><h2 id="atlante">Lo stesso 6, due modi di restituirlo</h2>
+<p class="lede">Il voto non cambia. Cambia ciò che lo studente porta a casa: oggi sa quanto; con l'Atlante sa anche dove si trova e che cosa provare domani.</p>
+{VS}
+<h3 style="margin-top:12pt">L'Atlante dello studente: il passo che mette insieme ciò che abbiamo già costruito</h3>
 <p class="lede">Negli anni abbiamo lavorato molto sulla valutazione: abbiamo scritto le tabelle di ogni disciplina e la rubrica delle competenze, e ogni anno compiliamo pagellini e giudizi. Il materiale c'è, ed è nostro. Manca ancora un filo che lo renda leggibile allo studente: oggi i nostri strumenti dicono quanto, non ancora dove andare.</p>
 <h3>Perché adesso</h3>
 <div class="three">
@@ -384,10 +399,10 @@ def page(toc_pages=None):
 <div><b>La domanda dello studente</b>Dopo un voto, la domanda è sempre la stessa: «e adesso che cosa devo fare?». I nostri strumenti possono rispondere, se descrivono tappe invece che gradi.</div>
 </div>
 <div class="nonbox"><b>Che cosa non è</b><br>Non si ricomincia da capo: si parte dalle tabelle che abbiamo scritto noi. · Non si aggiunge un documento: cambia il pagellino che già compiliamo. · Non spariscono i voti: verifiche e pagella restano in decimi.</div>
-<h3 style="margin-top:12pt">L'Atlante in quattro idee</h3>
+<h3 style="break-before:page;margin-top:0">L'Atlante in quattro idee</h3>
 <div class="three" style="grid-template-columns:repeat(2,1fr)"><div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div><div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div><div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div><div><b>Il voto resta</b>le verifiche e la pagella mantengono i loro voti, come oggi; la rubrica li spiega</div></div>
 <p style="margin-top:10pt">Questo studio parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e prosegue con le tabelle delle discipline per la valutazione in itinere, in ordine di ore settimanali. Per ciascun documento mette a confronto come valutiamo oggi e come si valuta con l'Atlante.</p>
-<h2 style="break-before:page">Il percorso di questo studio</h2><p>Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>{ROUTE}<div class="legend" style="margin-top:12pt"><h4>Come sono costruite le pagine</h4>
+<h2 style="margin-top:18pt">Il percorso di questo studio</h2><p>Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>{ROUTE}<div class="legend" style="margin-top:12pt"><h4>Come sono costruite le pagine</h4>
 <p style="margin:0">Le tappe vanno sempre da sinistra a destra, dalla prima all'ultima:
 <span class="d" style="padding:1pt 5pt;border-radius:4pt">Iniziale</span> <span class="c" style="padding:1pt 5pt;border-radius:4pt">Base</span> <span class="b" style="padding:1pt 5pt;border-radius:4pt">Intermedio</span> <span class="a" style="padding:1pt 5pt;border-radius:4pt">Avanzato</span>.
 Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell'Avanzato è il cielo verso cui si cammina.</p></div></section>

@@ -1,0 +1,31 @@
+<svg viewBox="0 0 640 380" role="img">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef4fd"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+<linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3f1e1"/><stop offset="1" stop-color="#d2e9cf"/></linearGradient>
+<linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef6ec"/><stop offset="1" stop-color="#e2f0df"/></linearGradient>
+</defs>
+<rect width="640" height="380" rx="26" fill="url(#sky)"/>
+<path d="M0 250 C120 200 220 230 330 190 S540 130 640 150 V380 H0Z" fill="url(#hill2)"/>
+<path d="M0 300 C140 270 260 300 380 260 S560 220 640 240 V380 H0Z" fill="url(#hill1)"/>
+<path id="road" d="M60 330 C150 330 170 270 250 262 S360 250 390 200 S470 120 560 96" fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round"/>
+<path d="M60 330 C150 330 170 270 250 262 S360 250 390 200 S470 120 560 96" fill="none" stroke="#c9d6ea" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
+<g>
+<circle cx="80" cy="330" r="17" fill="var(--D)" stroke="var(--Dk)" stroke-width="3"/>
+<circle cx="250" cy="262" r="17" fill="var(--C)" stroke="var(--Ck)" stroke-width="3"/>
+<circle cx="392" cy="198" r="17" fill="var(--B)" stroke="var(--Bk)" stroke-width="3"/>
+<circle cx="560" cy="96" r="17" fill="var(--A)" stroke="var(--Ak)" stroke-width="3"/>
+</g>
+<path d="M560 79 V30" stroke="#5d6a80" stroke-width="3"/><path d="M561 31 L596 41 L561 53Z" fill="var(--gold)"/>
+<text class="lbl" x="84" y="372" text-anchor="middle">Iniziale</text>
+<text class="lbl" x="250" y="304" text-anchor="middle">Base</text>
+<text class="lbl" x="392" y="240" text-anchor="middle">Intermedio</text>
+<text class="lbl" x="520" y="138" text-anchor="end">Avanzato</text>
+<path d="M276 250 C320 236 345 228 368 212" fill="none" stroke="var(--blu2)" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#arr)"/>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--blu2)"/></marker></defs>
+<text class="lbl" x="300" y="192" text-anchor="middle" style="fill:var(--blu2);font-size:19px">prossima tappa</text>
+<g id="pin" transform="translate(250 262)">
+<path d="M0 -6 C-16 -26 -16 -46 0 -50 C16 -46 16 -26 0 -6Z" fill="var(--blu)" transform="translate(0 -12)"/>
+<circle cx="0" cy="-48" r="6" fill="#fff"/>
+<text class="lbl" x="-26" y="-60" text-anchor="end" style="fill:var(--blu);font-size:20px">sei qui</text>
+</g>
+</svg>
