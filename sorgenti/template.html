@@ -46,7 +46,41 @@ select{font:inherit;font-size:16px;min-height:44px;border-radius:12px;border:1px
 .dl{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--blu);color:#fff;text-decoration:none;border-radius:12px;padding:12px 18px;font-weight:700;min-height:44px}
 .dl:hover{background:#0d2f6e}
 .dl svg{width:20px;height:20px}
-.idea{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.idea{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px;margin-top:22px}
+.year{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+.q{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px 14px}
+.q h3{font-size:17px;margin-bottom:16px}
+.track{position:relative;display:flex;align-items:center;justify-content:space-between;height:60px;margin:0 8px}
+.track::before{content:"";position:absolute;left:0;right:0;top:29px;height:3px;background:var(--line);border-radius:2px}
+.tick{position:relative;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--Ck)}
+.stop{position:relative;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;border:3px solid}
+.stop svg{width:26px;height:26px}
+.stop.p{background:var(--ok);border-color:var(--okk)}
+.stop.s{background:var(--sky);border-color:var(--blu)}
+.tlab{display:flex;justify-content:space-between;font-size:13.5px;color:var(--mute);margin:6px 0 0}
+.tlab span:nth-child(2){text-align:center}.tlab span:last-child{text-align:right}
+.moments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.mom{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-size:15.5px}
+.mom .when{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.mom .when i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:2.5px solid}
+.mom .when i svg{width:18px;height:18px}
+.mom h3{font-size:17px;margin:0}
+.mom dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px}
+.mom dt{color:var(--mute);font-size:14px}
+.mom dd{margin:0}
+.pag{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;margin-top:26px;align-items:start}
+.doc{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 24px rgba(18,62,144,.07);padding:18px 20px}
+.doc .dh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:2px solid var(--blu);padding-bottom:8px;margin-bottom:4px;font-size:14px;color:var(--mute)}
+.doc .dh b{font-family:"Red Hat Display",system-ui,sans-serif;color:var(--blu);font-size:17px}
+.drow{display:grid;grid-template-columns:11em minmax(0,1fr);gap:12px;align-items:center;padding:4px 6px;border-radius:10px;cursor:pointer;width:100%;border:0;background:transparent;text-align:left;font:inherit;font-size:14.5px;min-height:56px}
+.drow:hover,.drow[aria-pressed=true]{background:var(--soft)}
+.drow .rail{margin-top:22px}
+.drow .rail span{height:26px;font-size:12px}
+.drow .marker{width:24px;height:24px;margin-left:-12px;top:-26px}
+.scr{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;margin-top:6px;align-items:start}
+.prop{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.prop .big{font-family:"Red Hat Display",system-ui,sans-serif;font-weight:800;font-size:56px;line-height:1;color:var(--blu)}
+.prop .g{background:var(--soft);border-radius:12px;padding:12px 14px;font-size:15px;margin-top:12px}
 .idea div{border-top:3px solid var(--line);padding-top:10px;font-size:15.5px}
 .idea b{display:block;color:var(--blu);font-family:"Red Hat Display",system-ui,sans-serif;font-size:17px}
 /* bicicletta */
@@ -115,7 +149,7 @@ select{font:inherit;font-size:16px;min-height:44px;border-radius:12px;border:1px
 .voto strong{font-family:"Red Hat Display",system-ui,sans-serif;font-size:34px;color:var(--ink)}
 /* tempo */
 .time{margin-top:18px}
-.trow{display:grid;grid-template-columns:14em minmax(0,1fr);gap:16px;align-items:center;margin:22px 0}
+.trow{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;margin:4px 0 22px}
 .trow .n{font-weight:700}
 .months{display:inline-flex;gap:6px;flex-wrap:wrap}
 .months button[aria-pressed=true]{background:var(--blu);color:#fff;border-color:var(--blu)}
@@ -132,7 +166,7 @@ thead th{font-family:"Red Hat Display",system-ui,sans-serif;border-bottom:2px so
 footer{font-size:14.5px;color:var(--mute)}
 body.present section.band{min-height:100svh;display:flex;flex-direction:column;justify-content:center}
 body.present{font-size:19px}
-@media (max-width:960px){.hero,.prova{grid-template-columns:minmax(0,1fr)}.atl{position:static}.why,.refs{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:960px){.hero,.prova,.pag,.scr,.year{grid-template-columns:minmax(0,1fr)}.moments{grid-template-columns:minmax(0,1fr)}.atl{position:static}.why,.refs{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:820px){.path{grid-template-columns:minmax(0,1fr)!important}.tappa{margin:0 0 22px}.tappa::after{right:auto;left:22px;top:auto;bottom:-19px;transform:rotate(135deg)}.brow{grid-template-columns:repeat(2,minmax(0,1fr))}.brow .h{grid-column:1/-1}.brow .lv{display:none}.two,.notes,.idea{grid-template-columns:minmax(0,1fr)}.trow{grid-template-columns:minmax(0,1fr);gap:18px}}
 @media (max-width:600px){table{font-size:13px}th,td{padding:6px 4px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px}.stack td{display:block;border:0;padding:3px 0}.stack td::before{content:attr(data-l);display:block;font-weight:700;font-size:13px;color:var(--mute)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
@@ -140,7 +174,7 @@ body.present{font-size:19px}
 </head>
 <body>
 <nav class="top" aria-label="Sezioni"><div class="wrap">
-<a href="#atlante">L'Atlante</a><a href="#tappe">Tappe, non aggettivi</a><a href="#foto">Foto e mappa</a><a href="#visore">Le nostre tabelle</a><a href="#prova">Una prova</a><a href="#tempo">Nel tempo</a><a href="#perche">Perché</a><a href="#riferimenti">Riferimenti</a>
+<a href="#atlante">L'Atlante</a><a href="#tappe">Tappe, non aggettivi</a><a href="#foto">Foto e mappa</a><a href="#anno">Un anno</a><a href="#visore">Le nostre tabelle</a><a href="#prova">Una prova</a><a href="#tempo">Alla pagella</a><a href="#perche">Perché</a><a href="#riferimenti">Riferimenti</a>
 <button id="present" type="button" aria-pressed="false">Presenta</button>
 </div></nav>
 
@@ -152,6 +186,7 @@ body.present{font-size:19px}
 <div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div>
 <div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div>
 <div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div>
+<div><b>Il voto resta</b>le verifiche hanno il loro voto, sul registro elettronico come oggi; la mappa lo rende leggibile</div>
 </div>
 <a class="dl" href="studio-valutazione.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 15h12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Scarica lo studio completo (PDF)</a>
 </div>
@@ -218,10 +253,42 @@ body.present{font-size:19px}
 <ul><li>serve allo studente e al docente</li><li>racconta un percorso</li><li>indica il passo successivo</li></ul>
 </div>
 </div>
-<p class="join">Il punto d'incontro: i criteri della griglia sono presi dalla rubrica. Così ogni voto si può leggere anche come una posizione sulla mappa.</p>
+<p class="join">La rubrica accompagna tutto l'anno; la griglia ogni singola verifica. I criteri della griglia sono presi dalla rubrica: così ogni voto si può leggere anche come una posizione sulla mappa.</p>
 </div></section>
 
-<section class="band soft" id="visore"><div class="wrap">
+<section class="band soft" id="anno"><div class="wrap">
+<h2>Un anno con l'Atlante: ogni momento ha il suo strumento</h2>
+<p class="lede">L'anno è diviso in due quadrimestri. In ciascuno ci sono le verifiche, il pagellino a metà periodo e lo scrutinio. Cambia poco nei tempi che conosciamo; cambia molto ciò che lo studente e la famiglia possono leggere.</p>
+<div class="year">
+<div class="q"><h3>Primo quadrimestre</h3><div class="track"><span class="tick"></span><span class="tick"></span><span class="stop p" title="Pagellino interquadrimestrale"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></span><span class="tick"></span><span class="tick"></span><span class="stop s" title="scrutinio di fine quadrimestre"><svg viewBox="0 0 26 26"><rect x="5" y="3" width="16" height="20" rx="2" fill="#fff" stroke="#123E90" stroke-width="2.2"/><path d="M9 9h8M9 13h8M9 17h5" stroke="#123E90" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+<div class="tlab"><span>verifiche in itinere</span><span>pagellino a metà quadrimestre</span><span>scrutinio di fine quadrimestre</span></div></div>
+<div class="q"><h3>Secondo quadrimestre</h3><div class="track"><span class="tick"></span><span class="tick"></span><span class="stop p" title="Pagellino interquadrimestrale"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></span><span class="tick"></span><span class="tick"></span><span class="stop s" title="scrutinio finale"><svg viewBox="0 0 26 26"><rect x="5" y="3" width="16" height="20" rx="2" fill="#fff" stroke="#123E90" stroke-width="2.2"/><path d="M9 9h8M9 13h8M9 17h5" stroke="#123E90" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+<div class="tlab"><span>verifiche in itinere</span><span>pagellino a metà quadrimestre</span><span>scrutinio finale</span></div></div>
+</div>
+<div class="moments">
+<div class="mom"><div class="when"><i style="border-color:var(--Ck);color:var(--Ck);background:#fff"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8h14M3 12.5h14M8 3v14" stroke="currentColor" stroke-width="1.6"/></svg></i><h3>Durante il quadrimestre</h3></div>
+<dl><dt>Momento</dt><dd>Verifiche in itinere</dd><dt>Strumento</dt><dd>Griglia, con criteri presi dalla rubrica della disciplina</dd><dt>Produce</dt><dd>Il voto della prova, sul registro elettronico come oggi, e una posizione sulla mappa</dd></dl></div>
+<div class="mom"><div class="when"><i style="border-color:var(--okk);background:var(--ok)"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></i><h3>A metà quadrimestre</h3></div>
+<dl><dt>Momento</dt><dd>Pagellino interquadrimestrale</dd><dt>Strumento</dt><dd>Rubrica delle competenze trasversali</dd><dt>Produce</dt><dd>Per la famiglia, senza voti: dove si trova lo studente e qual è la prossima tappa</dd></dl></div>
+<div class="mom"><div class="when"><i style="border-color:var(--blu);background:var(--sky)"><svg viewBox="0 0 26 26"><rect x="5" y="3" width="16" height="20" rx="2" fill="#fff" stroke="#123E90" stroke-width="2.2"/><path d="M9 9h8M9 13h8M9 17h5" stroke="#123E90" stroke-width="2" stroke-linecap="round"/></svg></i><h3>A fine quadrimestre</h3></div>
+<dl><dt>Momento</dt><dd>Scrutinio</dd><dt>Strumento</dt><dd>Rubriche delle discipline</dd><dt>Produce</dt><dd>Dal profilo di tappe del periodo, il voto in pagella e il giudizio</dd></dl></div>
+</div>
+<p class="small" style="margin-top:12px">Al termine della terza, la certificazione delle competenze usa gli stessi quattro livelli: Iniziale, Base, Intermedio, Avanzato.</p>
+<div class="pag">
+<div class="doc" aria-live="polite">
+<div class="dh"><b>Pagellino di metà quadrimestre</b><span>Studente di esempio · competenze trasversali</span></div>
+<div id="pagrows"></div>
+</div>
+<div>
+<h3>Il pagellino diventa la prima pagina dell'Atlante</h3>
+<p>È il documento che già consegniamo alle famiglie a metà quadrimestre. Con la rubrica non dice solo un giudizio: mostra la tappa raggiunta in ogni competenza e la strada per la prossima.</p>
+<div class="next" id="pagnext"></div>
+<p class="small" style="margin-top:8px">Tocca una riga per leggere la prossima tappa. Esempio dimostrativo.</p>
+</div>
+</div>
+</div></section>
+
+<section class="band" id="visore"><div class="wrap">
 <h2>Le nostre tabelle, un passo più in là</h2>
 <p class="lede">Si parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e si prosegue con le discipline, in ordine di ore settimanali. Per ogni nucleo puoi vedere la tabella che usiamo oggi, la griglia per le prove e la rubrica per l'Atlante, con le tappe in fila da Iniziale ad Avanzato.</p>
 <div class="vtop">
@@ -243,7 +310,7 @@ body.present{font-size:19px}
 </div>
 </div></section>
 
-<section class="band" id="prova"><div class="wrap">
+<section class="band soft" id="prova"><div class="wrap">
 <h2>Una prova, due letture: il voto e la posizione sull'Atlante</h2>
 <p class="lede">Un esempio con un tema di italiano. Il docente usa la griglia; lo studente vede su quale tappa si trova per ogni nucleo e che cosa provare la volta successiva. Prova a cambiare i punteggi.</p>
 <div class="prova">
@@ -256,15 +323,18 @@ body.present{font-size:19px}
 <p class="small" style="margin-top:12px">Esempio dimostrativo. Il voto deriva dalla media dei punteggi riportata sulla scala da 4 a 10; le soglie degli errori si concordano in dipartimento.</p>
 </div></section>
 
-<section class="band soft" id="tempo"><div class="wrap">
-<h2>Nel tempo, l'Atlante racconta il cammino</h2>
-<p class="lede">Raccolte durante l'anno, le posizioni diventano una storia: si vede dove lo studente è partito, dove è arrivato e dove c'è ancora strada da fare.</p>
-<div class="months" role="group" aria-label="Periodo"><button type="button" data-m="0" aria-pressed="true">Ottobre</button><button type="button" data-m="1" aria-pressed="false">Gennaio</button><button type="button" data-m="2" aria-pressed="false">Maggio</button><button type="button" class="main" id="walk">Fai camminare</button></div>
+<section class="band" id="tempo"><div class="wrap">
+<h2>Dal cammino alla pagella</h2>
+<p class="lede">Raccolte nel quadrimestre, le posizioni diventano un profilo. Allo scrutinio il voto nasce da dove lo studente è arrivato, non solo dalla media delle verifiche: chi è partito da lontano e ha camminato si vede.</p>
+<div class="months" role="group" aria-label="Periodo"><button type="button" data-m="0" aria-pressed="true">Inizio anno</button><button type="button" data-m="1" aria-pressed="false">Fine primo quadrimestre</button><button type="button" data-m="2" aria-pressed="false">Fine anno</button><button type="button" class="main" id="walk">Fai camminare</button></div>
+<div class="scr">
 <div class="time" id="time"></div>
-<p class="small">Studente di esempio, Italiano scritto.</p>
+<div class="prop" aria-live="polite"><div class="small">Proposta di voto in pagella</div><div class="big" id="pv">–</div><div class="small" id="pvs"></div><div class="g" id="giud"></div></div>
+</div>
+<p class="small">Studente di esempio, Italiano scritto. Regola di esempio, da decidere in Collegio: Iniziale 1, Base 2, Intermedio 3, Avanzato 4; la media è riportata sulla scala da 4 a 10 e il consiglio di classe la conferma o la motiva.</p>
 </div></section>
 
-<section class="band" id="perche"><div class="wrap">
+<section class="band soft" id="perche"><div class="wrap">
 <h2>Che cosa ci guadagniamo</h2>
 <div class="why">
 <div class="card"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="16" r="9" fill="var(--sky)" stroke="var(--blu)" stroke-width="3"/><path d="M8 46C10 34 18 29 26 29S42 34 44 46" fill="var(--sky)" stroke="var(--blu)" stroke-width="3" stroke-linecap="round"/></svg><h3>Lo studente</h3><p>Sa dove si trova e che cosa provare dopo. Può autovalutarsi con le stesse parole che usiamo noi.</p></div>
@@ -273,7 +343,7 @@ body.present{font-size:19px}
 </div>
 </div></section>
 
-<section class="band soft" id="riferimenti"><div class="wrap">
+<section class="band" id="riferimenti"><div class="wrap">
 <h2>Siamo già in buona compagnia</h2>
 <div class="refs">
 <div class="card"><h3>Certificazione delle competenze</h3><p class="small" style="color:var(--ink)">Il modello nazionale (DM 14/2024) usa già quattro livelli: A Avanzato, B Intermedio, C Base, D Iniziale. Il livello Iniziale descrive chi, guidato, svolge compiti semplici in situazioni note: un punto di partenza.</p></div>
@@ -380,16 +450,36 @@ $('#crit').addEventListener('click', e => { const b = e.target.closest('[data-v]
 renderProva();
 
 /* nel tempo */
-const T = [[0, 1, 2], [1, 1, 2], [0, 1, 1]];
+const T = [[0, 2, 3], [1, 1, 2], [0, 2, 2]];
 let M = 0, walk = null;
 $('#time').innerHTML = ita.nuclei.map((n, i) => `<div class="trow"><span class="n">${esc(n.nome)}</span><div class="rail" id="tr${i}">${RUBL.map((l, j) => `<span class="r${j}">${l}</span>`).join('')}<div class="marker">${PIN}</div></div></div>`).join('');
 function renderTime() {
   T.forEach((t, i) => { $('#tr' + i + ' .marker').style.left = ((t[M] + .5) * 25) + '%'; });
   document.querySelectorAll('[data-m]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.m === M));
+  if (M === 0) { $('#pv').textContent = '–'; $('#pvs').textContent = 'A inizio anno si osserva il punto di partenza.';
+    $('#giud').innerHTML = '<b>Punto di partenza.</b> Le prime osservazioni dicono da dove comincia il cammino in ciascun nucleo.'; return; }
+  const lv = T.map(t => t[M]), m = lv.reduce((a, b) => a + b + 1, 0) / lv.length, raw = 4 + (m - 1) * 2;
+  $('#pv').textContent = Math.round(raw);
+  $('#pvs').textContent = `Media delle tappe ${m.toFixed(2).replace('.', ',')} su 4 → ${raw.toFixed(1).replace('.', ',')}`;
+  const low = lv.indexOf(Math.min(...lv)), n = ita.nuclei[low];
+  const parts = ita.nuclei.map((x, i) => `${RUBL[lv[i]]} in «${x.nome.toLowerCase()}»`);
+  $('#giud').innerHTML = `<b>Giudizio:</b> nella produzione scritta lo studente si trova alla tappa ${esc(parts.join(', '))}. `
+    + (lv[low] < 3 ? `<b>Prossimo passo:</b> ${esc(n.rubrica[2 - lv[low]])}` : 'Ha raggiunto l\'ultima tappa in tutti i nuclei.');
 }
 document.querySelectorAll('[data-m]').forEach(b => b.addEventListener('click', () => { clearInterval(walk); M = +b.dataset.m; renderTime(); }));
 $('#walk').addEventListener('click', () => { clearInterval(walk); M = 0; renderTime(); walk = setInterval(() => { if (M >= 2) { clearInterval(walk); return; } M++; renderTime(); }, 1500); });
 renderTime();
+
+/* pagellino */
+const cmp = D.areas[0], PL = [2, 1, 2, 1, 2, 2, 1];
+let PS = 1;
+function renderPag() {
+  $('#pagrows').innerHTML = cmp.nuclei.map((n, i) => `<button type="button" class="drow" data-p="${i}" aria-pressed="${i === PS}"><span><b>${esc(n.nome)}</b></span>${rail(PL[i])}</button>`).join('');
+  const n = cmp.nuclei[PS], lv = PL[PS];
+  $('#pagnext').innerHTML = `<b>${esc(n.nome)} · tappa ${RUBL[lv]}</b><br>${esc(n.rubrica[3 - lv])}<br><br><b>Prossima tappa:</b> ${esc(n.rubrica[2 - lv])}`;
+}
+$('#pagrows').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (b) { PS = +b.dataset.p; renderPag(); } });
+renderPag();
 
 /* tabelle complete */
 $('#alltabs').innerHTML = D.areas.map(a => `<h3 style="margin-top:18px">${esc(a.nome)}</h3>` + a.nuclei.map(n => `<div class="scroll"><table class="stack"><thead><tr><th>${esc(n.nome)}</th>${RUBL.map(l => `<th>${l}</th>`).join('')}</tr></thead><tbody>

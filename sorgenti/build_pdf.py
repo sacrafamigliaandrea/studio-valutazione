@@ -78,17 +78,31 @@ for ni, n in enumerate(ita["nuclei"]):
     prova_atl += f'<div class="mini"><h4>{e(n["nome"])}</h4>{rail(lv)}<p class="next">{nx}</p></div>'
 voto = round(4 + (sum(score) / len(score) - 1) * 2)
 
-T = [[0, 1, 2], [1, 1, 2], [0, 1, 1]]
+T = [[0, 2, 3], [1, 1, 2], [0, 2, 2]]
 tempo = '<div class="tempo">' + "".join(
     f'<div class="tcol"><h4>{m}</h4>' + "".join(f'<p class="tn">{e(n["nome"])}</p>{rail(T[i][k])}' for i, n in enumerate(ita["nuclei"])) + "</div>"
-    for k, m in enumerate(["Ottobre", "Gennaio", "Maggio"])) + "</div>"
+    for k, m in enumerate(["Inizio anno", "Fine primo quadrimestre", "Fine anno"])) + "</div>"
+def proposta(k):
+    if k == 0:
+        return "<b>Punto di partenza</b><br>Nessuna proposta di voto: si osserva da dove comincia il cammino."
+    lv = [t[k] for t in T]; m = sum(x + 1 for x in lv) / 3; raw = 4 + (m - 1) * 2
+    low = lv.index(min(lv)); n = ita["nuclei"][low]
+    return (f"<b>Proposta di voto: {round(raw)}</b><br><span class='note'>media delle tappe {m:.2f} su 4 → {raw:.1f}</span>".replace(".", ",")
+            + f"<br><b>Prossimo passo</b> ({e(n['nome'].lower())}): {e(n['rubrica'][2 - lv[low]])}")
+tempo = tempo.replace('<div class="tcol">', '<div class="tcol">', 1)
+tempo = '<div class="tempo">' + "".join(
+    f'<div class="tcol"><h4>{m}</h4>' + "".join(f'<p class="tn">{e(n["nome"])}</p>{rail(T[i][k])}' for i, n in enumerate(ita["nuclei"])) + f'<p class="next">{proposta(k)}</p></div>'
+    for k, m in enumerate(["Inizio anno", "Fine primo quadrimestre", "Fine anno"])) + "</div>"
 
 io_rows = "".join(f'<tr><td class="first">{e(DIMS[i])}</td>' + "".join(f"<td>{e(C.IO[i][3 - k])}</td>" for k in range(4)) + '<td class="box"></td></tr>' for i in range(7))
 
-TOC = [("atlante", "L'Atlante dello studente"), ("tappe", "Un livello si capisce meglio se è una tappa"), ("foto", "La griglia scatta la foto, la rubrica è la mappa"),
+PL = [2, 1, 2, 1, 2, 2, 1]
+YR = "".join(f'<div class="yq"><b>{q}</b><div class="yt"><span class="tk"></span><span class="tk"></span><span class="st p">pagellino</span><span class="tk"></span><span class="tk"></span><span class="st s">{e2}</span></div><div class="yl"><span>verifiche in itinere</span><span>metà quadrimestre</span><span>fine quadrimestre</span></div></div>' for q, e2 in [("Primo quadrimestre", "scrutinio"), ("Secondo quadrimestre", "scrutinio finale")])
+PAG = "".join(f'<div class="prow"><span>{e(n["nome"])}</span>{rail(PL[i])}</div>' for i, n in enumerate(comp["nuclei"])) + f'<p class="next"><b>Partecipazione · tappa Base.</b> {e(comp["nuclei"][1]["rubrica"][2])}<br><b>Prossima tappa:</b> {e(comp["nuclei"][1]["rubrica"][1])}</p>'
+TOC = [("atlante", "L'Atlante dello studente"), ("tappe", "Un livello si capisce meglio se è una tappa"), ("foto", "La griglia scatta la foto, la rubrica è la mappa"), ("anno", "Un anno con l'Atlante"),
        ("tabelle", "Le nostre tabelle, un passo più in là"), ("leggere", "Come leggere le schede")] + \
       [("s-" + a["key"], "    " + a["nome"]) for a in AREAS] + \
-      [("prova", "Una prova, due letture"), ("tempo", "Nel tempo, l'Atlante racconta il cammino"), ("perche", "Che cosa ci guadagniamo"),
+      [("prova", "Una prova, due letture"), ("tempo", "Dal cammino alla pagella"), ("perche", "Che cosa ci guadagniamo"),
        ("rif", "Siamo già in buona compagnia"), ("io", "Appendice · Come lavoro? Scheda di autovalutazione")]
 
 CSS = """
@@ -173,11 +187,40 @@ table.io th,table.io td{border:0.6pt solid #dbe2ec;padding:4pt 5pt;vertical-alig
 table.io td.first{font-weight:700;color:#123E90;width:14%}
 table.io td.box{width:9%}
 table.io tr{height:16mm}
+.yr{display:grid;grid-template-columns:1fr 1fr;gap:10pt;margin:8pt 0 6pt}
+.yq{border:1px solid #e1e7f0;border-radius:10pt;padding:9pt 11pt;font-size:10pt}
+.yq b{color:#123E90}
+.yt{position:relative;display:flex;justify-content:space-between;align-items:center;margin:9pt 4pt 3pt;height:22pt}
+.yt::before{content:"";position:absolute;left:0;right:0;top:10pt;height:2pt;background:#e1e7f0}
+.tk{position:relative;width:8pt;height:8pt;border-radius:50%;background:#fff;border:2pt solid #a8721c}
+.st{position:relative;border-radius:10pt;padding:2pt 7pt;font-size:8pt;font-weight:700;border:1.5pt solid}
+.st.p{background:#dbefd6;border-color:#2e7d4f;color:#2e7d4f}.st.s{background:#e8f0fc;border-color:#123E90;color:#123E90}
+.yl{display:flex;justify-content:space-between;font-size:7.8pt;color:#5d6a80}
+.docpag{border:1px solid #e1e7f0;border-radius:10pt;padding:10pt 12pt;margin-top:6pt}
+.docpag .dh{display:flex;justify-content:space-between;border-bottom:1.5pt solid #123E90;padding-bottom:4pt;font-size:9pt;color:#5d6a80}
+.docpag .dh b{color:#123E90;font-size:10.5pt}
+.prow{display:grid;grid-template-columns:38% 1fr;gap:8pt;align-items:end;font-size:10pt;font-weight:600;margin-bottom:10pt}
+.prow .rail{margin-top:22pt}
 ul.refs{font-size:9.8pt;padding-left:14pt}
 """
 
+YEAR_T = """<section class="sec"><h2 id="anno">Un anno con l'Atlante: ogni momento ha il suo strumento</h2>
+<p class="lede">L'anno è diviso in due quadrimestri. In ciascuno ci sono le verifiche, il pagellino a metà periodo e lo scrutinio. Cambia poco nei tempi che conosciamo; cambia molto ciò che lo studente e la famiglia possono leggere.</p>
+<div class="yr">__YR__</div>
+<table class="cmp"><thead><tr><th>Momento</th><th>Strumento</th><th>Che cosa produce</th></tr></thead><tbody>
+<tr><td><b>Durante il quadrimestre</b><br>verifiche in itinere</td><td>Griglia, con criteri presi dalla rubrica della disciplina</td><td>Il voto della prova, sul registro elettronico come oggi, e una posizione sulla mappa</td></tr>
+<tr><td><b>A metà quadrimestre</b><br>pagellino interquadrimestrale</td><td>Rubrica delle competenze trasversali</td><td>Per la famiglia, senza voti: dove si trova lo studente e qual è la prossima tappa</td></tr>
+<tr><td><b>A fine quadrimestre</b><br>scrutinio</td><td>Rubriche delle discipline</td><td>Dal profilo di tappe del periodo, il voto in pagella e il giudizio</td></tr>
+<tr><td><b>Fine della terza</b></td><td>Rubriche e osservazioni del triennio</td><td>La certificazione delle competenze, con gli stessi quattro livelli</td></tr>
+</tbody></table>
+<h3 style="break-before:page;margin-top:0">Il pagellino diventa la prima pagina dell'Atlante</h3>
+<p>È il documento che già consegniamo alle famiglie a metà quadrimestre. Con la rubrica non dice solo un giudizio: mostra la tappa raggiunta in ogni competenza e la strada per la prossima.</p>
+<div class="docpag"><div class="dh"><b>Pagellino di metà quadrimestre</b><span>Studente di esempio · competenze trasversali</span></div>__PAG__</div>
+</section>
+"""
 def page(toc_pages=None):
     tp = toc_pages or {}
+    YEAR_HTML = YEAR_T.replace("__YR__", YR).replace("__PAG__", PAG)
     toc = "".join(f'<li class="{"sub" if t.startswith("    ") else ""}"><span>{e(t.strip())}</span><span class="dots"></span><span class="pg">{tp.get(k, "00")}</span></li>' for k, t in TOC)
     body = f"""
 <section class="cover">
@@ -197,7 +240,7 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 
 <section class="sec"><h2 id="atlante">L'Atlante dello studente</h2>
 <p class="lede">L'Atlante è la mappa del percorso di ogni studente: dove si trova oggi e dove sta andando. Per costruirlo ci serve un linguaggio di valutazione che descriva tappe, non soltanto gradi.</p>
-<div class="three"><div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div><div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div><div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div></div>
+<div class="three" style="grid-template-columns:repeat(2,1fr)"><div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div><div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div><div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div><div><b>Il voto resta</b>le verifiche hanno il loro voto, sul registro elettronico come oggi; la mappa lo rende leggibile</div></div>
 <p style="margin-top:12pt">Questo studio parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e prosegue con le tabelle delle discipline per la valutazione in itinere, in ordine di ore settimanali. Per ciascun documento raccoglie ciò che c'è già e propone il passo in più: una griglia per le singole prove e una rubrica per l'Atlante.</p>
 
 <h2 id="tappe" style="margin-top:22pt">Un livello si capisce meglio se è una tappa, non un aggettivo</h2>
@@ -215,7 +258,7 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 <div class="card"><h3 style="margin-top:0">Griglia: la foto della singola prova</h3><p>Per una verifica in itinere scegliamo pochi criteri e diamo un punteggio. Ci restituisce il voto della prova, in modo rapido e uguale per tutti.</p><ul><li>serve al docente</li><li>fotografa un momento</li><li>produce il voto</li></ul></div>
 <div class="card"><h3 style="margin-top:0">Rubrica: la mappa dell'Atlante</h3><p>Descrive le tappe di ogni nucleo con ciò che lo studente sa fare. Colloca ogni foto sul percorso e mostra la prossima tappa.</p><ul><li>serve allo studente e al docente</li><li>racconta un percorso</li><li>indica il passo successivo</li></ul></div>
 </div>
-<p class="join">Il punto d'incontro: i criteri della griglia sono presi dalla rubrica. Così ogni voto si può leggere anche come una posizione sulla mappa.</p>
+<p class="join">La rubrica accompagna tutto l'anno; la griglia ogni singola verifica. I criteri della griglia sono presi dalla rubrica: così ogni voto si può leggere anche come una posizione sulla mappa.</p>
 <table class="cmp"><thead><tr><th></th><th>Griglia</th><th>Rubrica</th></tr></thead><tbody>
 <tr><td><b>A che cosa serve</b></td><td>Misurare una prova</td><td>Descrivere il percorso in un nucleo</td></tr>
 <tr><td><b>Come è scritta</b></td><td>Criteri e ancore brevi, anche numeriche («2–3 errori»)</td><td>Tappe con azioni, situazioni e supporti</td></tr>
@@ -226,7 +269,7 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 
 </section>
 
-<section class="wide"><h2 id="tabelle">Le nostre tabelle, un passo più in là</h2>
+{YEAR_HTML}<section class="wide"><h2 id="tabelle">Le nostre tabelle, un passo più in là</h2>
 <p class="lede">Si parte dalla rubrica delle competenze trasversali, che sostiene la valutazione globale, e si prosegue con le discipline in ordine di ore settimanali: Italiano, Matematica, Inglese, Storia, Geografia, Spagnolo, Tecnologia, Arte e immagine, Musica, Religione cattolica.</p>
 <div class="cards" style="grid-template-columns:repeat(4,1fr)">
 {"".join(f'<div class="card" style="padding:8pt 10pt"><b style="color:#123E90">{e(a["nome"])}</b><br><span class="note">{"Valutazione globale · " if a["key"] == "comp" else ""}{len(a["nuclei"])} {"dimensioni" if a["key"] == "comp" else "nuclei"}</span></div>' for a in AREAS)}
@@ -247,19 +290,19 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 <div><h4>Nell'Atlante</h4>{prova_atl}</div>
 </div></section>
 
-<section class="sec"><h2 id="tempo">Nel tempo, l'Atlante racconta il cammino</h2>
-<p class="lede">Raccolte durante l'anno, le posizioni diventano una storia: si vede dove lo studente è partito, dove è arrivato e dove c'è ancora strada da fare.</p>
+<section class="sec"><h2 id="tempo">Dal cammino alla pagella</h2>
+<p class="lede">Raccolte nel quadrimestre, le posizioni diventano un profilo. Allo scrutinio il voto nasce da dove lo studente è arrivato, non solo dalla media delle verifiche: chi è partito da lontano e ha camminato si vede.</p>
 {tempo}
-<p class="note" style="margin-top:6pt">Studente di esempio, Italiano scritto.</p>
+<p class="note" style="margin-top:6pt">Studente di esempio, Italiano scritto. Regola di esempio, da decidere in Collegio: Iniziale 1, Base 2, Intermedio 3, Avanzato 4; la media è riportata sulla scala da 4 a 10 e il consiglio di classe la conferma o la motiva.</p>
 
-<h2 id="perche" style="margin-top:22pt">Che cosa ci guadagniamo</h2>
+<h2 id="perche" style="break-before:page">Che cosa ci guadagniamo</h2>
 <div class="three" style="gap:14pt">
 <div><b>Lo studente</b>Sa dove si trova e che cosa provare dopo. Può autovalutarsi con le stesse parole che usiamo noi.</div>
 <div><b>Noi docenti</b>Parliamo la stessa lingua tra discipline e tra colleghi, e le osservazioni dell'anno portano naturalmente alla certificazione delle competenze.</div>
 <div><b>Le famiglie</b>Nei colloqui il discorso diventa concreto: che cosa sa fare oggi il ragazzo e qual è il prossimo passo da sostenere insieme.</div>
 </div>
 
-<h2 id="rif" style="break-before:page">Siamo già in buona compagnia</h2>
+<h2 id="rif" style="margin-top:22pt">Siamo già in buona compagnia</h2>
 <div class="cards" style="grid-template-columns:repeat(3,1fr)">
 <div class="card"><h4>Certificazione delle competenze</h4><p class="note" style="color:#1d2b45">Il modello nazionale (DM 14/2024) usa già quattro livelli: A Avanzato, B Intermedio, C Base, D Iniziale. Il livello Iniziale descrive chi, guidato, svolge compiti semplici in situazioni note: un punto di partenza.</p></div>
 <div class="card"><h4>Nuove Indicazioni nazionali</h4><p class="note" style="color:#1d2b45">In vigore dal 2026/27 a partire dalle classi prime (DM 221/2025), chiedono di rivedere il curricolo: l'occasione per rivedere insieme anche il modo di descrivere i livelli.</p></div>
