@@ -122,6 +122,7 @@ h4{font-size:10.5pt;margin:0 0 5pt}
 p{margin:0 0 8pt;text-align:left}
 .lede{font-size:12pt;color:#5d6a80}
 .cover{height:297mm;padding:26mm 22mm 20mm;display:flex;flex-direction:column;background:linear-gradient(#ffffff,#f5f8fc)}
+.topic{display:inline-block;font-size:9pt;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#123E90;background:#e8f0fc;border-radius:99px;padding:3pt 9pt;margin-bottom:6pt}
 .cover .k{font-size:10pt;color:#5d6a80;margin-bottom:10pt}
 .cover .lede{font-size:13pt;max-width:150mm;margin-top:10pt}
 .mapsvg{width:100%;height:auto;margin:16mm 0 auto}
@@ -387,11 +388,11 @@ def page(toc_pages=None):
 
 </section>
 
-<section class="sec"><h2 id="atlante">Lo stesso 6, due modi di restituirlo</h2>
-<p class="lede">Il voto non cambia. Cambia ciò che lo studente porta a casa: oggi sa quanto; con l'Atlante sa anche dove si trova e che cosa provare domani.</p>
+<section class="sec"><div class="topic">Studio sulla valutazione · Secondaria di primo grado</div><h2 id="atlante">Lo stesso 6, due modi di restituirlo</h2>
+<p class="lede">Parliamo di valutazione: di come restituiamo allo studente ciò che ha fatto. Il voto non cambia. Cambia ciò che porta a casa: oggi sa quanto; con l'Atlante sa anche dove si trova e che cosa provare domani.</p>
 {VS}
-<h3 style="margin-top:12pt">L'Atlante dello studente: il passo che mette insieme ciò che abbiamo già costruito</h3>
-<p class="lede">Negli anni abbiamo lavorato molto sulla valutazione: abbiamo scritto le tabelle di ogni disciplina e la rubrica delle competenze, e ogni anno compiliamo pagellini e giudizi. Il materiale c'è, ed è nostro. Manca ancora un filo che lo renda leggibile allo studente: oggi i nostri strumenti dicono quanto, non ancora dove andare.</p>
+<h3 style="margin-top:6pt">L'Atlante dello studente: il passo che mette insieme ciò che abbiamo già costruito</h3>
+<p class="lede">Negli anni abbiamo lavorato molto sulla valutazione: tabelle per ogni disciplina, rubrica delle competenze, pagellini e giudizi. Il materiale c'è, ed è nostro; manca un filo che lo renda leggibile allo studente, perché oggi dice quanto e non ancora dove andare.</p>
 <h3>Perché adesso</h3>
 <div class="three">
 <div><b>Le nuove Indicazioni nazionali</b>Dal 2026/27, a partire dalle classi prime, ci chiedono di rivedere il curricolo. La valutazione è la parte del curricolo che lo studente vede: conviene rivederla insieme, adesso.</div>
