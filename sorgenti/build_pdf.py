@@ -54,7 +54,7 @@ def scheda(a):
         h += f'<table class="nt"><thead><tr><th class="first">{e(n["nome"])}</th>' + "".join(f'<th class="h{CLS[i]}">{RUBL[i]}</th>' for i in range(4)) + "</tr></thead><tbody>"
         h += '<tr class="nowr"><td class="first">Come valutiamo oggi</td>' + "".join(f'<td class="old">{e(t)}</td>' for t in orig) + "</tr>"
         h += '<tr class="rub"><td class="first">Con l\'Atlante</td>' + "".join(
-            "<td>" + e(n['rubrica'][3 - i]) + '<div class="inv"><b>Nella verifica · ' + str(i + 1) + (' punti' if i else ' punto') + '</b>' + '<br>'.join(e(g[0].replace('*', '')) + ': ' + e(g[1][3 - i]) for g in n['griglia']) + '</div></td>' for i in range(4)) + '</tr>'
+            "<td>" + e(n['rubrica'][3 - i]) + '<div class="inv"><b>Nella verifica · ' + str(i + 1) + (' punti' if i else ' punto') + ' · voto ' + str(4 + 2 * i) + '</b>' + '<br>'.join(e(g[0].replace('*', '')) + ': ' + e(g[1][3 - i]) for g in n['griglia']) + '</div></td>' for i in range(4)) + '</tr>'
         h += "</tbody></table>"
     if a["key"] == "irc":
         h += '<p class="note">Per religione la tappa raggiunta si traduce nel giudizio sintetico: Iniziale → Sufficiente, Base → Buono, Intermedio → Distinto, Avanzato → Ottimo. Nella colonna Iniziale della nostra tabella sono riportati insieme i livelli Non sufficiente e Sufficiente.</p>'
@@ -68,7 +68,7 @@ def scheda(a):
 ita = next(a for a in DISC if a["key"] == "itas")
 crit = [(ni, g) for ni, n in enumerate(ita["nuclei"]) for g in n["griglia"]]
 score = [4, 3, 3, 2, 2, 3]
-prova_rows = "".join(f'<tr><td>{e(g[0].replace("*", ""))}</td><td class="c">{score[i]}</td><td class="note2">{e(g[1][4 - score[i]])}</td></tr>' for i, (ni, g) in enumerate(crit))
+prova_rows = "".join(f'<tr><td>{e(g[0].replace("*", ""))}</td><td class="c">{score[i]}</td><td class="c">{2 + 2 * score[i]}</td><td class="note2">{e(g[1][4 - score[i]])}</td></tr>' for i, (ni, g) in enumerate(crit))
 prova_atl = ""
 for ni, n in enumerate(ita["nuclei"]):
     s = [score[i] for i, (k, _) in enumerate(crit) if k == ni]
@@ -387,7 +387,7 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 </div>
 <h2 id="leggere" style="margin-top:14pt">Come leggere le schede</h2>
 <p>Per ogni documento la scheda si apre con due elenchi: <b>Cosa c'è già</b>, cioè ciò che le nostre tabelle fanno bene e che conserviamo, e <b>Il passo in più</b>, cioè la direzione verso l'Atlante. Seguono i nuclei, ciascuno con due righe e le tappe in fila da Iniziale ad Avanzato:</p>
-<ul><li><span class="pill now">Come valutiamo oggi</span> il testo della tabella in uso, riportato fedelmente.</li><li><span class="pill new">Con l'Atlante</span> la stessa tappa descritta con ciò che lo studente sa fare, in quale situazione e con quale aiuto; sotto, «Nella verifica», i criteri con cui la tappa si riconosce in una prova e diventa punteggio (1 punto a Iniziale, 4 ad Avanzato).</li></ul>
+<ul><li><span class="pill now">Come valutiamo oggi</span> il testo della tabella in uso, riportato fedelmente.</li><li><span class="pill new">Con l'Atlante</span> la stessa tappa descritta con ciò che lo studente sa fare, in quale situazione e con quale aiuto; sotto, «Nella verifica», i criteri con cui la tappa si riconosce in una prova e diventa punteggio e voto (Iniziale 1 punto, voto 4; Base 2 punti, voto 6; Intermedio 3 punti, voto 8; Avanzato 4 punti, voto 10).</li></ul>
 <p class="note">Le descrizioni con l'Atlante sono proposte di lavoro: il loro posto naturale è il confronto nei dipartimenti, che le correggerà e le completerà.</p>
 </section>
 {"".join(scheda(a) for a in AREAS)}
@@ -395,9 +395,9 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 <section class="wide"><h2 id="prova">Una verifica, oggi e con l'Atlante</h2>
 <p class="lede">Un esempio con un tema di italiano. Il docente corregge con i criteri della rubrica e assegna il voto. Oggi lo studente riceve il voto; con l'Atlante riceve lo stesso voto e, per ogni nucleo, la tappa raggiunta e che cosa provare la volta successiva.</p>
 <div class="prova">
-<div><h4>I criteri della verifica</h4><table><thead><tr><th>Criterio</th><th>Punti</th><th>Ancora</th></tr></thead><tbody>{prova_rows}</tbody></table>
+<div><h4>I criteri della verifica</h4><table><thead><tr><th>Criterio</th><th>Punti</th><th>Voto</th><th>Ancora</th></tr></thead><tbody>{prova_rows}</tbody></table>
 <p class="voto"><span class="pill now">Come valutiamo oggi</span> lo studente riceve il voto<b>{voto}</b></p>
-<p class="note">Media dei punteggi {str(round(sum(score)/len(score), 2)).replace(".", ",")} su 4, riportata sulla scala da 4 a 10. Esempio dimostrativo.</p></div>
+<p class="note">Ogni punto vale un voto secco: 1 = 4, 2 = 6, 3 = 8, 4 = 10. Il voto della verifica è la media dei criteri sulla stessa scala, arrotondata. Esempio dimostrativo.</p></div>
 <div><p style="margin:0 0 4pt"><span class="pill new">Con l'Atlante</span> lo stesso voto, {voto}, e la mappa</p>{prova_atl}</div>
 </div></section>
 

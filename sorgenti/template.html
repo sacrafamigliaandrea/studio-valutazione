@@ -192,9 +192,13 @@ section[data-ch="1"]{box-shadow:inset 8px 0 0 var(--D)}section[data-ch="2"]{box-
 .crow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 .crow .anc{grid-column:1/-1;font-size:14px;color:var(--mute)}
 .pick{display:inline-flex;gap:4px}
-.pick button{min-width:44px;padding:0;font-weight:700}
+.pick button{min-width:48px;min-height:52px;padding:2px 0;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.pick button small{font-size:11.5px;font-weight:500;opacity:.8}
 .pick button[aria-pressed=true]{background:var(--blu);color:#fff;border-color:var(--blu)}
 .atl{position:sticky;top:80px}
+.scale{display:grid;grid-template-columns:auto repeat(4,minmax(0,1fr));gap:4px 8px;align-items:center;background:var(--soft);border-radius:12px;padding:8px 12px;font-size:14px;margin-bottom:6px}
+.scale span{color:var(--mute)}
+.scale b{text-align:center;font-family:"Red Hat Display",system-ui,sans-serif}
 .mini{margin-bottom:18px}
 .mini h3{font-size:17px;color:var(--ink);margin-bottom:8px}
 .rail{position:relative;margin-top:26px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
@@ -385,7 +389,7 @@ body.present{font-size:19px}
 <h2>Una verifica, oggi e con l'Atlante</h2>
 <p class="lede">Un esempio con un tema di italiano. Il docente corregge con i criteri della rubrica e assegna il voto. Oggi lo studente riceve il voto; con l'Atlante riceve lo stesso voto e, per ogni nucleo, la tappa raggiunta e che cosa provare la volta successiva. Prova a cambiare i punteggi.</p>
 <div class="prova">
-<div class="card" id="crit"></div>
+<div class="card"><p class="small" style="margin:0 0 4px">Sotto ogni punto, il voto secco in decimi: 1 → 4 · 2 → 6 · 3 → 8 · 4 → 10</p><div id="crit"></div></div>
 <div class="card atl" aria-live="polite">
 <div class="voto" style="border:0;padding:0 0 10px;justify-content:space-between;flex-wrap:wrap"><span><span class="pill now">Come valutiamo oggi</span></span><span>Voto della prova <strong id="voto0">8</strong></span></div>
 <div style="border-top:1px solid var(--line);padding-top:12px"><span class="pill new">Con l'Atlante</span></div>
@@ -393,7 +397,7 @@ body.present{font-size:19px}
 <div class="voto"><span>Voto della prova, come oggi</span><strong id="voto">8</strong></div>
 </div>
 </div>
-<p class="small" style="margin-top:12px">Esempio dimostrativo. Il voto deriva dalla media dei punteggi riportata sulla scala da 4 a 10; le soglie degli errori si concordano in dipartimento.</p>
+<p class="small" style="margin-top:12px">Esempio dimostrativo. Ogni punto vale un voto secco: 1 = 4, 2 = 6, 3 = 8, 4 = 10. Il voto della verifica è la media dei criteri sulla stessa scala, arrotondata; le soglie degli errori si concordano in dipartimento.</p>
 </div></section>
 <section class="band" id="pagellino" data-ch="4"><div class="wrap">
 <a class="ctag" href="#percorso"><span class="cdots"><i class="cd1"></i><i class="cd2"></i><i class="cd3"></i><i class="cd4 on"></i></span><span>Tappa 4 di 4 · <b>Il cammino dello studente</b></span></a>
@@ -494,7 +498,7 @@ function render(anim) {
     const L = n.orig.slice().reverse(), lab = a.livelli.slice().reverse();
     cells = L.map((t, i) => ({ h: lab[i], c: L.length === 5 ? ['var(--D)', 'var(--D)', 'var(--C)', 'var(--B)', 'var(--A)'][i] : LVC[i], b: `<p style="margin:0">${mark(t, on)}</p>` }));
   } else {
-    cells = [0, 1, 2, 3].map(i => ({ h: RUBL[i], c: LVC[i], b: `<p style="margin:0">${mark(n.rubrica[3 - i], on)}</p><div class="inv"><b>Nella verifica · ${i + 1} ${i ? 'punti' : 'punto'}</b>${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][3 - i])).join('<br>')}</div>` }));
+    cells = [0, 1, 2, 3].map(i => ({ h: RUBL[i], c: LVC[i], b: `<p style="margin:0">${mark(n.rubrica[3 - i], on)}</p><div class="inv"><b>Nella verifica · ${i + 1} ${i ? 'punti' : 'punto'} · voto ${4 + i * 2}</b>${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][3 - i])).join('<br>')}</div>` }));
   }
   const p = $('#path');
   p.style.gridTemplateColumns = `repeat(${cells.length},minmax(0,1fr))`;
@@ -529,7 +533,7 @@ function rail(lv) {
 }
 function renderProva() {
   $('#crit').innerHTML = crit.map((c, i) => `<div class="crow"><div><b>${esc(c.nome)}</b></div>
-  <div class="pick" role="group" aria-label="${esc(c.nome)}">${[1, 2, 3, 4].map(v => `<button type="button" data-i="${i}" data-v="${v}" aria-pressed="${score[i] === v}">${v}</button>`).join('')}</div>
+  <div class="pick" role="group" aria-label="${esc(c.nome)}">${[1, 2, 3, 4].map(v => `<button type="button" data-i="${i}" data-v="${v}" aria-pressed="${score[i] === v}" title="${v} ${v > 1 ? 'punti' : 'punto'}, voto ${2 + v * 2}">${v}<small>${2 + v * 2}</small></button>`).join('')}</div>
   <div class="anc">${esc(c.anc[4 - score[i]])}</div></div>`).join('');
   $('#mini').innerHTML = ita.nuclei.map((n, ni) => {
     const s = crit.map((c, i) => c.n === ni ? score[i] : null).filter(x => x !== null);
@@ -589,7 +593,7 @@ renderPag();
 /* tabelle complete */
 $('#alltabs').innerHTML = D.areas.map(a => `<h3 style="margin-top:18px">${esc(a.nome)}</h3>` + a.nuclei.map(n => `<div class="scroll"><table class="stack"><thead><tr><th>${esc(n.nome)}</th>${RUBL.map(l => `<th>${l}</th>`).join('')}</tr></thead><tbody>
 <tr><td data-l="">Come valutiamo oggi</td>${(n.orig.length === 5 ? [n.orig[4] + ' / ' + n.orig[3], n.orig[2], n.orig[1], n.orig[0]] : n.orig.slice().reverse()).map((t, i) => `<td data-l="${RUBL[i]}">${esc(t)}</td>`).join('')}</tr>
-<tr><td>Con l'Atlante</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${RUBL[i]}">${esc(n.rubrica[k])}<br><span class="small">Nella verifica: ${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][k])).join('; ')}</span></td>`).join('')}</tr></tbody></table></div>`).join('')).join('');
+<tr><td>Con l'Atlante</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${RUBL[i]}">${esc(n.rubrica[k])}<br><span class="small">Nella verifica (${4 - k} ${k < 3 ? 'punti' : 'punto'}, voto ${10 - k * 2}): ${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][k])).join('; ')}</span></td>`).join('')}</tr></tbody></table></div>`).join('')).join('');
 
 /* tappa attiva nella barra */
 const navs = [...document.querySelectorAll('[data-nav]')];
