@@ -1,7 +1,7 @@
 # Studio sulla valutazione: griglia o rubrica?
 
 Studio per il Collegio docenti della Scuola secondaria di primo grado Sacra Famiglia, Orzinuovi (BS).
-Analizza i 12 strumenti di valutazione in uso (la rubrica delle competenze trasversali e le 11 tabelle disciplinari per la valutazione in itinere) e propone per ciascuno due evoluzioni: una **griglia** per misurare le prove e una **rubrica** per descrivere i livelli e indicare il passo successivo.
+Accompagna il passaggio della valutazione verso un'ottica da rubrica, al servizio dell'**Atlante dello studente**: la mappa di dove lo studente si trova e di dove sta andando. Parte dalla rubrica delle competenze trasversali (valutazione globale) e prosegue con le 11 tabelle disciplinari per la valutazione in itinere, in ordine di ore settimanali; per ciascuna mostra la tabella attuale, una **griglia** per le singole prove e una **rubrica** per l'Atlante.
 
 ## Contenuto
 
@@ -9,7 +9,8 @@ Analizza i 12 strumenti di valutazione in uso (la rubrica delle competenze trasv
 - `sorgenti/` – dati e script che generano la pagina.
   - `disc_data.py` – trascrizioni dei documenti disciplinari, griglie e rubriche riscritte, diagnosi.
   - `competenze.py` – rubrica delle competenze trasversali: originale, griglia, rubrica, versione per studenti.
-  - `analisi.py` – calcola gli indicatori (somiglianza tra livelli, parole di grado, formulazione del livello più basso) e scrive `metrics.json`.
+  - `atlante_testi.py` – per ogni documento, che cosa c'è già e il passo in più.
+  - `analisi.py` – indicatori di lavoro sui descrittori (non mostrati nella pagina), scrive `metrics.json`.
   - `template.html` – struttura, stile e interazioni della pagina.
   - `build.py` – unisce dati e template e rigenera `index.html`.
 - `materiali/` – il file Excel con griglia e rubrica delle competenze trasversali e lo studio PDF sulla sola rubrica delle competenze.
@@ -17,11 +18,10 @@ Analizza i 12 strumenti di valutazione in uso (la rubrica delle competenze trasv
 ## Rigenerare la pagina
 
 ```bash
-python3 sorgenti/analisi.py
 python3 sorgenti/build.py
 ```
 
-Per modificare un descrittore si cambia `disc_data.py` o `competenze.py` e si rilanciano i due comandi: gli indicatori vengono ricalcolati.
+Per modificare un descrittore si cambia `disc_data.py` o `competenze.py`; per i commenti di ogni documento `atlante_testi.py`.
 
 ## Pubblicare con GitHub Pages
 
