@@ -1,0 +1,275 @@
+{
+ "disc": [
+  {
+   "key": "comp",
+   "nome": "Competenze trasversali",
+   "ov_o": 0.108,
+   "ov_r": 0.12,
+   "nuclei": [
+    0.083,
+    0.216,
+    0.057,
+    0.263,
+    0.024,
+    0.021,
+    0.091
+   ],
+   "nuclei_r": [
+    0.076,
+    0.064,
+    0.087,
+    0.148,
+    0.155,
+    0.072,
+    0.238
+   ],
+   "w_o": 12.4,
+   "w_r": 16.0
+  },
+  {
+   "key": "ita",
+   "nome": "Italiano",
+   "ov_o": 0.501,
+   "ov_r": 0.276,
+   "nuclei": [
+    0.656,
+    0.426,
+    0.42
+   ],
+   "nuclei_r": [
+    0.267,
+    0.361,
+    0.2
+   ],
+   "w_o": 30.1,
+   "w_r": 22.8
+  },
+  {
+   "key": "itas",
+   "nome": "Italiano scritto",
+   "ov_o": 0.366,
+   "ov_r": 0.238,
+   "nuclei": [
+    0.4,
+    0.335,
+    0.364
+   ],
+   "nuclei_r": [
+    0.265,
+    0.173,
+    0.277
+   ],
+   "w_o": 21.7,
+   "w_r": 21.0
+  },
+  {
+   "key": "mat",
+   "nome": "Matematica",
+   "ov_o": 0.524,
+   "ov_r": 0.315,
+   "nuclei": [
+    0.321,
+    0.462,
+    0.791
+   ],
+   "nuclei_r": [
+    0.263,
+    0.317,
+    0.365
+   ],
+   "w_o": 34.3,
+   "w_r": 22.7
+  },
+  {
+   "key": "sto",
+   "nome": "Storia",
+   "ov_o": 0.707,
+   "ov_r": 0.362,
+   "nuclei": [
+    0.782,
+    0.616,
+    0.722
+   ],
+   "nuclei_r": [
+    0.306,
+    0.402,
+    0.378
+   ],
+   "w_o": 26.6,
+   "w_r": 20.8
+  },
+  {
+   "key": "geo",
+   "nome": "Geografia",
+   "ov_o": 0.758,
+   "ov_r": 0.286,
+   "nuclei": [
+    0.791,
+    0.607,
+    0.878
+   ],
+   "nuclei_r": [
+    0.321,
+    0.277,
+    0.259
+   ],
+   "w_o": 32.5,
+   "w_r": 21.5
+  },
+  {
+   "key": "ing",
+   "nome": "Inglese",
+   "ov_o": 0.389,
+   "ov_r": 0.22,
+   "nuclei": [
+    0.505,
+    0.27,
+    0.214,
+    0.222,
+    0.733
+   ],
+   "nuclei_r": [
+    0.192,
+    0.126,
+    0.233,
+    0.236,
+    0.31
+   ],
+   "w_o": 17.6,
+   "w_r": 16.6
+  },
+  {
+   "key": "spa",
+   "nome": "Spagnolo",
+   "ov_o": 0.527,
+   "ov_r": 0.249,
+   "nuclei": [
+    0.746,
+    0.319,
+    0.679,
+    0.224,
+    0.667
+   ],
+   "nuclei_r": [
+    0.363,
+    0.107,
+    0.312,
+    0.16,
+    0.302
+   ],
+   "w_o": 13.0,
+   "w_r": 13.6
+  },
+  {
+   "key": "art",
+   "nome": "Arte e immagine",
+   "ov_o": 0.596,
+   "ov_r": 0.234,
+   "nuclei": [
+    0.676,
+    0.677,
+    0.435
+   ],
+   "nuclei_r": [
+    0.204,
+    0.296,
+    0.202
+   ],
+   "w_o": 29.8,
+   "w_r": 18.5
+  },
+  {
+   "key": "mus",
+   "nome": "Musica",
+   "ov_o": 0.848,
+   "ov_r": 0.235,
+   "nuclei": [
+    0.97,
+    0.574,
+    1.0
+   ],
+   "nuclei_r": [
+    0.135,
+    0.335,
+    0.235
+   ],
+   "w_o": 17.5,
+   "w_r": 15.8
+  },
+  {
+   "key": "tec",
+   "nome": "Tecnologia e informatica",
+   "ov_o": 0.559,
+   "ov_r": 0.312,
+   "nuclei": [
+    0.46,
+    0.611,
+    0.607
+   ],
+   "nuclei_r": [
+    0.208,
+    0.341,
+    0.386
+   ],
+   "w_o": 18.6,
+   "w_r": 18.9
+  },
+  {
+   "key": "irc",
+   "nome": "Religione cattolica",
+   "ov_o": 0.866,
+   "ov_r": 0.294,
+   "nuclei": [
+    0.925,
+    0.938,
+    0.929,
+    0.672
+   ],
+   "nuclei_r": [
+    0.265,
+    0.403,
+    0.181,
+    0.325
+   ],
+   "w_o": 15.4,
+   "w_r": 16.7
+  }
+ ],
+ "mods": {
+  "corrett": 39,
+  "semplic": 32,
+  "personal": 24,
+  "autonom": 20,
+  "appropriat": 19,
+  "complet": 18,
+  "essenzial": 17,
+  "approfondit": 15,
+  "adeguat": 13,
+  "chiar": 12,
+  "consapevol": 12,
+  "parzial": 11,
+  "superficial": 10,
+  "precis": 9
+ },
+ "totals": {
+  "documenti": 12,
+  "gruppi": 45,
+  "descrittori_o": 184,
+  "descrittori_r": 180,
+  "ov_o": 0.519,
+  "ov_r": 0.247,
+  "pairs_high": 76,
+  "pairs_tot": 139,
+  "pairs_high_r": 7,
+  "pairs_tot_r": 135,
+  "inmodo_o": 125,
+  "inmodo_r": 9,
+  "low_def_o": 35,
+  "low_def_r": 0,
+  "low_sup_o": 6,
+  "low_sup_r": 42,
+  "n_low": 45,
+  "words_o": 20.7,
+  "words_r": 18.1
+ }
+}
