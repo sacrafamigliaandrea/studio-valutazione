@@ -127,9 +127,23 @@ section[data-ch="1"]{box-shadow:inset 8px 0 0 var(--D)}section[data-ch="2"]{box-
 .ev.new{background:var(--ok);border:1.5px solid var(--okk);color:#1f3b2b}
 .ev.new b{color:var(--okk)}
 .ev::before{content:"";position:absolute;left:75%;top:-9px;width:2px;height:9px;background:currentColor;opacity:.35}
+
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 12px;font-family:"Red Hat Display",system-ui,sans-serif;font-weight:700;font-size:15px;white-space:nowrap}
+.pill.now{background:#eef1f5;color:#4a5568;border:1.5px dashed #b9c3d1}
+.pill.new{background:var(--ok);color:var(--okk);border:1.5px solid var(--okk)}
+.card.now{background:#f7f9fb;border:1.5px dashed #c3cbd8}
+.card.new{border:1.5px solid var(--okk)}
+.card .pill{margin-bottom:10px}
+.seg2{display:inline-flex;gap:6px;flex-wrap:wrap}
+.seg2 button[aria-pressed=true][data-pv=now],.seg2 button[aria-pressed=true][data-s=orig]{background:#eef1f5;border:1.5px dashed #8d99ab;color:#2c3a50;font-weight:700}
+.seg2 button[aria-pressed=true][data-pv=new],.seg2 button[aria-pressed=true][data-s=rub]{background:var(--ok);border:1.5px solid var(--okk);color:var(--okk);font-weight:700}
+.tappa .inv{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;font-size:14px;color:var(--mute)}
+.tappa .inv b{display:block;color:var(--ink);font-size:13.5px}
+.prow2{display:grid;grid-template-columns:11em 5.2em minmax(0,1fr);gap:10px;align-items:start;padding:8px 6px;border-bottom:1px solid var(--line);font-size:14.5px}
+.prow2 .lt{font-family:"Red Hat Display",system-ui,sans-serif;font-weight:800;text-align:center;border-radius:8px;background:#eef1f5;padding:2px 0;color:#4a5568}
 /* bicicletta */
 .bike{display:grid;gap:14px;margin-top:18px}
-.brow{display:grid;grid-template-columns:11em repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}
+.brow{display:grid;grid-template-columns:13em repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}
 .brow .h{font-family:"Red Hat Display",system-ui,sans-serif;font-weight:700;align-self:center;color:var(--blu)}
 .step{position:relative;border-radius:12px;padding:12px 12px;font-size:15.5px;line-height:1.35;display:flex;align-items:center}
 .s0{background:var(--D)}.s1{background:var(--C)}.s2{background:var(--B)}.s3{background:var(--A)}
@@ -139,14 +153,14 @@ section[data-ch="1"]{box-shadow:inset 8px 0 0 var(--D)}section[data-ch="2"]{box-
 /* foto e mappa */
 .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:18px}
 .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
-.card svg.ic{width:64px;height:64px;margin-bottom:8px}
+.card svg.ic{width:64px;height:64px;margin:4px 0 8px;display:block}
 .card ul{margin:8px 0 0;padding-left:18px}
 .card li{margin-bottom:4px}
 .join{margin-top:18px;background:var(--sky);border-radius:16px;padding:16px 20px;font-size:18px;color:var(--blu);font-weight:500}
 /* visore */
 .vtop{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:16px 0 10px}
 .steps3{display:inline-flex;flex-wrap:wrap;gap:6px}
-.steps3 button[aria-pressed=true]{background:var(--blu);color:#fff;border-color:var(--blu)}
+
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 16px}
 .chips button{min-height:38px;font-size:15px;padding:6px 14px;border-radius:999px}
 .chips button[aria-pressed=true]{background:var(--sky);border-color:var(--blu2);color:var(--blu);font-weight:700}
@@ -272,7 +286,7 @@ body.present{font-size:19px}
 <section class="band route" id="percorso"><div class="wrap">
 <h2>Il percorso di questa presentazione</h2>
 <p class="lede">Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>
-<ol class="stations"><li><a href="#anno" class="st1"><span class="dot">1</span><b>Il nostro anno</b><span>Due quadrimestri, tre momenti, uno strumento per ciascuno.</span></a></li><li><a href="#tappe" class="st2"><span class="dot">2</span><b>Come si scrive una tappa</b><span>Dall'aggettivo alla situazione in cui lo studente riesce; griglia e rubrica.</span></a></li><li><a href="#visore" class="st3"><span class="dot">3</span><b>Le nostre rubriche</b><span>Le tabelle che usiamo, un passo più in là, accanto alle verifiche.</span></a></li><li><a href="#pagellino" class="st4"><span class="dot">4</span><b>Il cammino dello studente</b><span>Pagellino e scrutinio: due misure che raccontano il percorso.</span></a></li></ol>
+<ol class="stations"><li><a href="#anno" class="st1"><span class="dot">1</span><b>Il nostro anno</b><span>Due quadrimestri, tre momenti, uno strumento per ciascuno.</span></a></li><li><a href="#tappe" class="st2"><span class="dot">2</span><b>Come si scrive una tappa</b><span>Dall'aggettivo alla situazione in cui lo studente riesce: oggi e con l'Atlante.</span></a></li><li><a href="#visore" class="st3"><span class="dot">3</span><b>Le nostre rubriche</b><span>Ogni tabella e ogni verifica, oggi e con l'Atlante.</span></a></li><li><a href="#pagellino" class="st4"><span class="dot">4</span><b>Il cammino dello studente</b><span>Pagellino e scrutinio: due misure che raccontano il percorso.</span></a></li></ol>
 </div></section>
 <section class="band soft" id="anno" data-ch="1"><div class="wrap">
 <a class="ctag" href="#percorso"><span class="cdots"><i class="cd1 on"></i><i class="cd2"></i><i class="cd3"></i><i class="cd4"></i></span><span>Tappa 1 di 4 · <b>Il nostro anno</b></span></a>
@@ -294,7 +308,7 @@ body.present{font-size:19px}
 <div class="ev now" style="grid-column:10/12"><b>Scrutinio finale</b>voti in pagella e giudizio</div>
 
 <div class="lane-h new">Con l'Atlante</div>
-<div class="flow new">Verifiche: la griglia dà il voto sul registro · la rubrica della disciplina lo spiega e indica la prossima tappa</div>
+<div class="flow new">Verifiche: si corregge con i criteri della rubrica della disciplina · il voto va sul registro, come oggi · la rubrica dice la tappa raggiunta e la prossima</div>
 <div class="tl-h"></div>
 <div class="ev new" style="grid-column:3/5"><b>Pagellino di novembre · 1ª misura</b>mappa delle competenze trasversali: tappa raggiunta e prossima tappa, senza voti</div>
 <div class="ev new" style="grid-column:5/7"><b>Scrutinio · 2ª misura</b>la stessa mappa mostra il cammino; voti dalle verifiche, come oggi</div>
@@ -303,9 +317,10 @@ body.present{font-size:19px}
 </div>
 </div>
 <p class="small" style="margin-top:10px">I tempi non cambiano. Cambia ciò che ogni momento restituisce allo studente e alla famiglia.</p>
+<p style="margin:22px 0 0"><span class="pill new">Con l'Atlante</span> <span class="small">momento per momento</span></p>
 <div class="moments">
 <div class="mom"><div class="when"><i style="border-color:var(--Ck);color:var(--Ck);background:#fff"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8h14M3 12.5h14M8 3v14" stroke="currentColor" stroke-width="1.6"/></svg></i><h3>Durante il quadrimestre</h3></div>
-<dl><dt>Momento</dt><dd>Verifiche e lavoro in classe</dd><dt>Strumenti</dt><dd>Griglia per il voto della prova; rubrica della disciplina per spiegarlo</dd><dt>Produce</dt><dd>Il voto sul registro elettronico e, per lo studente, la tappa raggiunta nella disciplina e la prossima</dd></dl></div>
+<dl><dt>Momento</dt><dd>Verifiche e lavoro in classe</dd><dt>Strumenti</dt><dd>La rubrica della disciplina: con i suoi criteri si dà il voto, con le sue tappe lo si spiega</dd><dt>Produce</dt><dd>Il voto sul registro elettronico e, per lo studente, la tappa raggiunta nella disciplina e la prossima</dd></dl></div>
 <div class="mom"><div class="when"><i style="border-color:var(--okk);background:var(--ok)"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></i><h3>Novembre e aprile</h3></div>
 <dl><dt>Momento</dt><dd>Pagellino interquadrimestrale, a metà di ciascun quadrimestre</dd><dt>Strumento</dt><dd>Rubrica delle competenze trasversali</dd><dt>Produce</dt><dd>La prima misura: per la famiglia, senza voti, dove si trova lo studente e qual è la prossima tappa</dd></dl></div>
 <div class="mom"><div class="when"><i style="border-color:var(--okk);background:var(--ok)"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></i><h3>A fine quadrimestre</h3></div>
@@ -317,44 +332,43 @@ body.present{font-size:19px}
 <a class="ctag" href="#percorso"><span class="cdots"><i class="cd1"></i><i class="cd2 on"></i><i class="cd3"></i><i class="cd4"></i></span><span>Tappa 2 di 4 · <b>Come si scrive una tappa</b></span></a>
 
 <h2>Un livello si capisce meglio se è una tappa, non un aggettivo</h2>
-<p class="lede">Pensiamo a come descriveremmo un ragazzo che impara ad andare in bicicletta. Tutte e due le righe sono vere, ma solo la seconda gli dice che cosa provare domani.</p>
+<p class="lede">Pensiamo a come descriveremmo un ragazzo che impara ad andare in bicicletta. Oggi diremmo quanto bene pedala; con l'Atlante diciamo dove riesce a pedalare e con quale aiuto. Tutte e due le righe sono vere, ma solo la seconda gli dice che cosa provare domani.</p>
 <div class="bike">
 <div class="brow"><span></span><span class="lv">Iniziale</span><span class="lv">Base</span><span class="lv">Intermedio</span><span class="lv">Avanzato</span></div>
-<div class="brow adj"><span class="h">Con un aggettivo</span><div class="step">Pedala in modo approssimativo</div><div class="step">Pedala in modo essenziale</div><div class="step">Pedala in modo corretto</div><div class="step">Pedala in modo sicuro e consapevole</div></div>
-<div class="brow"><span class="h">Con una tappa</span><div class="step s0">Pedala con le rotelle, con un adulto accanto</div><div class="step s1">Pedala senza rotelle nel cortile</div><div class="step s2">Va su strada, anche in curva e in salita</div><div class="step s3">Va in gruppo, rispettando le regole del traffico</div></div>
+<div class="brow adj"><span class="h"><span class="pill now">Come descriviamo oggi</span></span><div class="step">Pedala in modo approssimativo</div><div class="step">Pedala in modo essenziale</div><div class="step">Pedala in modo corretto</div><div class="step">Pedala in modo sicuro e consapevole</div></div>
+<div class="brow"><span class="h"><span class="pill new">Con l'Atlante</span></span><div class="step s0">Pedala con le rotelle, con un adulto accanto</div><div class="step s1">Pedala senza rotelle nel cortile</div><div class="step s2">Va su strada, anche in curva e in salita</div><div class="step s3">Va in gruppo, rispettando le regole del traffico</div></div>
 </div>
-<p class="msg">È lo stesso passaggio che proponiamo per le nostre tabelle: dalla qualità espressa con un aggettivo alla <b>situazione</b> in cui lo studente riesce, e al <b>supporto</b> di cui ha bisogno.</p>
+<p class="msg">È lo stesso passaggio che proponiamo per le nostre tabelle: dalla qualità espressa con un aggettivo a <b>che cosa fa</b> lo studente, in quale <b>situazione</b> e con quale <b>supporto</b>.</p>
 </div></section>
 <section class="band soft" id="foto" data-ch="2"><div class="wrap">
-<h2>La griglia scatta la foto, la rubrica è la mappa</h2>
-<p class="lede">Non si tratta di scegliere uno strumento contro l'altro. Servono a due momenti diversi e lavorano insieme.</p>
+<h2>Nella verifica il voto resta; con l'Atlante si aggiunge la mappa</h2>
+<p class="lede">Il voto è la foto della verifica. Oggi la foto resta da sola; con l'Atlante viene collocata sulla mappa della disciplina, e lo studente vede dove si trova e dove andare.</p>
 <div class="two">
-<div class="card">
-<svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="18" width="52" height="36" rx="8" fill="var(--sky)" stroke="var(--blu)" stroke-width="3"/><path d="M22 18 26 10H38L42 18" fill="none" stroke="var(--blu)" stroke-width="3" stroke-linejoin="round"/><circle cx="32" cy="36" r="10" fill="#fff" stroke="var(--blu)" stroke-width="3"/><circle cx="32" cy="36" r="4" fill="var(--blu2)"/></svg>
-<h3>Griglia: la foto della singola prova</h3>
-<p>Per una verifica in itinere scegliamo pochi criteri e diamo un punteggio. Ci restituisce il voto della prova, in modo rapido e uguale per tutti.</p>
-<ul><li>serve al docente</li><li>fotografa un momento</li><li>produce il voto</li></ul>
+<div class="card now"><span class="pill now">Come valutiamo oggi</span>
+<svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="18" width="52" height="36" rx="8" fill="#eef1f5" stroke="#6b7789" stroke-width="3"/><path d="M22 18 26 10H38L42 18" fill="none" stroke="#6b7789" stroke-width="3" stroke-linejoin="round"/><circle cx="32" cy="36" r="10" fill="#fff" stroke="#6b7789" stroke-width="3"/><circle cx="32" cy="36" r="4" fill="#6b7789"/></svg>
+<h3>La verifica produce un voto</h3>
+<p>La tabella della disciplina descrive il livello con parole come completo, corretto, essenziale.</p>
+<ul><li>il voto va sul registro elettronico</li><li>il livello è detto con un aggettivo</li><li>lo studente sa quanto, ma non sempre che cosa fare dopo</li></ul>
 </div>
-<div class="card">
+<div class="card new"><span class="pill new">Con l'Atlante</span>
 <svg class="ic" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 14 22 8 42 14 58 8V50L42 56 22 50 6 56Z" fill="var(--ok)" stroke="var(--okk)" stroke-width="3" stroke-linejoin="round"/><path d="M22 8V50M42 14V56" stroke="var(--okk)" stroke-width="2.5"/><path d="M14 44C22 36 30 40 36 30S48 20 52 18" fill="none" stroke="var(--blu)" stroke-width="3" stroke-dasharray="4 4"/><circle cx="52" cy="18" r="4" fill="var(--blu)"/></svg>
-<h3>Rubrica: la mappa dell'Atlante</h3>
-<p>Descrive le tappe di ogni nucleo con ciò che lo studente sa fare. Colloca ogni foto sul percorso e mostra la prossima tappa.</p>
-<ul><li>serve allo studente e al docente</li><li>racconta un percorso</li><li>indica il passo successivo</li></ul>
+<h3>La verifica produce lo stesso voto e una posizione sulla mappa</h3>
+<p>I criteri con cui si corregge sono presi dalla rubrica della disciplina, che colloca il risultato su una tappa e indica la prossima.</p>
+<ul><li>il voto va sul registro elettronico, come oggi</li><li>il livello è una tappa: che cosa fa lo studente, dove, con quale aiuto</li><li>lo studente sa dove si trova e che cosa provare</li></ul>
 </div>
 </div>
-<p class="join">La griglia dà il voto della verifica; la rubrica della disciplina, da cui la griglia prende i criteri, spiega quel voto e indica la prossima tappa. Così ogni voto si può leggere anche come una posizione sulla mappa.</p>
+<p class="join">Non sono due strumenti tra cui scegliere: con l'Atlante correggere e orientare diventano un unico gesto.</p>
 </div></section>
 <section class="band" id="visore" data-ch="3"><div class="wrap">
 <a class="ctag" href="#percorso"><span class="cdots"><i class="cd1"></i><i class="cd2"></i><i class="cd3 on"></i><i class="cd4"></i></span><span>Tappa 3 di 4 · <b>Le nostre rubriche</b></span></a>
 
 <h2>Le nostre tabelle, un passo più in là</h2>
-<p class="lede">Si parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e si prosegue con le discipline, in ordine di ore settimanali. Per ogni nucleo puoi vedere la tabella che usiamo oggi, la griglia per le prove e la rubrica per l'Atlante, con le tappe in fila da Iniziale ad Avanzato.</p>
+<p class="lede">Si parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e si prosegue con le discipline, in ordine di ore settimanali. Per ogni nucleo puoi confrontare come valutiamo oggi e come si valuta con l'Atlante, con le tappe in fila da Iniziale ad Avanzato.</p>
 <div class="vtop">
 <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button type="button" id="prev" aria-label="Documento precedente">‹</button><select id="area" aria-label="Documento"></select><button type="button" id="next" aria-label="Documento successivo">›</button></div>
-<div class="steps3" role="group" aria-label="Versione">
-<button type="button" data-s="orig" aria-pressed="true">La nostra tabella</button>
-<button type="button" data-s="gri" aria-pressed="false">Griglia per la prova</button>
-<button type="button" data-s="rub" aria-pressed="false">Rubrica per l'Atlante</button>
+<div class="steps3 seg2" role="group" aria-label="Versione">
+<button type="button" data-s="orig" aria-pressed="true">Come valutiamo oggi</button>
+<button type="button" data-s="rub" aria-pressed="false">Con l'Atlante</button>
 <button type="button" class="main" id="play">Guarda il passaggio</button>
 </div>
 </div>
@@ -368,13 +382,15 @@ body.present{font-size:19px}
 </div>
 </div></section>
 <section class="band soft" id="prova" data-ch="3"><div class="wrap">
-<h2>Durante il quadrimestre: il voto della verifica e la rubrica che lo spiega</h2>
-<p class="lede">Un esempio con un tema di italiano. Il docente usa la griglia e assegna il voto; la rubrica di italiano lo spiega allo studente: su quale tappa si trova in ogni nucleo e che cosa provare la volta successiva. Prova a cambiare i punteggi.</p>
+<h2>Una verifica, oggi e con l'Atlante</h2>
+<p class="lede">Un esempio con un tema di italiano. Il docente corregge con i criteri della rubrica e assegna il voto. Oggi lo studente riceve il voto; con l'Atlante riceve lo stesso voto e, per ogni nucleo, la tappa raggiunta e che cosa provare la volta successiva. Prova a cambiare i punteggi.</p>
 <div class="prova">
 <div class="card" id="crit"></div>
 <div class="card atl" aria-live="polite">
-<div id="mini"></div>
-<div class="voto"><span>Voto della prova</span><strong id="voto">8</strong></div>
+<div class="voto" style="border:0;padding:0 0 10px;justify-content:space-between;flex-wrap:wrap"><span><span class="pill now">Come valutiamo oggi</span></span><span>Voto della prova <strong id="voto0">8</strong></span></div>
+<div style="border-top:1px solid var(--line);padding-top:12px"><span class="pill new">Con l'Atlante</span></div>
+<div id="mini" style="margin-top:10px"></div>
+<div class="voto"><span>Voto della prova, come oggi</span><strong id="voto">8</strong></div>
 </div>
 </div>
 <p class="small" style="margin-top:12px">Esempio dimostrativo. Il voto deriva dalla media dei punteggi riportata sulla scala da 4 a 10; le soglie degli errori si concordano in dipartimento.</p>
@@ -383,22 +399,23 @@ body.present{font-size:19px}
 <a class="ctag" href="#percorso"><span class="cdots"><i class="cd1"></i><i class="cd2"></i><i class="cd3"></i><i class="cd4 on"></i></span><span>Tappa 4 di 4 · <b>Il cammino dello studente</b></span></a>
 
 <h2>Il pagellino diventa la prima pagina dell'Atlante</h2>
-<p class="lede">A novembre e ad aprile la famiglia riceve, senza voti, la mappa delle competenze trasversali: la tappa raggiunta e la strada per la prossima. A fine quadrimestre la stessa pagina si compila di nuovo.</p>
+<p class="lede">È il documento che già consegniamo a novembre e ad aprile. Confronta come appare oggi e come appare con l'Atlante: senza voti, con la tappa raggiunta e la strada per la prossima. A fine quadrimestre la stessa pagina si compila di nuovo.</p>
 <div class="pag" style="margin-top:6px">
 <div class="doc" aria-live="polite">
-<div class="dh"><b>Pagellino di novembre</b><span>Studente di esempio · competenze trasversali</span></div>
+<div class="dh"><b>Pagellino di novembre</b><span class="seg2" role="group" aria-label="Versione del pagellino"><button type="button" data-pv="now" aria-pressed="false">Come valutiamo oggi</button><button type="button" data-pv="new" aria-pressed="true">Con l'Atlante</button></span></div>
 <div id="pagrows"></div>
 </div>
 <div>
 <h3>Come si legge</h3>
-<p>È il documento che già consegniamo. Ogni riga è una competenza, il segnaposto è la tappa raggiunta. Toccando una riga si legge la descrizione della tappa e la prossima.</p>
+<p id="pagtxt"></p>
 <div class="next" id="pagnext"></div>
-<p class="small" style="margin-top:8px">Tocca una riga per leggere la prossima tappa. Esempio dimostrativo.</p>
+<p class="small" style="margin-top:8px">Studente di esempio.</p>
 </div>
 </div>
 </div></section>
 <section class="band soft" id="tempo" data-ch="4"><div class="wrap">
 <h2>Due misure a quadrimestre, un cammino nell'anno</h2>
+<p style="margin:0 0 8px"><span class="pill new">Con l'Atlante</span></p>
 <p class="lede">Il pagellino e lo scrutinio usano la stessa rubrica. Messe in fila, le quattro misure dell'anno raccontano il cammino dello studente: dove è partito, dove è salito, dove c'è ancora strada da fare.</p>
 <div class="months" role="group" aria-label="Momento"><button type="button" data-m="0" aria-pressed="true">Novembre · pagellino</button><button type="button" data-m="1" aria-pressed="false">Fine 1° quadrimestre · scrutinio</button><button type="button" data-m="2" aria-pressed="false">Aprile · pagellino</button><button type="button" data-m="3" aria-pressed="false">Fine anno · scrutinio</button><button type="button" class="main" id="walk">Fai camminare</button></div>
 <div class="scr">
@@ -476,19 +493,16 @@ function render(anim) {
   if (S === 'orig') {
     const L = n.orig.slice().reverse(), lab = a.livelli.slice().reverse();
     cells = L.map((t, i) => ({ h: lab[i], c: L.length === 5 ? ['var(--D)', 'var(--D)', 'var(--C)', 'var(--B)', 'var(--A)'][i] : LVC[i], b: `<p style="margin:0">${mark(t, on)}</p>` }));
-  } else if (S === 'gri') {
-    cells = [0, 1, 2, 3].map(i => ({ h: `${i + 1} ${i ? 'punti' : 'punto'}`, c: LVC[i], b: n.griglia.map(g => `<div class="crit"><b>${esc(g[0].replace('*', ''))}</b>${esc(g[1][3 - i])}</div>`).join('') }));
   } else {
-    cells = [0, 1, 2, 3].map(i => ({ h: RUBL[i], c: LVC[i], b: `<p style="margin:0">${mark(n.rubrica[3 - i], on)}</p>` }));
+    cells = [0, 1, 2, 3].map(i => ({ h: RUBL[i], c: LVC[i], b: `<p style="margin:0">${mark(n.rubrica[3 - i], on)}</p><div class="inv"><b>Nella verifica · ${i + 1} ${i ? 'punti' : 'punto'}</b>${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][3 - i])).join('<br>')}</div>` }));
   }
   const p = $('#path');
   p.style.gridTemplateColumns = `repeat(${cells.length},minmax(0,1fr))`;
   p.classList.remove('anim'); void p.offsetWidth;
   p.innerHTML = cells.map(c => `<article class="tappa"><header style="background:${c.c}"><i style="background:#fff"></i>${esc(c.h)}</header><div class="body">${c.b}</div></article>`).join('');
   if (anim && !reduce) p.classList.add('anim');
-  $('#cap').innerHTML = S === 'orig' ? 'La tabella che usiamo oggi, letta come un sentiero da sinistra a destra.' + (on ? ' In giallo le parole di qualità, in azzurro le situazioni e i supporti.' : '')
-    : S === 'gri' ? 'Per ogni prova si scelgono i criteri utili: due per nucleo, con ancore brevi e uguali per tutti.'
-    : 'Ogni tappa dice che cosa lo studente sa fare, in quale situazione e con quale aiuto.' + (on ? ' In azzurro le situazioni e i supporti che segnano il passaggio.' : '') + (a.key === 'irc' ? ' Per religione la tappa si traduce poi nel giudizio: Sufficiente, Buono, Distinto, Ottimo.' : '');
+  $('#cap').innerHTML = S === 'orig' ? 'Come valutiamo oggi: la tabella che usiamo, letta come un sentiero da sinistra a destra.' + (on ? ' In giallo le parole di qualità, in azzurro le situazioni e i supporti.' : '')
+    : 'Con l\'Atlante: ogni tappa dice che cosa lo studente sa fare, in quale situazione e con quale aiuto.' + ' Sotto, i criteri con cui la stessa tappa si riconosce nella verifica e si trasforma nel voto.' + (on ? ' In azzurro le situazioni e i supporti che segnano il passaggio.' : '') + (a.key === 'irc' ? ' Per religione la tappa si traduce poi nel giudizio: Sufficiente, Buono, Distinto, Ottimo.' : '');
   $('#gia').innerHTML = a.gia.map(t => `<li>${OK}<span>${esc(t)}</span></li>`).join('');
   $('#passo').innerHTML = a.passo.map(t => `<li>${GO}<span>${esc(t)}</span></li>`).join('');
 }
@@ -501,7 +515,7 @@ document.querySelectorAll('.steps3 [data-s]').forEach(b => b.addEventListener('c
 $('#lens').addEventListener('change', () => render(false));
 $('#play').addEventListener('click', () => {
   if (timer) { stop(); return; }
-  const seq = ['orig', 'gri', 'rub']; let k = 0; S = 'orig'; render(true); $('#play').textContent = 'Ferma';
+  const seq = ['orig', 'rub']; let k = 0; S = 'orig'; render(true); $('#play').textContent = 'Ferma';
   timer = setInterval(() => { k++; if (k >= seq.length) { stop(); return; } S = seq[k]; render(true); }, 3400);
 });
 A = 0; $('#area').value = A; render(false);
@@ -524,7 +538,7 @@ function renderProva() {
     return `<div class="mini"><h3>${esc(n.nome)}</h3>${rail(lv)}<div class="next">${nx}</div></div>`;
   }).join('');
   const m = score.reduce((a, b) => a + b, 0) / score.length;
-  $('#voto').textContent = Math.round(4 + (m - 1) * 2);
+  $('#voto').textContent = Math.round(4 + (m - 1) * 2); $('#voto0').textContent = $('#voto').textContent;
 }
 $('#crit').addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; score[+b.dataset.i] = +b.dataset.v; renderProva(); });
 renderProva();
@@ -554,19 +568,28 @@ renderTime();
 /* pagellino */
 const PL = TL.map(x => x[0]);
 let PS = 1;
+let PV = 'new';
 function renderPag() {
+  document.querySelectorAll('[data-pv]').forEach(b => b.setAttribute('aria-pressed', b.dataset.pv === PV));
+  if (PV === 'now') {
+    $('#pagrows').innerHTML = cmp.nuclei.map((n, i) => { const lv = PL[i]; return `<div class="prow2"><b>${esc(n.nome)}</b><span class="lt">${['D', 'C', 'B', 'A'][lv]} · ${['5-4', '7-6', '9-8', '10'][lv]}</span><span>${esc(n.orig[3 - lv])}</span></div>`; }).join('');
+    $('#pagtxt').textContent = 'Come valutiamo oggi: per ogni competenza una lettera, legata a una fascia di voto, e la frase della tabella. Dice com\'è andata, non ancora dove andare.';
+    $('#pagnext').style.display = 'none'; return;
+  }
+  $('#pagnext').style.display = '';
   $('#pagrows').innerHTML = cmp.nuclei.map((n, i) => `<button type="button" class="drow" data-p="${i}" aria-pressed="${i === PS}"><span><b>${esc(n.nome)}</b></span>${rail(PL[i])}</button>`).join('');
+  $('#pagtxt').textContent = 'Con l\'Atlante: ogni riga è una competenza, il segnaposto è la tappa raggiunta, senza voti. Toccando una riga si leggono la tappa e la prossima.';
   const n = cmp.nuclei[PS], lv = PL[PS];
   $('#pagnext').innerHTML = `<b>${esc(n.nome)} · tappa ${RUBL[lv]}</b><br>${esc(n.rubrica[3 - lv])}<br><br><b>Prossima tappa:</b> ${esc(n.rubrica[2 - lv])}`;
 }
+document.querySelectorAll('[data-pv]').forEach(b => b.addEventListener('click', () => { PV = b.dataset.pv; renderPag(); }));
 $('#pagrows').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (b) { PS = +b.dataset.p; renderPag(); } });
 renderPag();
 
 /* tabelle complete */
 $('#alltabs').innerHTML = D.areas.map(a => `<h3 style="margin-top:18px">${esc(a.nome)}</h3>` + a.nuclei.map(n => `<div class="scroll"><table class="stack"><thead><tr><th>${esc(n.nome)}</th>${RUBL.map(l => `<th>${l}</th>`).join('')}</tr></thead><tbody>
-<tr><td data-l="">La nostra tabella</td>${(n.orig.length === 5 ? [n.orig[4] + ' / ' + n.orig[3], n.orig[2], n.orig[1], n.orig[0]] : n.orig.slice().reverse()).map((t, i) => `<td data-l="${RUBL[i]}">${esc(t)}</td>`).join('')}</tr>
-<tr><td>Griglia</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${i + 1} punti">${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][k])).join('<br>')}</td>`).join('')}</tr>
-<tr><td>Rubrica</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${RUBL[i]}">${esc(n.rubrica[k])}</td>`).join('')}</tr></tbody></table></div>`).join('')).join('');
+<tr><td data-l="">Come valutiamo oggi</td>${(n.orig.length === 5 ? [n.orig[4] + ' / ' + n.orig[3], n.orig[2], n.orig[1], n.orig[0]] : n.orig.slice().reverse()).map((t, i) => `<td data-l="${RUBL[i]}">${esc(t)}</td>`).join('')}</tr>
+<tr><td>Con l'Atlante</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${RUBL[i]}">${esc(n.rubrica[k])}<br><span class="small">Nella verifica: ${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][k])).join('; ')}</span></td>`).join('')}</tr></tbody></table></div>`).join('')).join('');
 
 /* tappa attiva nella barra */
 const navs = [...document.querySelectorAll('[data-nav]')];

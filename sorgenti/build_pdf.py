@@ -52,10 +52,9 @@ def scheda(a):
         o = n["orig"]
         orig = [o[4] + " / " + o[3], o[2], o[1], o[0]] if len(o) == 5 else list(reversed(o))
         h += f'<table class="nt"><thead><tr><th class="first">{e(n["nome"])}</th>' + "".join(f'<th class="h{CLS[i]}">{RUBL[i]}</th>' for i in range(4)) + "</tr></thead><tbody>"
-        h += '<tr><td class="first">La nostra tabella</td>' + "".join(f'<td class="old">{e(t)}</td>' for t in orig) + "</tr>"
-        h += '<tr><td class="first">Griglia per la prova<br><span class="pt">1 · 2 · 3 · 4 punti</span></td>' + "".join(
-            "<td>" + "<br>".join(f'<b>{e(g[0].replace("*", ""))}</b>: {e(g[1][3 - i])}' for g in n["griglia"]) + "</td>" for i in range(4)) + "</tr>"
-        h += '<tr class="rub"><td class="first">Rubrica per l\'Atlante</td>' + "".join(f"<td>{e(n['rubrica'][3 - i])}</td>" for i in range(4)) + "</tr>"
+        h += '<tr class="nowr"><td class="first">Come valutiamo oggi</td>' + "".join(f'<td class="old">{e(t)}</td>' for t in orig) + "</tr>"
+        h += '<tr class="rub"><td class="first">Con l\'Atlante</td>' + "".join(
+            "<td>" + e(n['rubrica'][3 - i]) + '<div class="inv"><b>Nella verifica · ' + str(i + 1) + (' punti' if i else ' punto') + '</b>' + '<br>'.join(e(g[0].replace('*', '')) + ': ' + e(g[1][3 - i]) for g in n['griglia']) + '</div></td>' for i in range(4)) + '</tr>'
         h += "</tbody></table>"
     if a["key"] == "irc":
         h += '<p class="note">Per religione la tappa raggiunta si traduce nel giudizio sintetico: Iniziale → Sufficiente, Base → Buono, Intermedio → Distinto, Avanzato → Ottimo. Nella colonna Iniziale della nostra tabella sono riportati insieme i livelli Non sufficiente e Sufficiente.</p>'
@@ -99,11 +98,12 @@ io_rows = "".join(f'<tr><td class="first">{e(DIMS[i])}</td>' + "".join(f"<td>{e(
 TL = [[1, 2, 2, 2], [1, 1, 2, 2], [2, 2, 2, 3], [1, 1, 1, 2], [1, 2, 2, 3], [1, 1, 2, 2], [0, 1, 1, 2]]
 PL = [x[0] for x in TL]
 YR = "".join(f'<div class="yq"><b>{q}</b><div class="yt"><span class="tk"></span><span class="tk"></span><span class="st p">pagellino · {mm}</span><span class="tk"></span><span class="tk"></span><span class="st p">{e2}</span></div><div class="yl"><span>verifiche · rubrica disciplinare</span><span>1ª misura</span><span>2ª misura</span></div></div>' for q, e2, mm in [("Primo quadrimestre", "scrutinio", "novembre"), ("Secondo quadrimestre", "scrutinio finale", "aprile")])
+PAG_NOW = '<div class="docpag now"><div class="dh"><b>Pagellino di novembre</b><span class="pill now">Come valutiamo oggi</span></div>' + "".join(f'<div class="prow2"><b>{e(n["nome"])}</b><span class="lt">{["D","C","B","A"][PL[i]]} · {["5-4","7-6","9-8","10"][PL[i]]}</span><span>{e(n["orig"][3 - PL[i]])}</span></div>' for i, n in enumerate(comp["nuclei"])) + '</div>'
 PAG = "".join(f'<div class="prow"><span>{e(n["nome"])}</span>{rail(PL[i])}</div>' for i, n in enumerate(comp["nuclei"])) + f'<p class="next"><b>Gestione delle emozioni · tappa Iniziale.</b> {e(comp["nuclei"][6]["rubrica"][3])}<br><b>Prossima tappa:</b> {e(comp["nuclei"][6]["rubrica"][2])}</p>'
-TOC = [("atlante", "L'Atlante dello studente"), ("c1", "§Tappa 1 · Il nostro anno"), ("anno", "    Il nostro anno, oggi e con l'Atlante"), ("c2", "§Tappa 2 · Come si scrive una tappa"), ("tappe", "    Un livello si capisce meglio se è una tappa"), ("foto", "    La griglia scatta la foto, la rubrica è la mappa"), ("c3", "§Tappa 3 · Le nostre rubriche"),
+TOC = [("atlante", "L'Atlante dello studente"), ("c1", "§Tappa 1 · Il nostro anno"), ("anno", "    Il nostro anno, oggi e con l'Atlante"), ("c2", "§Tappa 2 · Come si scrive una tappa"), ("tappe", "    Un livello si capisce meglio se è una tappa"), ("foto", "    Nella verifica il voto resta; con l'Atlante si aggiunge la mappa"), ("c3", "§Tappa 3 · Le nostre rubriche"),
        ("tabelle", "    Le nostre tabelle, un passo più in là"), ("leggere", "    Come leggere le schede")] + \
       [("s-" + a["key"], "        " + a["nome"]) for a in AREAS] + \
-      [("prova", "    Durante il quadrimestre: il voto e la rubrica che lo spiega"), ("c4", "§Tappa 4 · Il cammino dello studente"), ("pagellino", "    Il pagellino diventa la prima pagina dell'Atlante"), ("tempo", "    Due misure a quadrimestre, un cammino nell'anno"), ("perche", "    Che cosa ci guadagniamo"),
+      [("prova", "    Una verifica, oggi e con l'Atlante"), ("c4", "§Tappa 4 · Il cammino dello studente"), ("pagellino", "    Il pagellino diventa la prima pagina dell'Atlante"), ("tempo", "    Due misure a quadrimestre, un cammino nell'anno"), ("perche", "    Che cosa ci guadagniamo"),
        ("rif", "Siamo già in buona compagnia"), ("io", "Appendice · Come lavoro? Scheda di autovalutazione")]
 
 CSS = """
@@ -200,8 +200,8 @@ table.io tr{height:16mm}
 .docpag{border:1px solid #e1e7f0;border-radius:10pt;padding:10pt 12pt;margin-top:6pt}
 .docpag .dh{display:flex;justify-content:space-between;border-bottom:1.5pt solid #123E90;padding-bottom:4pt;font-size:9pt;color:#5d6a80}
 .docpag .dh b{color:#123E90;font-size:10.5pt}
-.prow{display:grid;grid-template-columns:38% 1fr;gap:8pt;align-items:end;font-size:10pt;font-weight:600;margin-bottom:10pt}
-.prow .rail{margin-top:22pt}
+.prow{display:grid;grid-template-columns:34% 1fr;gap:8pt;align-items:end;font-size:9pt;font-weight:600;margin-bottom:3pt}
+.prow .rail{margin-top:17pt}
 .heat{width:100%;border-collapse:separate;border-spacing:3pt;font-size:9.5pt;margin-top:8pt}
 .heat th{font-weight:600;font-size:9pt;text-align:center;color:#1d2b45}
 .heat td{text-align:center;border-radius:6pt;padding:6pt 4pt;font-weight:600;color:#3b475c}
@@ -236,6 +236,17 @@ table.io tr{height:16mm}
 .ev.new{background:#dbefd6;border:1pt solid #2e7d4f;color:#1f3b2b}.ev.new b{color:#2e7d4f}
 .tl-h{display:none}
 table.cmp.sm{font-size:8.6pt;margin-top:4pt}table.cmp.sm td,table.cmp.sm th{padding:2.5pt 5pt}
+.pill{display:inline-block;border-radius:20pt;padding:1.5pt 8pt;font-weight:700;font-size:9pt;white-space:nowrap}
+.pill.now{background:#eef1f5;color:#4a5568;border:1pt dashed #b9c3d1}
+.pill.new{background:#dbefd6;color:#2e7d4f;border:1pt solid #2e7d4f}
+.card.now{background:#f7f9fb;border:1pt dashed #c3cbd8}.card.new{border:1pt solid #2e7d4f}
+table.nt tr.nowr td:not(.first){background:#f7f9fb}
+table.nt .inv{margin-top:4pt;border-top:0.6pt dashed #dbe2ec;padding-top:3pt;color:#5d6a80;font-size:7.6pt}
+table.nt .inv b{display:block;color:#1d2b45;font-weight:600}
+.pg2{display:grid;grid-template-columns:1fr 1fr;gap:12pt}
+.prow2{display:grid;grid-template-columns:30% 14% 1fr;gap:6pt;font-size:8.6pt;padding:4pt 0;border-bottom:0.6pt solid #e1e7f0}
+.prow2 .lt{font-weight:800;text-align:center;background:#eef1f5;border-radius:5pt;color:#4a5568;height:fit-content}
+.docpag.now{background:#f7f9fb;border:1pt dashed #c3cbd8}
 ul.refs{font-size:9.8pt;padding-left:14pt}
 """
 
@@ -256,7 +267,7 @@ YEAR_T = """<section class="wide"><h2 id="anno">Il nostro anno, oggi e con l'Atl
 <div class="ev now" style="grid-column:10/12"><b>Scrutinio finale</b>voti in pagella e giudizio</div>
 
 <div class="lane-h new">Con l'Atlante</div>
-<div class="flow new">Verifiche: la griglia dà il voto sul registro · la rubrica della disciplina lo spiega e indica la prossima tappa</div>
+<div class="flow new">Verifiche: si corregge con i criteri della rubrica della disciplina · il voto va sul registro, come oggi · la rubrica dice la tappa raggiunta e la prossima</div>
 <div class="tl-h"></div>
 <div class="ev new" style="grid-column:3/5"><b>Pagellino di novembre · 1ª misura</b>mappa delle competenze trasversali: tappa raggiunta e prossima tappa, senza voti</div>
 <div class="ev new" style="grid-column:5/7"><b>Scrutinio · 2ª misura</b>la stessa mappa mostra il cammino; voti dalle verifiche, come oggi</div>
@@ -266,16 +277,16 @@ YEAR_T = """<section class="wide"><h2 id="anno">Il nostro anno, oggi e con l'Atl
 </div>
 <p class="note" style="margin:4pt 0 8pt">I tempi non cambiano. Cambia ciò che ogni momento restituisce allo studente e alla famiglia.</p>
 <table class="cmp sm"><thead><tr><th>Momento</th><th>Strumento</th><th>Che cosa produce</th></tr></thead><tbody>
-<tr><td><b>Durante il quadrimestre</b><br>verifiche e lavoro in classe</td><td>Griglia per il voto della prova; rubrica della disciplina per spiegarlo</td><td>Il voto sul registro elettronico e, per lo studente, la tappa raggiunta nella disciplina e la prossima</td></tr>
+<tr><td><b>Durante il quadrimestre</b><br>verifiche e lavoro in classe</td><td>La rubrica della disciplina: con i suoi criteri si dà il voto, con le sue tappe lo si spiega</td><td>Il voto sul registro elettronico e, per lo studente, la tappa raggiunta nella disciplina e la prossima</td></tr>
 <tr><td><b>Novembre e aprile</b><br>pagellino interquadrimestrale</td><td>Rubrica delle competenze trasversali</td><td>La prima misura: per la famiglia, senza voti, dove si trova lo studente e qual è la prossima tappa</td></tr>
 <tr><td><b>A fine quadrimestre</b><br>scrutinio</td><td>La stessa rubrica delle competenze trasversali</td><td>La seconda misura, che mostra il cammino fatto dal pagellino; accanto, i voti delle discipline, che vengono dalle verifiche come oggi</td></tr>
 <tr><td><b>Fine della terza</b></td><td>Le misure dei tre anni</td><td>La base della certificazione delle competenze, con gli stessi quattro livelli</td></tr>
 </tbody></table>
 </section>
 """
-PAG_T = """<section class="sec"><h2 id="pagellino">Il pagellino diventa la prima pagina dell'Atlante</h2>
+PAG_T = """<section class="wide"><h2 id="pagellino">Il pagellino diventa la prima pagina dell'Atlante</h2>
 <p>È il documento che già consegniamo alle famiglie a novembre e ad aprile. Con la rubrica non dice solo un giudizio: mostra la tappa raggiunta in ogni competenza e la strada per la prossima. A fine quadrimestre la stessa pagina viene compilata di nuovo.</p>
-<div class="docpag"><div class="dh"><b>Pagellino di novembre</b><span>Studente di esempio · competenze trasversali</span></div>__PAG__</div>
+<div class="pg2">__PAGNOW__<div class="docpag"><div class="dh"><b>Pagellino di novembre</b><span class="pill new">Con l'Atlante</span></div>__PAG__</div></div>
 </section>"""
 MOMS = ["Novembre<br><span class='note'>pagellino</span>", "Fine 1° quadrimestre<br><span class='note'>scrutinio</span>", "Aprile<br><span class='note'>pagellino</span>", "Fine anno<br><span class='note'>scrutinio finale</span>"]
 def cammino():
@@ -289,8 +300,8 @@ def cammino():
     low = min(range(7), key=lambda i: TL[i][3]); n = comp["nuclei"][low]; lv = TL[low][3]
     return h + f'</tbody></table><p class="next"><b>A fine anno, prossima tappa in {e(n["nome"].lower())}:</b> {e(n["rubrica"][2 - lv])}</p>'
 CH = [("c1", "Il nostro anno", "Due quadrimestri, tre momenti, uno strumento per ciascuno.", "#fde3cf", "#b8612a"),
-      ("c2", "Come si scrive una tappa", "Dalla qualità detta con un aggettivo alla situazione in cui lo studente riesce; griglia e rubrica.", "#fff0c7", "#a8721c"),
-      ("c3", "Le nostre rubriche", "Le tabelle che usiamo, un passo più in là, accanto alle verifiche.", "#dbefd6", "#2e7d4f"),
+      ("c2", "Come si scrive una tappa", "Dalla qualità detta con un aggettivo alla situazione in cui lo studente riesce: oggi e con l'Atlante.", "#fff0c7", "#a8721c"),
+      ("c3", "Le nostre rubriche", "Ogni tabella e ogni verifica, oggi e con l'Atlante.", "#dbefd6", "#2e7d4f"),
       ("c4", "Il cammino dello studente", "Il pagellino e lo scrutinio: due misure che, messe in fila, raccontano il percorso.", "#d4ebfb", "#1f87c9")]
 def route(cur=None, big=False):
     w, r = (520, 30) if big else (300, 13)
@@ -310,7 +321,7 @@ def divider(i, items):
 def page(toc_pages=None):
     tp = toc_pages or {}
     CAMMINO = cammino()
-    PAG_HTML = PAG_T.replace("__PAG__", PAG)
+    PAG_HTML = PAG_T.replace("__PAG__", PAG).replace("__PAGNOW__", PAG_NOW)
     YEAR_HTML = YEAR_T.replace("__YR__", YR).replace("__PAG__", PAG)
     ROUTE = '<div class="routebox">' + route(None, True) + '<div class="rlab">' + "".join(f'<div><b style="color:{c[4]}">{e(c[1])}</b><span>{e(c[2])}</span></div>' for c in CH) + '</div></div>'
     def tocli(k, t):
@@ -336,7 +347,7 @@ def page(toc_pages=None):
 <section class="sec"><h2 id="atlante">L'Atlante dello studente</h2>
 <p class="lede">L'Atlante è la mappa del percorso di ogni studente: dove si trova oggi e dove sta andando. Per costruirlo ci serve un linguaggio di valutazione che descriva tappe, non soltanto gradi.</p>
 <div class="three" style="grid-template-columns:repeat(2,1fr)"><div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div><div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div><div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div><div><b>Il voto resta</b>le verifiche e la pagella mantengono i loro voti, come oggi; la rubrica li spiega</div></div>
-<p style="margin-top:12pt">Questo studio parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e prosegue con le tabelle delle discipline per la valutazione in itinere, in ordine di ore settimanali. Per ciascun documento raccoglie ciò che c'è già e propone il passo in più: una griglia per le singole prove e una rubrica per l'Atlante.</p>
+<p style="margin-top:12pt">Questo studio parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e prosegue con le tabelle delle discipline per la valutazione in itinere, in ordine di ore settimanali. Per ciascun documento mette a confronto come valutiamo oggi e come si valuta con l'Atlante.</p>
 
 <h2 style="margin-top:20pt">Il percorso di questo studio</h2><p>Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>{ROUTE}<div class="legend" style="margin-top:12pt"><h4>Come sono costruite le pagine</h4>
 <p style="margin:0">Le tappe vanno sempre da sinistra a destra, dalla prima all'ultima:
@@ -344,51 +355,50 @@ def page(toc_pages=None):
 Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell'Avanzato è il cielo verso cui si cammina.</p></div></section>
 {divider(0, ["Il nostro anno, oggi e con l'Atlante", "Quale strumento in ogni momento"])}
 {YEAR_HTML}
-{divider(1, ["Un livello si capisce meglio se è una tappa", "La griglia scatta la foto, la rubrica è la mappa"])}
+{divider(1, ["Un livello si capisce meglio se è una tappa", "Nella verifica il voto resta; con l'Atlante si aggiunge la mappa"])}
 <section class="sec"><h2 id="tappe" style="margin-top:22pt">Un livello si capisce meglio se è una tappa, non un aggettivo</h2>
-<p>Pensiamo a come descriveremmo un ragazzo che impara ad andare in bicicletta. Tutte e due le righe sono vere, ma solo la seconda gli dice che cosa provare domani.</p>
+<p>Pensiamo a come descriveremmo un ragazzo che impara ad andare in bicicletta. Oggi diremmo quanto bene pedala; con l'Atlante diciamo dove riesce a pedalare e con quale aiuto. Tutte e due le righe sono vere, ma solo la seconda gli dice che cosa provare domani.</p>
 <table class="bike"><thead><tr><th></th><th>Iniziale</th><th>Base</th><th>Intermedio</th><th>Avanzato</th></tr></thead><tbody>
-<tr class="adj"><td class="h">Con un aggettivo</td><td>Pedala in modo approssimativo</td><td>Pedala in modo essenziale</td><td>Pedala in modo corretto</td><td>Pedala in modo sicuro e consapevole</td></tr>
-<tr><td class="h">Con una tappa</td><td class="d">Pedala con le rotelle, con un adulto accanto</td><td class="c">Pedala senza rotelle nel cortile</td><td class="b">Va su strada, anche in curva e in salita</td><td class="a">Va in gruppo, rispettando le regole del traffico</td></tr>
+<tr class="adj"><td class="h"><span class="pill now">Come descriviamo oggi</span></td><td>Pedala in modo approssimativo</td><td>Pedala in modo essenziale</td><td>Pedala in modo corretto</td><td>Pedala in modo sicuro e consapevole</td></tr>
+<tr><td class="h"><span class="pill new">Con l'Atlante</span></td><td class="d">Pedala con le rotelle, con un adulto accanto</td><td class="c">Pedala senza rotelle nel cortile</td><td class="b">Va su strada, anche in curva e in salita</td><td class="a">Va in gruppo, rispettando le regole del traffico</td></tr>
 </tbody></table>
 <p>È lo stesso passaggio che proponiamo per le nostre tabelle: dalla qualità espressa con un aggettivo alla situazione in cui lo studente riesce e al supporto di cui ha bisogno. Una tappa ben scritta risponde a tre domande: che cosa fa lo studente, in quale situazione (nota o nuova, semplice o complessa), con quale aiuto (con la guida, con un modello, in autonomia).</p>
 </section>
-<section class="sec"><h2 id="foto">La griglia scatta la foto, la rubrica è la mappa</h2>
-<p class="lede">Non si tratta di scegliere uno strumento contro l'altro: servono a due momenti diversi e lavorano insieme.</p>
+<section class="sec"><h2 id="foto">Nella verifica il voto resta; con l'Atlante si aggiunge la mappa</h2>
+<p class="lede">Il voto è la foto della verifica. Oggi la foto resta da sola; con l'Atlante viene collocata sulla mappa della disciplina, e lo studente vede dove si trova e dove andare.</p>
 <div class="cards">
-<div class="card"><h3 style="margin-top:0">Griglia: la foto della singola prova</h3><p>Per una verifica in itinere scegliamo pochi criteri e diamo un punteggio. Ci restituisce il voto della prova, in modo rapido e uguale per tutti.</p><ul><li>serve al docente</li><li>fotografa un momento</li><li>produce il voto</li></ul></div>
-<div class="card"><h3 style="margin-top:0">Rubrica: la mappa dell'Atlante</h3><p>Descrive le tappe di ogni nucleo con ciò che lo studente sa fare. Colloca ogni foto sul percorso e mostra la prossima tappa.</p><ul><li>serve allo studente e al docente</li><li>racconta un percorso</li><li>indica il passo successivo</li></ul></div>
+<div class="card now"><span class="pill now">Come valutiamo oggi</span><h3 style="margin-top:6pt">La verifica produce un voto</h3><p>La tabella della disciplina descrive il livello con parole come completo, corretto, essenziale.</p><ul><li>il voto va sul registro elettronico</li><li>il livello è detto con un aggettivo</li><li>lo studente sa quanto, ma non sempre che cosa fare dopo</li></ul></div>
+<div class="card new"><span class="pill new">Con l'Atlante</span><h3 style="margin-top:6pt">La verifica produce lo stesso voto e una posizione sulla mappa</h3><p>I criteri con cui si corregge sono presi dalla rubrica della disciplina, che colloca il risultato su una tappa e indica la prossima.</p><ul><li>il voto va sul registro elettronico, come oggi</li><li>il livello è una tappa: che cosa fa lo studente, dove, con quale aiuto</li><li>lo studente sa dove si trova e che cosa provare</li></ul></div>
 </div>
-<p class="join">La griglia dà il voto della verifica; la rubrica della disciplina, da cui la griglia prende i criteri, spiega quel voto e indica la prossima tappa. Così ogni voto si può leggere anche come una posizione sulla mappa.</p>
-<table class="cmp"><thead><tr><th></th><th>Griglia</th><th>Rubrica</th></tr></thead><tbody>
-<tr><td><b>A che cosa serve</b></td><td>Misurare una prova</td><td>Descrivere il percorso in un nucleo</td></tr>
-<tr><td><b>Come è scritta</b></td><td>Criteri e ancore brevi, anche numeriche («2–3 errori»)</td><td>Tappe con azioni, situazioni e supporti</td></tr>
-<tr><td><b>Chi la usa</b></td><td>Il docente, durante la correzione</td><td>Docente e studente, anche prima del compito</td></tr>
-<tr><td><b>Che cosa restituisce</b></td><td>Il voto della prova</td><td>La tappa raggiunta e la prossima</td></tr>
-<tr><td><b>Quando</b></td><td>Verifiche in itinere</td><td>Osservazione durante l'anno, compiti di realtà, autovalutazione, colloqui</td></tr>
+<p class="join">Non sono due strumenti tra cui scegliere: con l'Atlante correggere e orientare diventano un unico gesto.</p>
+<table class="cmp"><thead><tr><th></th><th><span class="pill now">Come valutiamo oggi</span></th><th><span class="pill new">Con l'Atlante</span></th></tr></thead><tbody>
+<tr><td><b>Nella verifica</b></td><td>Un voto</td><td>Lo stesso voto, con criteri presi dalla rubrica</td></tr>
+<tr><td><b>Come è descritto il livello</b></td><td>Con aggettivi: completo, corretto, essenziale</td><td>Con una tappa: azione, situazione, supporto</td></tr>
+<tr><td><b>Che cosa riceve lo studente</b></td><td>Il voto</td><td>Il voto, la tappa raggiunta e la prossima</td></tr>
+<tr><td><b>Al pagellino</b></td><td>Lettere A–D legate a fasce di voto e frasi</td><td>La mappa delle competenze trasversali, senza voti</td></tr>
+<tr><td><b>Allo scrutinio</b></td><td>Voti e giudizio</td><td>Voti dalle verifiche, come oggi, e la stessa mappa che mostra il cammino</td></tr>
 </tbody></table>
-
 </section>
-{divider(2, ["Le nostre tabelle, un passo più in là: dalle competenze trasversali alle discipline", "Durante il quadrimestre: il voto e la rubrica che lo spiega"])}
+{divider(2, ["Le nostre tabelle, un passo più in là: dalle competenze trasversali alle discipline", "Una verifica, oggi e con l'Atlante"])}
 <section class="wide"><h2 id="tabelle">Le nostre tabelle, un passo più in là</h2>
 <p class="lede">Si parte dalla rubrica delle competenze trasversali, che sostiene la valutazione globale, e si prosegue con le discipline in ordine di ore settimanali: Italiano, Matematica, Inglese, Storia, Geografia, Spagnolo, Tecnologia, Arte e immagine, Musica, Religione cattolica.</p>
 <div class="cards" style="grid-template-columns:repeat(4,1fr)">
 {"".join(f'<div class="card" style="padding:8pt 10pt"><b style="color:#123E90">{e(a["nome"])}</b><br><span class="note">{"Valutazione globale · " if a["key"] == "comp" else ""}{len(a["nuclei"])} {"dimensioni" if a["key"] == "comp" else "nuclei"}</span></div>' for a in AREAS)}
 </div>
 <h2 id="leggere" style="margin-top:14pt">Come leggere le schede</h2>
-<p>Per ogni documento la scheda si apre con due elenchi: <b>Cosa c'è già</b>, cioè ciò che le nostre tabelle fanno bene e che conserviamo, e <b>Il passo in più</b>, cioè la direzione verso l'Atlante. Seguono i nuclei. Per ciascun nucleo tre righe, con le tappe in fila da Iniziale ad Avanzato:</p>
-<ul><li><b>La nostra tabella</b>: il testo in uso oggi, riportato fedelmente.</li><li><b>Griglia per la prova</b>: due criteri con ancore brevi, da cui il docente sceglie quelli utili a ogni verifica (1 punto a Iniziale, 4 ad Avanzato).</li><li><b>Rubrica per l'Atlante</b>: la stessa tappa descritta con ciò che lo studente sa fare, in quale situazione e con quale aiuto.</li></ul>
-<p class="note">Le griglie e le rubriche sono proposte di lavoro: il loro posto naturale è il confronto nei dipartimenti, che le correggerà e le completerà.</p>
+<p>Per ogni documento la scheda si apre con due elenchi: <b>Cosa c'è già</b>, cioè ciò che le nostre tabelle fanno bene e che conserviamo, e <b>Il passo in più</b>, cioè la direzione verso l'Atlante. Seguono i nuclei, ciascuno con due righe e le tappe in fila da Iniziale ad Avanzato:</p>
+<ul><li><span class="pill now">Come valutiamo oggi</span> il testo della tabella in uso, riportato fedelmente.</li><li><span class="pill new">Con l'Atlante</span> la stessa tappa descritta con ciò che lo studente sa fare, in quale situazione e con quale aiuto; sotto, «Nella verifica», i criteri con cui la tappa si riconosce in una prova e diventa punteggio (1 punto a Iniziale, 4 ad Avanzato).</li></ul>
+<p class="note">Le descrizioni con l'Atlante sono proposte di lavoro: il loro posto naturale è il confronto nei dipartimenti, che le correggerà e le completerà.</p>
 </section>
 {"".join(scheda(a) for a in AREAS)}
 
-<section class="wide"><h2 id="prova">Durante il quadrimestre: il voto e la rubrica che lo spiega</h2>
-<p class="lede">Un esempio con un tema di italiano. Il docente usa la griglia e assegna il voto; la rubrica di italiano lo spiega allo studente: su quale tappa si trova in ogni nucleo e che cosa provare la volta successiva.</p>
+<section class="wide"><h2 id="prova">Una verifica, oggi e con l'Atlante</h2>
+<p class="lede">Un esempio con un tema di italiano. Il docente corregge con i criteri della rubrica e assegna il voto. Oggi lo studente riceve il voto; con l'Atlante riceve lo stesso voto e, per ogni nucleo, la tappa raggiunta e che cosa provare la volta successiva.</p>
 <div class="prova">
-<div><h4>La griglia della prova</h4><table><thead><tr><th>Criterio</th><th>Punti</th><th>Ancora</th></tr></thead><tbody>{prova_rows}</tbody></table>
-<p class="voto">Voto della prova<b>{voto}</b></p>
+<div><h4>I criteri della verifica</h4><table><thead><tr><th>Criterio</th><th>Punti</th><th>Ancora</th></tr></thead><tbody>{prova_rows}</tbody></table>
+<p class="voto"><span class="pill now">Come valutiamo oggi</span> lo studente riceve il voto<b>{voto}</b></p>
 <p class="note">Media dei punteggi {str(round(sum(score)/len(score), 2)).replace(".", ",")} su 4, riportata sulla scala da 4 a 10. Esempio dimostrativo.</p></div>
-<div><h4>La rubrica di italiano spiega il voto</h4>{prova_atl}</div>
+<div><p style="margin:0 0 4pt"><span class="pill new">Con l'Atlante</span> lo stesso voto, {voto}, e la mappa</p>{prova_atl}</div>
 </div></section>
 
 {divider(3, ["Il pagellino diventa la prima pagina dell'Atlante", "Due misure a quadrimestre, un cammino nell'anno", "Che cosa ci guadagniamo"])}
