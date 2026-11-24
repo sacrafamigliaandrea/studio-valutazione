@@ -98,12 +98,12 @@ io_rows = "".join(f'<tr><td class="first">{e(DIMS[i])}</td>' + "".join(f"<td>{e(
 
 TL = [[1, 2, 2, 2], [1, 1, 2, 2], [2, 2, 2, 3], [1, 1, 1, 2], [1, 2, 2, 3], [1, 1, 2, 2], [0, 1, 1, 2]]
 PL = [x[0] for x in TL]
-YR = "".join(f'<div class="yq"><b>{q}</b><div class="yt"><span class="tk"></span><span class="tk"></span><span class="st p">pagellino</span><span class="tk"></span><span class="tk"></span><span class="st p">{e2}</span></div><div class="yl"><span>verifiche · rubrica disciplinare</span><span>1ª misura</span><span>2ª misura</span></div></div>' for q, e2 in [("Primo quadrimestre", "scrutinio"), ("Secondo quadrimestre", "scrutinio finale")])
+YR = "".join(f'<div class="yq"><b>{q}</b><div class="yt"><span class="tk"></span><span class="tk"></span><span class="st p">pagellino · {mm}</span><span class="tk"></span><span class="tk"></span><span class="st p">{e2}</span></div><div class="yl"><span>verifiche · rubrica disciplinare</span><span>1ª misura</span><span>2ª misura</span></div></div>' for q, e2, mm in [("Primo quadrimestre", "scrutinio", "novembre"), ("Secondo quadrimestre", "scrutinio finale", "aprile")])
 PAG = "".join(f'<div class="prow"><span>{e(n["nome"])}</span>{rail(PL[i])}</div>' for i, n in enumerate(comp["nuclei"])) + f'<p class="next"><b>Gestione delle emozioni · tappa Iniziale.</b> {e(comp["nuclei"][6]["rubrica"][3])}<br><b>Prossima tappa:</b> {e(comp["nuclei"][6]["rubrica"][2])}</p>'
-TOC = [("atlante", "L'Atlante dello studente"), ("tappe", "Un livello si capisce meglio se è una tappa"), ("foto", "La griglia scatta la foto, la rubrica è la mappa"), ("anno", "Un anno con l'Atlante"),
-       ("tabelle", "Le nostre tabelle, un passo più in là"), ("leggere", "Come leggere le schede")] + \
-      [("s-" + a["key"], "    " + a["nome"]) for a in AREAS] + \
-      [("prova", "Durante il quadrimestre: il voto e la rubrica che lo spiega"), ("tempo", "Due misure a quadrimestre, un cammino nell'anno"), ("perche", "Che cosa ci guadagniamo"),
+TOC = [("atlante", "L'Atlante dello studente"), ("c1", "§Tappa 1 · Il nostro anno"), ("anno", "    Il nostro anno, oggi e con l'Atlante"), ("c2", "§Tappa 2 · Come si scrive una tappa"), ("tappe", "    Un livello si capisce meglio se è una tappa"), ("foto", "    La griglia scatta la foto, la rubrica è la mappa"), ("c3", "§Tappa 3 · Le nostre rubriche"),
+       ("tabelle", "    Le nostre tabelle, un passo più in là"), ("leggere", "    Come leggere le schede")] + \
+      [("s-" + a["key"], "        " + a["nome"]) for a in AREAS] + \
+      [("prova", "    Durante il quadrimestre: il voto e la rubrica che lo spiega"), ("c4", "§Tappa 4 · Il cammino dello studente"), ("pagellino", "    Il pagellino diventa la prima pagina dell'Atlante"), ("tempo", "    Due misure a quadrimestre, un cammino nell'anno"), ("perche", "    Che cosa ci guadagniamo"),
        ("rif", "Siamo già in buona compagnia"), ("io", "Appendice · Come lavoro? Scheda di autovalutazione")]
 
 CSS = """
@@ -130,8 +130,8 @@ p{margin:0 0 8pt;text-align:left}
 .cover .foot{font-size:10pt;color:#5d6a80;border-top:1px solid #e1e7f0;padding-top:8pt}
 .toc{break-before:page}
 .toc ol{list-style:none;padding:0;margin:10pt 0 0}
-.toc li{display:flex;gap:6pt;padding:4pt 0;border-bottom:1px solid #eef2f8;font-size:11pt}
-.toc li.sub{padding-left:14pt;font-size:10pt;color:#5d6a80;border:0;padding-block:1.5pt}
+.toc li{display:flex;gap:6pt;padding:3pt 0;border-bottom:1px solid #eef2f8;font-size:11pt}
+.toc li.sub{padding-left:16pt;font-size:10.5pt;border-bottom:1px solid #eef2f8}
 .toc .dots{flex:1}
 .toc .pg{font-variant-numeric:tabular-nums}
 .legend{margin-top:18pt;border:1px solid #e1e7f0;border-radius:10pt;padding:12pt 14pt;background:#fff}
@@ -207,24 +207,77 @@ table.io tr{height:16mm}
 .heat td{text-align:center;border-radius:6pt;padding:6pt 4pt;font-weight:600;color:#3b475c}
 .heat td.first{text-align:left;color:#123E90;background:none;font-weight:700}
 .heat b{color:#123E90}
+.divider{break-before:page;display:flex;flex-direction:column;padding-top:40mm}
+.divider .dlh{margin-top:16pt;font-size:10pt;color:#5d6a80;margin-bottom:0}
+.divider .dtag{font-size:11pt;color:#5d6a80;margin-bottom:8pt}
+.divider svg.route{width:70mm;margin-bottom:14pt}
+.divider h1{font-size:34pt;margin-bottom:10pt}
+.divider .lede{font-size:14pt;max-width:140mm}
+.divider ul.dl{margin-top:14pt;padding-left:16pt;font-size:12pt}
+.divider .dbar{position:absolute;left:-18mm;right:-18mm;bottom:-20mm;height:42mm;border-top:3pt solid}
+.routebox{margin-top:8pt}.routebox svg{width:100%}
+.rlab{display:grid;grid-template-columns:repeat(4,1fr);gap:6pt;text-align:center;font-size:9.4pt;margin-top:4pt}
+.rlab b{display:block;font-size:10.5pt}.rlab span{color:#5d6a80}
+.toc li.ch{font-weight:700;color:#123E90;border-bottom:0;padding-top:9pt}
+.toc li.ch i{width:10pt;height:10pt;border-radius:50%;border:2pt solid;display:inline-block;margin-top:3pt}
+.toc li.sub2{padding-left:30pt;font-size:9.5pt;color:#5d6a80;border:0;padding-block:1pt}
+.tlwrap{border:1px solid #e1e7f0;border-radius:9pt;padding:7pt 8pt;margin:6pt 0 2pt}
+.tl{display:grid;grid-template-columns:22mm repeat(10,1fr);column-gap:3pt;row-gap:4pt;align-items:stretch}
+.mon{text-align:center;font-size:8pt;color:#5d6a80;border-bottom:0.6pt solid #e1e7f0;padding-bottom:2pt}
+.quad{border-radius:6pt;text-align:center;font-weight:700;font-size:8.8pt;padding:2pt;color:#123E90;background:#e8f0fc}
+.q1{grid-column:2/7}.q2{grid-column:7/12}
+.lane-h{grid-column:1;grid-row:span 2;display:flex;align-items:center;font-weight:800;font-size:10pt;border-radius:7pt;padding:5pt;margin-top:5pt}
+.lane-h.now{background:#eef1f5;color:#4a5568}.lane-h.new{background:#dbefd6;color:#2e7d4f}
+.flow{grid-column:2/12;border-radius:20pt;padding:3pt 9pt;font-size:8.6pt;margin-top:5pt}
+.flow.now{background:#eef1f5;color:#4a5568}.flow.new{background:#fff3d6;color:#7a5413;border:1pt solid #e9c97f}
+.ev{font-size:8.2pt;line-height:1.3;border-radius:7pt;padding:4pt 6pt;align-self:start}
+.ev b{display:block;font-size:8.6pt}
+.ev.now{background:#f4f6f9;border:0.8pt dashed #c3cbd8;color:#4a5568}
+.ev.new{background:#dbefd6;border:1pt solid #2e7d4f;color:#1f3b2b}.ev.new b{color:#2e7d4f}
+.tl-h{display:none}
+table.cmp.sm{font-size:8.6pt;margin-top:4pt}table.cmp.sm td,table.cmp.sm th{padding:2.5pt 5pt}
 ul.refs{font-size:9.8pt;padding-left:14pt}
 """
 
-YEAR_T = """<section class="sec"><h2 id="anno">Un anno con l'Atlante: ogni momento ha il suo strumento</h2>
-<p class="lede">L'anno è diviso in due quadrimestri. Durante il quadrimestre si lavora disciplina per disciplina; a metà e a fine quadrimestre si guarda lo studente nel suo insieme, con la stessa rubrica delle competenze trasversali misurata due volte. I tempi restano quelli che conosciamo.</p>
-<div class="yr">__YR__</div>
-<table class="cmp"><thead><tr><th>Momento</th><th>Strumento</th><th>Che cosa produce</th></tr></thead><tbody>
+YEAR_T = """<section class="wide"><h2 id="anno">Il nostro anno, oggi e con l'Atlante</h2>
+<p class="lede">Due quadrimestri, il pagellino a novembre e ad aprile, lo scrutinio a fine periodo. Sopra, come lavoriamo oggi; sotto, la proposta: stessi tempi, strumenti che dicono allo studente dove si trova e dove sta andando.</p>
+<div class="tlwrap">
+<div class="tl" role="table" aria-label="L'anno scolastico, oggi e con l'Atlante">
+<div class="tl-h"></div>
+<div class="mon" style="grid-column:2">set</div><div class="mon" style="grid-column:3">ott</div><div class="mon" style="grid-column:4">nov</div><div class="mon" style="grid-column:5">dic</div><div class="mon" style="grid-column:6">gen</div><div class="mon" style="grid-column:7">feb</div><div class="mon" style="grid-column:8">mar</div><div class="mon" style="grid-column:9">apr</div><div class="mon" style="grid-column:10">mag</div><div class="mon" style="grid-column:11">giu</div>
+<div class="tl-h"></div><div class="quad q1">Primo quadrimestre</div><div class="quad q2">Secondo quadrimestre</div>
+
+<div class="lane-h now">Oggi</div>
+<div class="flow now">Verifiche con voto sul registro elettronico · tabelle disciplinari per la valutazione in itinere</div>
+<div class="tl-h"></div>
+<div class="ev now" style="grid-column:3/5"><b>Pagellino di novembre</b>competenze trasversali: livelli A–D legati a fasce di voto, frasi per il giudizio</div>
+<div class="ev now" style="grid-column:5/7"><b>Scrutinio</b>voti in pagella e giudizio</div>
+<div class="ev now" style="grid-column:8/10"><b>Pagellino di aprile</b>come a novembre</div>
+<div class="ev now" style="grid-column:10/12"><b>Scrutinio finale</b>voti in pagella e giudizio</div>
+
+<div class="lane-h new">Con l'Atlante</div>
+<div class="flow new">Verifiche: la griglia dà il voto sul registro · la rubrica della disciplina lo spiega e indica la prossima tappa</div>
+<div class="tl-h"></div>
+<div class="ev new" style="grid-column:3/5"><b>Pagellino di novembre · 1ª misura</b>mappa delle competenze trasversali: tappa raggiunta e prossima tappa, senza voti</div>
+<div class="ev new" style="grid-column:5/7"><b>Scrutinio · 2ª misura</b>la stessa mappa mostra il cammino; voti dalle verifiche, come oggi</div>
+<div class="ev new" style="grid-column:8/10"><b>Pagellino di aprile · 3ª misura</b>nuova posizione sulla mappa e prossima tappa</div>
+<div class="ev new" style="grid-column:10/12"><b>Scrutinio finale · 4ª misura</b>il cammino dell'anno; voti dalle verifiche; in terza, base della certificazione</div>
+</div>
+</div>
+<p class="note" style="margin:4pt 0 8pt">I tempi non cambiano. Cambia ciò che ogni momento restituisce allo studente e alla famiglia.</p>
+<table class="cmp sm"><thead><tr><th>Momento</th><th>Strumento</th><th>Che cosa produce</th></tr></thead><tbody>
 <tr><td><b>Durante il quadrimestre</b><br>verifiche e lavoro in classe</td><td>Griglia per il voto della prova; rubrica della disciplina per spiegarlo</td><td>Il voto sul registro elettronico e, per lo studente, la tappa raggiunta nella disciplina e la prossima</td></tr>
-<tr><td><b>A metà quadrimestre</b><br>pagellino interquadrimestrale</td><td>Rubrica delle competenze trasversali</td><td>La prima misura: per la famiglia, senza voti, dove si trova lo studente e qual è la prossima tappa</td></tr>
-<tr><td><b>A fine quadrimestre</b><br>scrutinio</td><td>La stessa rubrica delle competenze trasversali</td><td>La seconda misura, che mostra il cammino da metà quadrimestre; accanto, i voti delle discipline, che vengono dalle verifiche come oggi</td></tr>
+<tr><td><b>Novembre e aprile</b><br>pagellino interquadrimestrale</td><td>Rubrica delle competenze trasversali</td><td>La prima misura: per la famiglia, senza voti, dove si trova lo studente e qual è la prossima tappa</td></tr>
+<tr><td><b>A fine quadrimestre</b><br>scrutinio</td><td>La stessa rubrica delle competenze trasversali</td><td>La seconda misura, che mostra il cammino fatto dal pagellino; accanto, i voti delle discipline, che vengono dalle verifiche come oggi</td></tr>
 <tr><td><b>Fine della terza</b></td><td>Le misure dei tre anni</td><td>La base della certificazione delle competenze, con gli stessi quattro livelli</td></tr>
 </tbody></table>
-<h3 style="break-before:page;margin-top:0">Il pagellino diventa la prima pagina dell'Atlante</h3>
-<p>È il documento che già consegniamo alle famiglie a metà quadrimestre. Con la rubrica non dice solo un giudizio: mostra la tappa raggiunta in ogni competenza e la strada per la prossima. A fine quadrimestre la stessa pagina viene compilata di nuovo.</p>
-<div class="docpag"><div class="dh"><b>Pagellino · metà primo quadrimestre</b><span>Studente di esempio · competenze trasversali</span></div>__PAG__</div>
 </section>
 """
-MOMS = ["Metà 1° quadrimestre<br><span class='note'>pagellino</span>", "Fine 1° quadrimestre<br><span class='note'>scrutinio</span>", "Metà 2° quadrimestre<br><span class='note'>pagellino</span>", "Fine anno<br><span class='note'>scrutinio finale</span>"]
+PAG_T = """<section class="sec"><h2 id="pagellino">Il pagellino diventa la prima pagina dell'Atlante</h2>
+<p>È il documento che già consegniamo alle famiglie a novembre e ad aprile. Con la rubrica non dice solo un giudizio: mostra la tappa raggiunta in ogni competenza e la strada per la prossima. A fine quadrimestre la stessa pagina viene compilata di nuovo.</p>
+<div class="docpag"><div class="dh"><b>Pagellino di novembre</b><span>Studente di esempio · competenze trasversali</span></div>__PAG__</div>
+</section>"""
+MOMS = ["Novembre<br><span class='note'>pagellino</span>", "Fine 1° quadrimestre<br><span class='note'>scrutinio</span>", "Aprile<br><span class='note'>pagellino</span>", "Fine anno<br><span class='note'>scrutinio finale</span>"]
 def cammino():
     h = '<table class="heat"><thead><tr><th>Competenza</th>' + "".join(f"<th>{m}</th>" for m in MOMS) + "</tr></thead><tbody>"
     for i, n in enumerate(comp["nuclei"]):
@@ -235,11 +288,38 @@ def cammino():
         h += "</tr>"
     low = min(range(7), key=lambda i: TL[i][3]); n = comp["nuclei"][low]; lv = TL[low][3]
     return h + f'</tbody></table><p class="next"><b>A fine anno, prossima tappa in {e(n["nome"].lower())}:</b> {e(n["rubrica"][2 - lv])}</p>'
+CH = [("c1", "Il nostro anno", "Due quadrimestri, tre momenti, uno strumento per ciascuno.", "#fde3cf", "#b8612a"),
+      ("c2", "Come si scrive una tappa", "Dalla qualità detta con un aggettivo alla situazione in cui lo studente riesce; griglia e rubrica.", "#fff0c7", "#a8721c"),
+      ("c3", "Le nostre rubriche", "Le tabelle che usiamo, un passo più in là, accanto alle verifiche.", "#dbefd6", "#2e7d4f"),
+      ("c4", "Il cammino dello studente", "Il pagellino e lo scrutinio: due misure che, messe in fila, raccontano il percorso.", "#d4ebfb", "#1f87c9")]
+def route(cur=None, big=False):
+    w, r = (520, 30) if big else (300, 13)
+    xs = [r + 4 + i * (w - 2 * r - 8) / 3 for i in range(4)]
+    h = f'<svg viewBox="0 0 {w} {2*r+8}" class="route{"big" if big else ""}"><path d="M{xs[0]} {r+4} H{xs[3]}" stroke="#c9d6ea" stroke-width="{4 if big else 2.5}" stroke-dasharray="{"8 8" if big else "4 5"}"/>'
+    for i, c in enumerate(CH):
+        on = cur is None or cur == i
+        rr = r if (big or cur == i) else r * .62
+        h += f'<circle cx="{xs[i]}" cy="{r+4}" r="{rr}" fill="{c[3] if on else "#eef2f8"}" stroke="{c[4] if on else "#c9d6ea"}" stroke-width="{4 if big else 2.5}"/>'
+        if big:
+            h += f'<text x="{xs[i]}" y="{r+13}" text-anchor="middle" font-size="26" font-weight="800" fill="{c[4]}" font-family="Red Hat Display, Inter, sans-serif">{i+1}</text>'
+    return h + "</svg>"
+def divider(i, items):
+    c = CH[i]
+    return (f'<section class="divider"><div class="dtag">Tappa {i+1} di 4</div>{route(i)}<h1 id="{c[0]}" style="color:{c[4]}">{e(c[1])}</h1>'
+            f'<p class="lede">{e(c[2])}</p><p class="dlh">In questa tappa</p><ul class="dl">' + "".join(f"<li>{e(x)}</li>" for x in items) + '</ul></section>')
 def page(toc_pages=None):
     tp = toc_pages or {}
     CAMMINO = cammino()
+    PAG_HTML = PAG_T.replace("__PAG__", PAG)
     YEAR_HTML = YEAR_T.replace("__YR__", YR).replace("__PAG__", PAG)
-    toc = "".join(f'<li class="{"sub" if t.startswith("    ") else ""}"><span>{e(t.strip())}</span><span class="dots"></span><span class="pg">{tp.get(k, "00")}</span></li>' for k, t in TOC)
+    ROUTE = '<div class="routebox">' + route(None, True) + '<div class="rlab">' + "".join(f'<div><b style="color:{c[4]}">{e(c[1])}</b><span>{e(c[2])}</span></div>' for c in CH) + '</div></div>'
+    def tocli(k, t):
+        if t.startswith("§"):
+            c = CH[int(k[1]) - 1]
+            return f'<li class="ch"><i style="background:{c[3]};border-color:{c[4]}"></i><span>{e(t[1:])}</span><span class="dots"></span><span class="pg">{tp.get(k, "00")}</span></li>'
+        cls = "sub2" if t.startswith("        ") else ("sub" if t.startswith("    ") else "")
+        return f'<li class="{cls}"><span>{e(t.strip())}</span><span class="dots"></span><span class="pg">{tp.get(k, "00")}</span></li>'
+    toc = "".join(tocli(k, t) for k, t in TOC)
     body = f"""
 <section class="cover">
 <div class="k">Studio sulla valutazione · Scuola secondaria di primo grado</div>
@@ -250,10 +330,7 @@ def page(toc_pages=None):
 </section>
 
 <section class="toc"><h2>Indice</h2><ol>{toc}</ol>
-<div class="legend"><h4>Come sono costruite le pagine</h4>
-<p style="margin:0">Le tappe vanno sempre da sinistra a destra, dalla prima all'ultima:
-<span class="d" style="padding:1pt 5pt;border-radius:4pt">Iniziale</span> <span class="c" style="padding:1pt 5pt;border-radius:4pt">Base</span> <span class="b" style="padding:1pt 5pt;border-radius:4pt">Intermedio</span> <span class="a" style="padding:1pt 5pt;border-radius:4pt">Avanzato</span>.
-Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell'Avanzato è il cielo verso cui si cammina.</p></div>
+
 </section>
 
 <section class="sec"><h2 id="atlante">L'Atlante dello studente</h2>
@@ -261,7 +338,14 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 <div class="three" style="grid-template-columns:repeat(2,1fr)"><div><b>Dove sei</b>il livello raggiunto, descritto con ciò che lo studente sa fare</div><div><b>Dove vai</b>la tappa successiva, scritta in modo che si capisca cosa provare</div><div><b>Come ci arrivi</b>il supporto che oggi serve e che domani non servirà più</div><div><b>Il voto resta</b>le verifiche e la pagella mantengono i loro voti, come oggi; la rubrica li spiega</div></div>
 <p style="margin-top:12pt">Questo studio parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e prosegue con le tabelle delle discipline per la valutazione in itinere, in ordine di ore settimanali. Per ciascun documento raccoglie ciò che c'è già e propone il passo in più: una griglia per le singole prove e una rubrica per l'Atlante.</p>
 
-<h2 id="tappe" style="margin-top:22pt">Un livello si capisce meglio se è una tappa, non un aggettivo</h2>
+<h2 style="margin-top:20pt">Il percorso di questo studio</h2><p>Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>{ROUTE}<div class="legend" style="margin-top:12pt"><h4>Come sono costruite le pagine</h4>
+<p style="margin:0">Le tappe vanno sempre da sinistra a destra, dalla prima all'ultima:
+<span class="d" style="padding:1pt 5pt;border-radius:4pt">Iniziale</span> <span class="c" style="padding:1pt 5pt;border-radius:4pt">Base</span> <span class="b" style="padding:1pt 5pt;border-radius:4pt">Intermedio</span> <span class="a" style="padding:1pt 5pt;border-radius:4pt">Avanzato</span>.
+Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell'Avanzato è il cielo verso cui si cammina.</p></div></section>
+{divider(0, ["Il nostro anno, oggi e con l'Atlante", "Quale strumento in ogni momento"])}
+{YEAR_HTML}
+{divider(1, ["Un livello si capisce meglio se è una tappa", "La griglia scatta la foto, la rubrica è la mappa"])}
+<section class="sec"><h2 id="tappe" style="margin-top:22pt">Un livello si capisce meglio se è una tappa, non un aggettivo</h2>
 <p>Pensiamo a come descriveremmo un ragazzo che impara ad andare in bicicletta. Tutte e due le righe sono vere, ma solo la seconda gli dice che cosa provare domani.</p>
 <table class="bike"><thead><tr><th></th><th>Iniziale</th><th>Base</th><th>Intermedio</th><th>Avanzato</th></tr></thead><tbody>
 <tr class="adj"><td class="h">Con un aggettivo</td><td>Pedala in modo approssimativo</td><td>Pedala in modo essenziale</td><td>Pedala in modo corretto</td><td>Pedala in modo sicuro e consapevole</td></tr>
@@ -269,7 +353,6 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 </tbody></table>
 <p>È lo stesso passaggio che proponiamo per le nostre tabelle: dalla qualità espressa con un aggettivo alla situazione in cui lo studente riesce e al supporto di cui ha bisogno. Una tappa ben scritta risponde a tre domande: che cosa fa lo studente, in quale situazione (nota o nuova, semplice o complessa), con quale aiuto (con la guida, con un modello, in autonomia).</p>
 </section>
-
 <section class="sec"><h2 id="foto">La griglia scatta la foto, la rubrica è la mappa</h2>
 <p class="lede">Non si tratta di scegliere uno strumento contro l'altro: servono a due momenti diversi e lavorano insieme.</p>
 <div class="cards">
@@ -286,8 +369,8 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 </tbody></table>
 
 </section>
-
-{YEAR_HTML}<section class="wide"><h2 id="tabelle">Le nostre tabelle, un passo più in là</h2>
+{divider(2, ["Le nostre tabelle, un passo più in là: dalle competenze trasversali alle discipline", "Durante il quadrimestre: il voto e la rubrica che lo spiega"])}
+<section class="wide"><h2 id="tabelle">Le nostre tabelle, un passo più in là</h2>
 <p class="lede">Si parte dalla rubrica delle competenze trasversali, che sostiene la valutazione globale, e si prosegue con le discipline in ordine di ore settimanali: Italiano, Matematica, Inglese, Storia, Geografia, Spagnolo, Tecnologia, Arte e immagine, Musica, Religione cattolica.</p>
 <div class="cards" style="grid-template-columns:repeat(4,1fr)">
 {"".join(f'<div class="card" style="padding:8pt 10pt"><b style="color:#123E90">{e(a["nome"])}</b><br><span class="note">{"Valutazione globale · " if a["key"] == "comp" else ""}{len(a["nuclei"])} {"dimensioni" if a["key"] == "comp" else "nuclei"}</span></div>' for a in AREAS)}
@@ -308,6 +391,8 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 <div><h4>La rubrica di italiano spiega il voto</h4>{prova_atl}</div>
 </div></section>
 
+{divider(3, ["Il pagellino diventa la prima pagina dell'Atlante", "Due misure a quadrimestre, un cammino nell'anno", "Che cosa ci guadagniamo"])}
+{PAG_HTML}
 <section class="sec"><h2 id="tempo">Due misure a quadrimestre, un cammino nell'anno</h2>
 <p class="lede">Il pagellino e lo scrutinio usano la stessa rubrica. Messe in fila, le quattro misure dell'anno raccontano il cammino dello studente: dove è partito, dove è salito, dove c'è ancora strada da fare.</p>
 {CAMMINO}
@@ -356,10 +441,13 @@ def find_pages(pdf):
              for i in range(1, n + 1)]
     res, cur = {}, 2
     for k, t in TOC:
-        key = re.sub(r"\s+", " ", t.strip())
-        sub = t.startswith("    ")
+        key = re.sub(r"\s+", " ", t.strip().lstrip("§"))
+        if t.startswith("§"): key = "Tappa " + key.split("Tappa ")[1].split(" ·")[0] + " di 4"
+        sub = t.startswith("        ")
         for i in range(cur, n):
             txt = pages[i]
+            if not t.startswith("§") and re.match(r"Tappa \d di 4", txt):
+                continue
             hit = txt.startswith(key) if sub else (key in txt)
             if hit:
                 res[k] = i + 1; cur = i if not sub else i + 1
@@ -368,7 +456,10 @@ def find_pages(pdf):
 
 raw = os.path.join(TMP, "raw.pdf")
 render(page(), raw)
-render(page(find_pages(raw)), raw)
+FP = find_pages(raw)
+render(page(FP), raw)
+FP = find_pages(raw)
+CHSTART = [(FP.get(c[0], 999), c) for c in CH]
 
 from pypdf import PdfReader, PdfWriter
 from reportlab.pdfgen import canvas
@@ -377,7 +468,14 @@ for i, pg in enumerate(r.pages):
     if i > 0:
         W, H = float(pg.mediabox.width), float(pg.mediabox.height)
         b = io.BytesIO(); c = canvas.Canvas(b, pagesize=(W, H)); c.setFont("Helvetica", 7.5); c.setFillColorRGB(.36, .42, .5)
-        c.drawString(40, 22, "L'Atlante dello studente · Studio sulla valutazione · Scuola Sacra Famiglia, Orzinuovi")
+        cur = [cc for (pg0, cc) in CHSTART if pg0 <= i + 1 and (i + 1) < FP.get("rif", 999)]
+        if cur:
+            cc = cur[-1]; k = CH.index(cc)
+            col = tuple(int(cc[4][j:j + 2], 16) / 255 for j in (1, 3, 5)); fill = tuple(int(cc[3][j:j + 2], 16) / 255 for j in (1, 3, 5))
+            c.setFillColorRGB(*fill); c.setStrokeColorRGB(*col); c.setLineWidth(1.2); c.circle(44, 24.5, 3.6, stroke=1, fill=1)
+            c.setFillColorRGB(.36, .42, .5); c.drawString(53, 22, f"Tappa {k + 1} di 4 · {cc[1]}")
+        else:
+            c.drawString(40, 22, "L'Atlante dello studente · Studio sulla valutazione · Scuola Sacra Famiglia, Orzinuovi")
         c.drawRightString(W - 40, 22, f"{i + 1} / {n}")
         c.setStrokeColorRGB(.88, .91, .94); c.setLineWidth(.6); c.line(40, 32, W - 40, 32); c.save()
         pg.merge_page(PdfReader(b).pages[0])

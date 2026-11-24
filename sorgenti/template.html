@@ -83,6 +83,50 @@ select{font:inherit;font-size:16px;min-height:44px;border-radius:12px;border:1px
 .prop .g{background:var(--soft);border-radius:12px;padding:12px 14px;font-size:15px;margin-top:12px}
 .idea div{border-top:3px solid var(--line);padding-top:10px;font-size:15.5px}
 .idea b{display:block;color:var(--blu);font-family:"Red Hat Display",system-ui,sans-serif;font-size:17px}
+
+.cd1,.cd2,.cd3,.cd4{display:inline-block;width:11px;height:11px;border-radius:50%;flex:none}
+.cd1{background:var(--D);box-shadow:0 0 0 2px var(--Dk) inset}.cd2{background:var(--C);box-shadow:0 0 0 2px var(--Ck) inset}.cd3{background:var(--B);box-shadow:0 0 0 2px var(--Bk) inset}.cd4{background:var(--A);box-shadow:0 0 0 2px var(--Ak) inset}
+nav.top a{display:inline-flex;align-items:center;gap:7px;border-bottom:3px solid transparent;border-radius:8px 8px 0 0}
+nav.top a[data-nav="1"].on{border-color:var(--Dk)}nav.top a[data-nav="2"].on{border-color:var(--Ck)}nav.top a[data-nav="3"].on{border-color:var(--Bk)}nav.top a[data-nav="4"].on{border-color:var(--Ak)}
+nav.top a.on{font-weight:700}
+section[data-ch="1"]{box-shadow:inset 8px 0 0 var(--D)}section[data-ch="2"]{box-shadow:inset 8px 0 0 var(--C)}section[data-ch="3"]{box-shadow:inset 8px 0 0 var(--B)}section[data-ch="4"]{box-shadow:inset 8px 0 0 var(--A)}
+.ctag{display:inline-flex;align-items:center;gap:12px;font-size:15px;color:var(--mute);text-decoration:none;margin-bottom:12px;min-height:32px}
+.ctag b{color:var(--ink)}
+.cdots{display:inline-flex;align-items:center;gap:0}
+.cdots i{width:10px;height:10px;border-radius:50%;background:var(--line);margin-right:14px;position:relative}
+.cdots i:not(:last-child)::after{content:"";position:absolute;left:10px;top:4px;width:14px;height:2px;background:var(--line)}
+.cdots i.on.cd1,.cdots i.on.cd2,.cdots i.on.cd3,.cdots i.on.cd4{width:16px;height:16px}
+.cdots i.cd1.on{background:var(--D);box-shadow:0 0 0 2.5px var(--Dk) inset}.cdots i.cd2.on{background:var(--C);box-shadow:0 0 0 2.5px var(--Ck) inset}.cdots i.cd3.on{background:var(--B);box-shadow:0 0 0 2.5px var(--Bk) inset}.cdots i.cd4.on{background:var(--A);box-shadow:0 0 0 2.5px var(--Ak) inset}
+.cdots i.on:not(:last-child)::after{left:16px;top:7px}
+.route{background:var(--soft)}
+.stations{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative}
+.stations::before{content:"";position:absolute;left:12%;right:12%;top:31px;border-top:4px dashed #c9d6ea}
+.stations li{position:relative;padding:0 10px}
+.stations a{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;text-decoration:none;color:var(--ink);padding:0 4px 10px;border-radius:16px}
+.stations a:hover{background:#fff}
+.stations .dot{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:"Red Hat Display",system-ui,sans-serif;font-weight:800;font-size:26px;border:4px solid;background:#fff;position:relative}
+.st1 .dot{background:var(--D);border-color:var(--Dk);color:var(--Dk)}.st2 .dot{background:var(--C);border-color:var(--Ck);color:var(--Ck)}.st3 .dot{background:var(--B);border-color:var(--Bk);color:var(--Bk)}.st4 .dot{background:var(--A);border-color:var(--Ak);color:var(--Ak)}
+.stations b{font-family:"Red Hat Display",system-ui,sans-serif;font-size:19px;color:var(--blu);margin-top:4px}
+.stations span:last-child{font-size:15px;color:var(--mute);max-width:24ch}
+@media (max-width:820px){.stations{grid-template-columns:minmax(0,1fr)}.stations::before{left:31px;right:auto;top:30px;bottom:30px;border-top:0;border-left:4px dashed #c9d6ea}.stations a{flex-direction:row;text-align:left;align-items:flex-start;flex-wrap:wrap;column-gap:14px}.stations a b{margin-top:16px}.stations span:last-child{flex-basis:100%;padding-left:78px;margin-top:-6px}section[data-ch]{box-shadow:inset 5px 0 0 var(--line)}}
+
+.tlwrap{overflow-x:auto;margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 16px 18px}
+.tl{display:grid;grid-template-columns:8.5em repeat(10,minmax(86px,1fr));column-gap:6px;row-gap:8px;min-width:1000px;align-items:stretch}
+.mon{text-align:center;font-size:13.5px;color:var(--mute);text-transform:lowercase;border-bottom:1px solid var(--line);padding-bottom:4px}
+.quad{border-radius:10px;text-align:center;font-family:"Red Hat Display",system-ui,sans-serif;font-weight:700;font-size:14.5px;padding:5px;color:var(--blu);background:var(--sky)}
+.q1{grid-column:2/7}.q2{grid-column:7/12}
+.lane-h{grid-column:1;grid-row:span 2;align-self:stretch;display:flex;align-items:center;font-family:"Red Hat Display",system-ui,sans-serif;font-weight:800;font-size:17px;border-radius:12px;padding:10px;margin-top:10px}
+.lane-h.now{background:#eef1f5;color:#4a5568}
+.lane-h.new{background:var(--ok);color:var(--okk)}
+.flow{grid-column:2/12;border-radius:999px;padding:6px 14px;font-size:14px;margin-top:10px;display:flex;align-items:center}
+.flow.now{background:#eef1f5;color:#4a5568}
+.flow.new{background:#fff3d6;color:#7a5413;border:1.5px solid #e9c97f}
+.ev{font-size:13.5px;line-height:1.35;border-radius:12px;padding:8px 10px;position:relative;align-self:start}
+.ev b{display:block;font-size:14px;margin-bottom:2px}
+.ev.now{background:#f4f6f9;border:1px dashed #c3cbd8;color:#4a5568}
+.ev.new{background:var(--ok);border:1.5px solid var(--okk);color:#1f3b2b}
+.ev.new b{color:var(--okk)}
+.ev::before{content:"";position:absolute;left:75%;top:-9px;width:2px;height:9px;background:currentColor;opacity:.35}
 /* bicicletta */
 .bike{display:grid;gap:14px;margin-top:18px}
 .brow{display:grid;grid-template-columns:11em repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}
@@ -174,7 +218,7 @@ body.present{font-size:19px}
 </head>
 <body>
 <nav class="top" aria-label="Sezioni"><div class="wrap">
-<a href="#atlante">L'Atlante</a><a href="#tappe">Tappe, non aggettivi</a><a href="#foto">Foto e mappa</a><a href="#anno">Un anno</a><a href="#visore">Le nostre tabelle</a><a href="#prova">Una prova</a><a href="#tempo">Il cammino</a><a href="#perche">Perché</a><a href="#riferimenti">Riferimenti</a>
+<a href="#atlante">L'Atlante</a><a href="#anno" data-nav="1"><i class="cd1"></i>Il nostro anno</a><a href="#tappe" data-nav="2"><i class="cd2"></i>Come si scrive una tappa</a><a href="#visore" data-nav="3"><i class="cd3"></i>Le nostre rubriche</a><a href="#pagellino" data-nav="4"><i class="cd4"></i>Il cammino dello studente</a><a href="#riferimenti">Riferimenti</a>
 <button id="present" type="button" aria-pressed="false">Presenta</button>
 </div></nav>
 
@@ -225,7 +269,53 @@ body.present{font-size:19px}
 </div>
 </div></section>
 
-<section class="band soft" id="tappe"><div class="wrap">
+<section class="band route" id="percorso"><div class="wrap">
+<h2>Il percorso di questa presentazione</h2>
+<p class="lede">Quattro tappe, come quelle dello studente: si parte da ciò che facciamo già e si arriva al cammino che l'Atlante rende visibile.</p>
+<ol class="stations"><li><a href="#anno" class="st1"><span class="dot">1</span><b>Il nostro anno</b><span>Due quadrimestri, tre momenti, uno strumento per ciascuno.</span></a></li><li><a href="#tappe" class="st2"><span class="dot">2</span><b>Come si scrive una tappa</b><span>Dall'aggettivo alla situazione in cui lo studente riesce; griglia e rubrica.</span></a></li><li><a href="#visore" class="st3"><span class="dot">3</span><b>Le nostre rubriche</b><span>Le tabelle che usiamo, un passo più in là, accanto alle verifiche.</span></a></li><li><a href="#pagellino" class="st4"><span class="dot">4</span><b>Il cammino dello studente</b><span>Pagellino e scrutinio: due misure che raccontano il percorso.</span></a></li></ol>
+</div></section>
+<section class="band soft" id="anno" data-ch="1"><div class="wrap">
+<a class="ctag" href="#percorso"><span class="cdots"><i class="cd1 on"></i><i class="cd2"></i><i class="cd3"></i><i class="cd4"></i></span><span>Tappa 1 di 4 · <b>Il nostro anno</b></span></a>
+
+<h2>Il nostro anno, oggi e con l'Atlante</h2>
+<p class="lede">Due quadrimestri, il pagellino a novembre e ad aprile, lo scrutinio a fine periodo. Sopra, come lavoriamo oggi; sotto, la proposta: stessi tempi, strumenti che dicono allo studente dove si trova e dove sta andando.</p>
+<div class="tlwrap">
+<div class="tl" role="table" aria-label="L'anno scolastico, oggi e con l'Atlante">
+<div class="tl-h"></div>
+<div class="mon" style="grid-column:2">set</div><div class="mon" style="grid-column:3">ott</div><div class="mon" style="grid-column:4">nov</div><div class="mon" style="grid-column:5">dic</div><div class="mon" style="grid-column:6">gen</div><div class="mon" style="grid-column:7">feb</div><div class="mon" style="grid-column:8">mar</div><div class="mon" style="grid-column:9">apr</div><div class="mon" style="grid-column:10">mag</div><div class="mon" style="grid-column:11">giu</div>
+<div class="tl-h"></div><div class="quad q1">Primo quadrimestre</div><div class="quad q2">Secondo quadrimestre</div>
+
+<div class="lane-h now">Oggi</div>
+<div class="flow now">Verifiche con voto sul registro elettronico · tabelle disciplinari per la valutazione in itinere</div>
+<div class="tl-h"></div>
+<div class="ev now" style="grid-column:3/5"><b>Pagellino di novembre</b>competenze trasversali: livelli A–D legati a fasce di voto, frasi per il giudizio</div>
+<div class="ev now" style="grid-column:5/7"><b>Scrutinio</b>voti in pagella e giudizio</div>
+<div class="ev now" style="grid-column:8/10"><b>Pagellino di aprile</b>come a novembre</div>
+<div class="ev now" style="grid-column:10/12"><b>Scrutinio finale</b>voti in pagella e giudizio</div>
+
+<div class="lane-h new">Con l'Atlante</div>
+<div class="flow new">Verifiche: la griglia dà il voto sul registro · la rubrica della disciplina lo spiega e indica la prossima tappa</div>
+<div class="tl-h"></div>
+<div class="ev new" style="grid-column:3/5"><b>Pagellino di novembre · 1ª misura</b>mappa delle competenze trasversali: tappa raggiunta e prossima tappa, senza voti</div>
+<div class="ev new" style="grid-column:5/7"><b>Scrutinio · 2ª misura</b>la stessa mappa mostra il cammino; voti dalle verifiche, come oggi</div>
+<div class="ev new" style="grid-column:8/10"><b>Pagellino di aprile · 3ª misura</b>nuova posizione sulla mappa e prossima tappa</div>
+<div class="ev new" style="grid-column:10/12"><b>Scrutinio finale · 4ª misura</b>il cammino dell'anno; voti dalle verifiche; in terza, base della certificazione</div>
+</div>
+</div>
+<p class="small" style="margin-top:10px">I tempi non cambiano. Cambia ciò che ogni momento restituisce allo studente e alla famiglia.</p>
+<div class="moments">
+<div class="mom"><div class="when"><i style="border-color:var(--Ck);color:var(--Ck);background:#fff"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8h14M3 12.5h14M8 3v14" stroke="currentColor" stroke-width="1.6"/></svg></i><h3>Durante il quadrimestre</h3></div>
+<dl><dt>Momento</dt><dd>Verifiche e lavoro in classe</dd><dt>Strumenti</dt><dd>Griglia per il voto della prova; rubrica della disciplina per spiegarlo</dd><dt>Produce</dt><dd>Il voto sul registro elettronico e, per lo studente, la tappa raggiunta nella disciplina e la prossima</dd></dl></div>
+<div class="mom"><div class="when"><i style="border-color:var(--okk);background:var(--ok)"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></i><h3>Novembre e aprile</h3></div>
+<dl><dt>Momento</dt><dd>Pagellino interquadrimestrale, a metà di ciascun quadrimestre</dd><dt>Strumento</dt><dd>Rubrica delle competenze trasversali</dd><dt>Produce</dt><dd>La prima misura: per la famiglia, senza voti, dove si trova lo studente e qual è la prossima tappa</dd></dl></div>
+<div class="mom"><div class="when"><i style="border-color:var(--okk);background:var(--ok)"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></i><h3>A fine quadrimestre</h3></div>
+<dl><dt>Momento</dt><dd>Scrutinio</dd><dt>Strumento</dt><dd>La stessa rubrica delle competenze trasversali</dd><dt>Produce</dt><dd>La seconda misura, che mostra il cammino fatto dal pagellino; accanto, i voti delle discipline, che vengono dalle verifiche come oggi</dd></dl></div>
+</div>
+<p class="small" style="margin-top:12px">Al termine della terza, la certificazione delle competenze usa gli stessi quattro livelli: Iniziale, Base, Intermedio, Avanzato. Le misure dei tre anni sono la sua base naturale.</p>
+</div></section>
+<section class="band" id="tappe" data-ch="2"><div class="wrap">
+<a class="ctag" href="#percorso"><span class="cdots"><i class="cd1"></i><i class="cd2 on"></i><i class="cd3"></i><i class="cd4"></i></span><span>Tappa 2 di 4 · <b>Come si scrive una tappa</b></span></a>
+
 <h2>Un livello si capisce meglio se è una tappa, non un aggettivo</h2>
 <p class="lede">Pensiamo a come descriveremmo un ragazzo che impara ad andare in bicicletta. Tutte e due le righe sono vere, ma solo la seconda gli dice che cosa provare domani.</p>
 <div class="bike">
@@ -235,8 +325,7 @@ body.present{font-size:19px}
 </div>
 <p class="msg">È lo stesso passaggio che proponiamo per le nostre tabelle: dalla qualità espressa con un aggettivo alla <b>situazione</b> in cui lo studente riesce, e al <b>supporto</b> di cui ha bisogno.</p>
 </div></section>
-
-<section class="band" id="foto"><div class="wrap">
+<section class="band soft" id="foto" data-ch="2"><div class="wrap">
 <h2>La griglia scatta la foto, la rubrica è la mappa</h2>
 <p class="lede">Non si tratta di scegliere uno strumento contro l'altro. Servono a due momenti diversi e lavorano insieme.</p>
 <div class="two">
@@ -255,40 +344,9 @@ body.present{font-size:19px}
 </div>
 <p class="join">La griglia dà il voto della verifica; la rubrica della disciplina, da cui la griglia prende i criteri, spiega quel voto e indica la prossima tappa. Così ogni voto si può leggere anche come una posizione sulla mappa.</p>
 </div></section>
+<section class="band" id="visore" data-ch="3"><div class="wrap">
+<a class="ctag" href="#percorso"><span class="cdots"><i class="cd1"></i><i class="cd2"></i><i class="cd3 on"></i><i class="cd4"></i></span><span>Tappa 3 di 4 · <b>Le nostre rubriche</b></span></a>
 
-<section class="band soft" id="anno"><div class="wrap">
-<h2>Un anno con l'Atlante: ogni momento ha il suo strumento</h2>
-<p class="lede">L'anno è diviso in due quadrimestri. Durante il quadrimestre si lavora disciplina per disciplina; a metà e a fine quadrimestre si guarda lo studente nel suo insieme, con la stessa rubrica delle competenze trasversali misurata due volte. I tempi restano quelli che conosciamo.</p>
-<div class="year">
-<div class="q"><h3>Primo quadrimestre</h3><div class="track"><span class="tick"></span><span class="tick"></span><span class="stop p" title="Pagellino interquadrimestrale"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></span><span class="tick"></span><span class="tick"></span><span class="stop p" title="scrutinio di fine quadrimestre"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></span></div>
-<div class="tlab"><span>verifiche · rubrica disciplinare</span><span>1ª misura · pagellino</span><span>2ª misura · scrutinio</span></div></div>
-<div class="q"><h3>Secondo quadrimestre</h3><div class="track"><span class="tick"></span><span class="tick"></span><span class="stop p" title="Pagellino interquadrimestrale"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></span><span class="tick"></span><span class="tick"></span><span class="stop p" title="scrutinio finale"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></span></div>
-<div class="tlab"><span>verifiche · rubrica disciplinare</span><span>1ª misura · pagellino</span><span>2ª misura · scrutinio finale</span></div></div>
-</div>
-<div class="moments">
-<div class="mom"><div class="when"><i style="border-color:var(--Ck);color:var(--Ck);background:#fff"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8h14M3 12.5h14M8 3v14" stroke="currentColor" stroke-width="1.6"/></svg></i><h3>Durante il quadrimestre</h3></div>
-<dl><dt>Momento</dt><dd>Verifiche e lavoro in classe</dd><dt>Strumenti</dt><dd>Griglia per il voto della prova; rubrica della disciplina per spiegarlo</dd><dt>Produce</dt><dd>Il voto sul registro elettronico e, per lo studente, la tappa raggiunta nella disciplina e la prossima</dd></dl></div>
-<div class="mom"><div class="when"><i style="border-color:var(--okk);background:var(--ok)"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></i><h3>A metà quadrimestre</h3></div>
-<dl><dt>Momento</dt><dd>Pagellino interquadrimestrale</dd><dt>Strumento</dt><dd>Rubrica delle competenze trasversali</dd><dt>Produce</dt><dd>La prima misura: per la famiglia, senza voti, dove si trova lo studente e qual è la prossima tappa</dd></dl></div>
-<div class="mom"><div class="when"><i style="border-color:var(--okk);background:var(--ok)"><svg viewBox="0 0 26 26"><path d="M3 6 9 3.5 17 6 23 3.5V20L17 22.5 9 20 3 22.5Z" fill="none" stroke="#2e7d4f" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 3.5V20M17 6V22.5" stroke="#2e7d4f" stroke-width="1.8"/></svg></i><h3>A fine quadrimestre</h3></div>
-<dl><dt>Momento</dt><dd>Scrutinio</dd><dt>Strumento</dt><dd>La stessa rubrica delle competenze trasversali</dd><dt>Produce</dt><dd>La seconda misura, che mostra il cammino da metà quadrimestre; accanto, i voti delle discipline, che vengono dalle verifiche come oggi</dd></dl></div>
-</div>
-<p class="small" style="margin-top:12px">Al termine della terza, la certificazione delle competenze usa gli stessi quattro livelli: Iniziale, Base, Intermedio, Avanzato. Le misure dei tre anni sono la sua base naturale.</p>
-<div class="pag">
-<div class="doc" aria-live="polite">
-<div class="dh"><b>Pagellino · metà primo quadrimestre</b><span>Studente di esempio · competenze trasversali</span></div>
-<div id="pagrows"></div>
-</div>
-<div>
-<h3>Il pagellino diventa la prima pagina dell'Atlante</h3>
-<p>È il documento che già consegniamo alle famiglie a metà quadrimestre. Con la rubrica non dice solo un giudizio: mostra la tappa raggiunta in ogni competenza e la strada per la prossima. A fine quadrimestre la stessa pagina viene compilata di nuovo.</p>
-<div class="next" id="pagnext"></div>
-<p class="small" style="margin-top:8px">Tocca una riga per leggere la prossima tappa. Esempio dimostrativo.</p>
-</div>
-</div>
-</div></section>
-
-<section class="band" id="visore"><div class="wrap">
 <h2>Le nostre tabelle, un passo più in là</h2>
 <p class="lede">Si parte dalla rubrica delle competenze trasversali, su cui si fonda la valutazione globale, e si prosegue con le discipline, in ordine di ore settimanali. Per ogni nucleo puoi vedere la tabella che usiamo oggi, la griglia per le prove e la rubrica per l'Atlante, con le tappe in fila da Iniziale ad Avanzato.</p>
 <div class="vtop">
@@ -309,8 +367,7 @@ body.present{font-size:19px}
 <div class="card"><h3>Il passo in più</h3><ul id="passo"></ul></div>
 </div>
 </div></section>
-
-<section class="band soft" id="prova"><div class="wrap">
+<section class="band soft" id="prova" data-ch="3"><div class="wrap">
 <h2>Durante il quadrimestre: il voto della verifica e la rubrica che lo spiega</h2>
 <p class="lede">Un esempio con un tema di italiano. Il docente usa la griglia e assegna il voto; la rubrica di italiano lo spiega allo studente: su quale tappa si trova in ogni nucleo e che cosa provare la volta successiva. Prova a cambiare i punteggi.</p>
 <div class="prova">
@@ -322,19 +379,35 @@ body.present{font-size:19px}
 </div>
 <p class="small" style="margin-top:12px">Esempio dimostrativo. Il voto deriva dalla media dei punteggi riportata sulla scala da 4 a 10; le soglie degli errori si concordano in dipartimento.</p>
 </div></section>
+<section class="band" id="pagellino" data-ch="4"><div class="wrap">
+<a class="ctag" href="#percorso"><span class="cdots"><i class="cd1"></i><i class="cd2"></i><i class="cd3"></i><i class="cd4 on"></i></span><span>Tappa 4 di 4 · <b>Il cammino dello studente</b></span></a>
 
-<section class="band" id="tempo"><div class="wrap">
+<h2>Il pagellino diventa la prima pagina dell'Atlante</h2>
+<p class="lede">A novembre e ad aprile la famiglia riceve, senza voti, la mappa delle competenze trasversali: la tappa raggiunta e la strada per la prossima. A fine quadrimestre la stessa pagina si compila di nuovo.</p>
+<div class="pag" style="margin-top:6px">
+<div class="doc" aria-live="polite">
+<div class="dh"><b>Pagellino di novembre</b><span>Studente di esempio · competenze trasversali</span></div>
+<div id="pagrows"></div>
+</div>
+<div>
+<h3>Come si legge</h3>
+<p>È il documento che già consegniamo. Ogni riga è una competenza, il segnaposto è la tappa raggiunta. Toccando una riga si legge la descrizione della tappa e la prossima.</p>
+<div class="next" id="pagnext"></div>
+<p class="small" style="margin-top:8px">Tocca una riga per leggere la prossima tappa. Esempio dimostrativo.</p>
+</div>
+</div>
+</div></section>
+<section class="band soft" id="tempo" data-ch="4"><div class="wrap">
 <h2>Due misure a quadrimestre, un cammino nell'anno</h2>
 <p class="lede">Il pagellino e lo scrutinio usano la stessa rubrica. Messe in fila, le quattro misure dell'anno raccontano il cammino dello studente: dove è partito, dove è salito, dove c'è ancora strada da fare.</p>
-<div class="months" role="group" aria-label="Momento"><button type="button" data-m="0" aria-pressed="true">Metà 1° quadrimestre</button><button type="button" data-m="1" aria-pressed="false">Fine 1° quadrimestre</button><button type="button" data-m="2" aria-pressed="false">Metà 2° quadrimestre</button><button type="button" data-m="3" aria-pressed="false">Fine anno</button><button type="button" class="main" id="walk">Fai camminare</button></div>
+<div class="months" role="group" aria-label="Momento"><button type="button" data-m="0" aria-pressed="true">Novembre · pagellino</button><button type="button" data-m="1" aria-pressed="false">Fine 1° quadrimestre · scrutinio</button><button type="button" data-m="2" aria-pressed="false">Aprile · pagellino</button><button type="button" data-m="3" aria-pressed="false">Fine anno · scrutinio</button><button type="button" class="main" id="walk">Fai camminare</button></div>
 <div class="scr">
 <div class="time" id="time"></div>
 <div class="prop" aria-live="polite"><div class="small">Che cosa è cambiato</div><div class="g" id="giud" style="margin-top:8px"></div></div>
 </div>
 <p class="small">Studente di esempio, competenze trasversali.</p>
 </div></section>
-
-<section class="band soft" id="perche"><div class="wrap">
+<section class="band" id="perche" data-ch="4"><div class="wrap">
 <h2>Che cosa ci guadagniamo</h2>
 <div class="why">
 <div class="card"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="16" r="9" fill="var(--sky)" stroke="var(--blu)" stroke-width="3"/><path d="M8 46C10 34 18 29 26 29S42 34 44 46" fill="var(--sky)" stroke="var(--blu)" stroke-width="3" stroke-linecap="round"/></svg><h3>Lo studente</h3><p>Sa dove si trova e che cosa provare dopo. Può autovalutarsi con le stesse parole che usiamo noi.</p></div>
@@ -342,8 +415,7 @@ body.present{font-size:19px}
 <div class="card"><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M6 24 26 8 46 24V46H6Z" fill="var(--C)" stroke="var(--Ck)" stroke-width="3" stroke-linejoin="round"/><rect x="21" y="30" width="10" height="16" fill="#fff" stroke="var(--Ck)" stroke-width="3"/></svg><h3>Le famiglie</h3><p>Nei colloqui il discorso diventa concreto: che cosa sa fare oggi il ragazzo e qual è il prossimo passo da sostenere insieme.</p></div>
 </div>
 </div></section>
-
-<section class="band" id="riferimenti"><div class="wrap">
+<section class="band soft" id="riferimenti"><div class="wrap">
 <h2>Siamo già in buona compagnia</h2>
 <div class="refs">
 <div class="card"><h3>Certificazione delle competenze</h3><p class="small" style="color:var(--ink)">Il modello nazionale (DM 14/2024) usa già quattro livelli: A Avanzato, B Intermedio, C Base, D Iniziale. Il livello Iniziale descrive chi, guidato, svolge compiti semplici in situazioni note: un punto di partenza.</p></div>
@@ -355,6 +427,14 @@ body.present{font-size:19px}
 <details style="margin-top:22px"><summary>Tutte le tabelle, nucleo per nucleo</summary><div id="alltabs"></div></details>
 <footer style="margin-top:22px">Scuola secondaria di primo grado Sacra Famiglia, Orzinuovi (BS) · Studio sulla valutazione, novembre 2026 · Andrea Cerioli, Animatore Digitale</footer>
 </div></section>
+
+
+
+
+
+
+
+
 
 <script type="application/json" id="data">__DATA__</script>
 <script>
@@ -452,7 +532,7 @@ renderProva();
 /* il cammino: competenze trasversali in quattro misure */
 const cmp = D.areas[0];
 const TL = [[1, 2, 2, 2], [1, 1, 2, 2], [2, 2, 2, 3], [1, 1, 1, 2], [1, 2, 2, 3], [1, 1, 2, 2], [0, 1, 1, 2]];
-const MOM = ['metà del primo quadrimestre', 'fine del primo quadrimestre', 'metà del secondo quadrimestre', 'fine anno'];
+const MOM = ['novembre', 'fine del primo quadrimestre', 'aprile', 'fine anno'];
 let M = 0, walk = null;
 $('#time').innerHTML = cmp.nuclei.map((n, i) => `<div class="trow"><span class="n">${esc(n.nome)}</span><div class="rail" id="tr${i}">${RUBL.map((l, j) => `<span class="r${j}">${l}</span>`).join('')}<div class="marker">${PIN}</div></div></div>`).join('');
 function renderTime() {
@@ -460,9 +540,10 @@ function renderTime() {
   document.querySelectorAll('[data-m]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.m === M));
   const lv = TL.map(t => t[M]), low = lv.indexOf(Math.min(...lv)), n = cmp.nuclei[low];
   let h;
-  if (M === 0) h = '<b>Prima misura dell\'anno.</b> È il punto di partenza: per ogni competenza la tappa raggiunta.';
+  if (M === 0) h = '<b>Pagellino di novembre, prima misura dell\'anno.</b> È il punto di partenza: per ogni competenza la tappa raggiunta.';
   else { const up = cmp.nuclei.filter((x, i) => TL[i][M] > TL[i][M - 1]).map(x => x.nome);
-    h = up.length ? `<b>Dalla ${MOM[M - 1]} alla ${MOM[M]}</b> lo studente è salito di tappa in: ${esc(up.join(', '))}.` : `<b>Dalla ${MOM[M - 1]} alla ${MOM[M]}</b> le tappe si sono consolidate.`; }
+    const da = ['da novembre', 'dalla fine del primo quadrimestre', 'da aprile'][M - 1], a2 = ['', 'alla fine del primo quadrimestre', 'ad aprile', 'a fine anno'][M];
+    h = up.length ? `<b>${da.charAt(0).toUpperCase() + da.slice(1)} ${a2}</b> lo studente è salito di tappa in: ${esc(up.join(', '))}.` : `<b>${da.charAt(0).toUpperCase() + da.slice(1)} ${a2}</b> le tappe si sono consolidate.`; }
   h += `<br><br><b>Prossima tappa in ${esc(n.nome.toLowerCase())}:</b> ${esc(n.rubrica[2 - lv[low]])}`;
   $('#giud').innerHTML = h;
 }
@@ -486,6 +567,11 @@ $('#alltabs').innerHTML = D.areas.map(a => `<h3 style="margin-top:18px">${esc(a.
 <tr><td data-l="">La nostra tabella</td>${(n.orig.length === 5 ? [n.orig[4] + ' / ' + n.orig[3], n.orig[2], n.orig[1], n.orig[0]] : n.orig.slice().reverse()).map((t, i) => `<td data-l="${RUBL[i]}">${esc(t)}</td>`).join('')}</tr>
 <tr><td>Griglia</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${i + 1} punti">${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][k])).join('<br>')}</td>`).join('')}</tr>
 <tr><td>Rubrica</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${RUBL[i]}">${esc(n.rubrica[k])}</td>`).join('')}</tr></tbody></table></div>`).join('')).join('');
+
+/* tappa attiva nella barra */
+const navs = [...document.querySelectorAll('[data-nav]')];
+const io = new IntersectionObserver(es => { es.forEach(en => { if (en.isIntersecting) { const c = en.target.dataset.ch; navs.forEach(a => a.classList.toggle('on', a.dataset.nav === c)); } }); }, { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('section[data-ch]').forEach(s => io.observe(s));
 
 /* presentazione */
 const pres = $('#present');
