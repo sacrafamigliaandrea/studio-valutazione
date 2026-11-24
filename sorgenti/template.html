@@ -283,7 +283,6 @@ body.present{font-size:19px}
 <p style="margin-top:22px">Per una lettura approfondita, con tutte le schede delle discipline, l'esempio della prova e la scheda di autovalutazione per gli studenti:</p>
 <a class="dl" style="margin-top:0" href="studio-valutazione.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 15h12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Scarica lo studio completo (PDF)</a>
 <details style="margin-top:22px"><summary>Tutte le tabelle, nucleo per nucleo</summary><div id="alltabs"></div></details>
-<p class="small" style="margin-top:14px">Ore settimanali secondo il quadro orario nazionale della secondaria di primo grado (30 ore); Italiano comprende l'ora di approfondimento, Matematica le ore di scienze.</p>
 <footer style="margin-top:22px">Scuola secondaria di primo grado Sacra Famiglia, Orzinuovi (BS) · Studio sulla valutazione, novembre 2026 · Andrea Cerioli, Animatore Digitale</footer>
 </div></section>
 
@@ -318,7 +317,7 @@ function mark(t, on) {
 
 /* visore */
 let A = 0, N = 0, S = 'orig', timer = null;
-$('#area').innerHTML = `<optgroup label="Valutazione globale"><option value="0">${esc(D.areas[0].nome)}</option></optgroup><optgroup label="Discipline, per ore settimanali">` + D.areas.slice(1).map((a, i) => `<option value="${i + 1}">${esc(a.nome)} · ${a.ore} ${a.ore > 1 ? 'ore' : 'ora'}</option>`).join('') + '</optgroup>';
+$('#area').innerHTML = `<optgroup label="Valutazione globale"><option value="0">${esc(D.areas[0].nome)}</option></optgroup><optgroup label="Discipline, per ore settimanali">` + D.areas.slice(1).map((a, i) => `<option value="${i + 1}">${esc(a.nome)}</option>`).join('') + '</optgroup>';
 function render(anim) {
   const a = D.areas[A], n = a.nuclei[N], on = $('#lens').checked;
   $('#nuclei').innerHTML = a.nuclei.map((x, i) => `<button type="button" data-n="${i}" aria-pressed="${i === N}">${esc(x.nome)}</button>`).join('');
@@ -393,7 +392,7 @@ $('#walk').addEventListener('click', () => { clearInterval(walk); M = 0; renderT
 renderTime();
 
 /* tabelle complete */
-$('#alltabs').innerHTML = D.areas.map(a => `<h3 style="margin-top:18px">${esc(a.nome)}${a.ore ? ` <span class="small">· ${a.ore} ${a.ore > 1 ? 'ore' : 'ora'} settimanali</span>` : ''}</h3>` + a.nuclei.map(n => `<div class="scroll"><table class="stack"><thead><tr><th>${esc(n.nome)}</th>${RUBL.map(l => `<th>${l}</th>`).join('')}</tr></thead><tbody>
+$('#alltabs').innerHTML = D.areas.map(a => `<h3 style="margin-top:18px">${esc(a.nome)}</h3>` + a.nuclei.map(n => `<div class="scroll"><table class="stack"><thead><tr><th>${esc(n.nome)}</th>${RUBL.map(l => `<th>${l}</th>`).join('')}</tr></thead><tbody>
 <tr><td data-l="">La nostra tabella</td>${(n.orig.length === 5 ? [n.orig[4] + ' / ' + n.orig[3], n.orig[2], n.orig[1], n.orig[0]] : n.orig.slice().reverse()).map((t, i) => `<td data-l="${RUBL[i]}">${esc(t)}</td>`).join('')}</tr>
 <tr><td>Griglia</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${i + 1} punti">${n.griglia.map(g => esc(g[0].replace('*', '')) + ': ' + esc(g[1][k])).join('<br>')}</td>`).join('')}</tr>
 <tr><td>Rubrica</td>${[3, 2, 1, 0].map((k, i) => `<td data-l="${RUBL[i]}">${esc(n.rubrica[k])}</td>`).join('')}</tr></tbody></table></div>`).join('')).join('');

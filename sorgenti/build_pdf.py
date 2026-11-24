@@ -42,7 +42,7 @@ def rail(lv):
 
 def scheda(a):
     ore = ORE.get(a["key"])
-    meta = f'{ore} {"ore" if ore > 1 else "ora"} settimanali' if ore else "Valutazione globale"
+    meta = "" if ore else "Valutazione globale"
     h = f'<section class="wide scheda"><div class="shead"><h2 id="s-{a["key"]}">{e(a["nome"])}</h2><span class="meta">{meta}</span></div>'
     if a.get("sotto") and a["key"] != "comp":
         h += f'<p class="sotto">{e(a["sotto"])}</p>'
@@ -229,9 +229,8 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 <section class="wide"><h2 id="tabelle">Le nostre tabelle, un passo più in là</h2>
 <p class="lede">Si parte dalla rubrica delle competenze trasversali, che sostiene la valutazione globale, e si prosegue con le discipline in ordine di ore settimanali: Italiano, Matematica, Inglese, Storia, Geografia, Spagnolo, Tecnologia, Arte e immagine, Musica, Religione cattolica.</p>
 <div class="cards" style="grid-template-columns:repeat(4,1fr)">
-{"".join(f'<div class="card" style="padding:8pt 10pt"><b style="color:#123E90">{e(a["nome"])}</b><br><span class="note">{(str(ORE[a["key"]]) + (" ore" if ORE[a["key"]] > 1 else " ora") + " settimanali") if a["key"] in ORE else "Valutazione globale"} · {len(a["nuclei"])} {"dimensioni" if a["key"] == "comp" else "nuclei"}</span></div>' for a in AREAS)}
+{"".join(f'<div class="card" style="padding:8pt 10pt"><b style="color:#123E90">{e(a["nome"])}</b><br><span class="note">{"Valutazione globale · " if a["key"] == "comp" else ""}{len(a["nuclei"])} {"dimensioni" if a["key"] == "comp" else "nuclei"}</span></div>' for a in AREAS)}
 </div>
-<p class="note" style="margin-top:10pt">Ore secondo il quadro orario nazionale della secondaria di primo grado (30 ore settimanali): Italiano comprende l'ora di approfondimento, Matematica le ore di scienze.</p>
 <h2 id="leggere" style="margin-top:14pt">Come leggere le schede</h2>
 <p>Per ogni documento la scheda si apre con due elenchi: <b>Cosa c'è già</b>, cioè ciò che le nostre tabelle fanno bene e che conserviamo, e <b>Il passo in più</b>, cioè la direzione verso l'Atlante. Seguono i nuclei. Per ciascun nucleo tre righe, con le tappe in fila da Iniziale ad Avanzato:</p>
 <ul><li><b>La nostra tabella</b>: il testo in uso oggi, riportato fedelmente.</li><li><b>Griglia per la prova</b>: due criteri con ancore brevi, da cui il docente sceglie quelli utili a ogni verifica (1 punto a Iniziale, 4 ad Avanzato).</li><li><b>Rubrica per l'Atlante</b>: la stessa tappa descritta con ciò che lo studente sa fare, in quale situazione e con quale aiuto.</li></ul>
@@ -272,7 +271,6 @@ Il verde dell'Intermedio è la fascia che accoglie più studenti; l'azzurro dell
 <li>Legge 1 ottobre 2024, n. 150 – valutazione del comportamento nella secondaria di primo grado.</li>
 <li>D.M. 30 gennaio 2024, n. 14 – modelli nazionali di certificazione delle competenze.</li>
 <li>D.M. 9 dicembre 2025, n. 221 e nota MIM 1312 del 12 marzo 2026 – nuove Indicazioni nazionali per il curricolo.</li>
-<li>D.P.R. 20 marzo 2009, n. 89 – quadro orario della scuola secondaria di primo grado.</li>
 </ul>
 </section>
 
